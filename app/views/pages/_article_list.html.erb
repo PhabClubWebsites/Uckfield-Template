@@ -1,0 +1,25 @@
+<%= link_to obj.title, class:"content__title" do %>
+    <h2><%= obj.title %></h2>
+<% end %>
+<hr class="phab-separator">
+<p class="article__details"><%= time_ago_in_words(obj.created_at) %> ago </p>
+<div class="content__text">
+    <p><%= obj.content_one %></p>
+    <% if obj.content_two != "" %>
+        <p><%= obj.content_two %></p>
+        <% if obj.content_three != "" %>
+            <p><%= obj.content_three %></p>
+        <% end %>
+    <% end %>
+</div>
+<div class="article__cta">
+    <% if admin_signed_in? %>
+        <%= link_to edit_page_path(obj) do %>
+            <i class="fa fa-edit btn btn-sm btn-default"></i>
+        <% end %>
+        <%= link_to page_path(obj), method: :delete, data: 
+                    {confirm: "Are you sure you want to delete this article?"} do %>
+            <i class="fa fa-trash btn btn-sm btn-danger"></i>
+        <% end %>
+    <% end %>
+</div>

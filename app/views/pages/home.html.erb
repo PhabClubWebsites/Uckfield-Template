@@ -1,0 +1,35 @@
+<div class="home__banner">
+    <% if club.club_logo %>
+        <%= image_tag(club.club_logo, class:"home__banner-logo") %>
+    <% else %>
+        <%= image_tag("logox1.png", class:"home__banner-logo") %>
+    <% end %>
+    <div class="home__banner-text">
+        
+        <h1 class="home__banner-text--title">Welcome to I AM Phab 
+            <% if club.club_name %>
+                <%= club.club_name %>
+            <% else %>
+                Bebington
+            <% end %>
+        </h1>
+        <h1 class="home__banner-text--fancy">Making more of life together</h1>
+    </div>
+</div>
+<div class="pipe-container">
+    <div class="outer-well">
+        <div class="content">
+            <a href="#" class="content__title">
+                <h1>Welcome to I AM Phab Bebington's <%= club.club_name %>new digital home :)</h1>
+            </a>
+            <hr class="phab-separator">
+            <p class="article__details">Mon 5th of March 2018</p>
+            <p class="article__details" style="float: right;">Nathan Saunders</p>
+            <div class="content__text">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                
+            </div>
+        </div>
+    </div>
+</div>

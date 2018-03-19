@@ -1,0 +1,69 @@
+<div class="pipe-container">
+  <div class="page__header">
+    <hr class="page__header-line-before">
+    <h1>Admin Dashboard</h1>
+    <hr class="page__header-line-after">
+  </div>
+  <div class="outer-well">
+    <div class="content">
+      <h2>Home Pages</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th class="text-center">Published</th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @home_pages.each do |home| %>
+            <%= render 'article_table', obj: home %>
+          <% end %>
+        </tbody>
+      </table>
+      <%= link_to "New article for homepage", new_page_path(:site_page => "home"), class:"btn btn-md btn-primary" %>
+      <hr></hr>
+      <h2>Event Pages</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th class="text-center">Published</th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @event_pages.each do |event| %>
+            <%= render 'article_table', obj: event %>
+          <% end %>
+        </tbody>
+      </table>
+      <%= link_to "New article for events page", new_page_path(:site_page => "event"), class:"btn btn-md btn-primary" %>
+      <hr></hr>
+      <h2>News Pages</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th class="text-center">Published</th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @news_pages.each do |news| %>
+            <%= render 'article_table', obj: news %>
+          <% end %>
+        </tbody>
+      </table>
+      <%= link_to "New article for news page", new_page_path(:site_page => "news"), class:"btn btn-md btn-primary" %>
+      <!--<%# if @club.size == 1 %>-->
+      <!--  <%#= link_to "Update Club Details", edit_club_path(@club), class:"btn btn-md- btn-success" %>-->
+      <!--<%# elsif @club.size == 0 %>-->
+      <!--  <%#= link_to "Set Club Details", new_club_path, class:"btn btn-success btn-md" %>-->
+      <!--<%# end %>-->
+    </div>  
+  </div>
+</div>

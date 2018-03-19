@@ -1,0 +1,44 @@
+<nav class="navbar">
+    <div class="navbar__beb-logo">
+       <%= image_tag("logox1.png", class:"navbar__beb-logo--img") %>
+    </div>
+    <div class="navbar__links">
+        <ul>
+            <li><%= link_to "Home", root_path, id:"nav_btn_home" %></li>
+            <li>
+                <%= link_to 'Latest Club News', club_news_path, id:"nav_btn_club_news" %>
+                <ul class="ns-dropdown-menu-ns" id="nav_sub_menu">
+                    <li>Easter Fair</li>
+                    <li>Christmas Carols</li>
+                    <li>Bonfire Night</li>
+                    <li>Phab Ball</li>
+                </ul>
+            </li>
+            <li>
+                <%= link_to "What's on", whats_on_path, id:"nav_btn_whats_on" %>
+                <ul class="ns-dropdown-menu-ns" id="nav_sub_menu">
+                    <li>Easter Fair</li>
+                    <li>Christmas Carols</li>
+                    <li>Bonfire Night</li>
+                    <li>Phab Ball</li>
+                </ul>
+            </li>
+            <li><%= link_to "Contact Us", contact_us_path, id:"nav_btn_contact_us" %></li>
+            <% if admin_signed_in? %>
+              <li>
+                <%= link_to "Admin", pages_path, id:"nav_btn_admin" %>
+                <ul class="ns-dropdown-menu-ns" id="nav_sub_menu">
+                    <li><%= link_to "Admin Dashboard", pages_path %></li>
+                    <li><%= link_to "Create Article", new_page_path %></li>
+                    <li>Christmas Carols</li>
+                    <li>Bonfire Night</li>
+                    <li><%= link_to "Sign Out", destroy_admin_session_path, method: :delete %></li>
+                </ul>
+              </li>
+            <% end %>
+        </ul>
+    </div>
+    <div class="navbar__charity-number ">
+       <%= image_tag("charity-number-logo.png", class:"navbar__charity-number--img") %>
+    </div>
+</nav>

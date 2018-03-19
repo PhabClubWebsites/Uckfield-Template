@@ -1,0 +1,87 @@
+$color-primary-red: #8b0000;
+$color-primary-green: #54b948;
+$color-secondary-pink: #fefbf7;
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    // defines what 1rem is
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 62.5%; // 1rem = 10px; 10px/16px = 62.5%
+    box-sizing: border-box;
+    position: relative;
+    min-height: 100%;
+    
+    // @include respond(tab-land) {
+    //     font-size: 56.25%; // 1rem = 9px; 9/16 = 56.25%
+    // }
+    
+    // @include respond(tab-port) {
+    //     font-size: 50%; // 1rem = 8px; 8/16 = 50%
+    // }
+    
+    // @include respond(big-desktop) {
+    //     font-size: 75%; // 1rem = 12; 12/16 = 75% 
+    // }
+    
+    // height: 3000px;
+}
+
+body {
+    box-sizing: border-box;
+    // background-color: rgba($color-primary-green, .1);
+    width: 100%;
+    background-image: linear-gradient(
+        to right bottom, 
+        rgba($color-primary-green, 0.1), 
+        rgba($color-primary-green, 0.3)), 
+    url(phab-background-grid.png);
+    background-size: contain;
+    background-position: top;
+    background-repeat: repeat;
+    margin-top: 160px !important;
+    margin-bottom: 100px !important;
+    // @include respond(tab-port) {
+    //     padding: 0;
+    // }
+}
+
+li {
+    list-style: none;
+}
+
+.fancy {
+    font-family: 'Homemade Apple', cursive;
+}
+
+.pipe-container {
+    margin-top: 80px;
+    margin-left: 15%;
+    width: 70%;
+    border-radius: 8px;
+    border: 4px solid $color-primary-red;
+}
+
+.alert-notice,.alert-alert {
+  background: rgba(255, 255, 255, 0.3);
+  margin-top: -14px;
+}
+
+.flash-container {
+  position: absolute;
+}
+
+.well {
+    margin-bottom: 0 !important;
+}
+
+a {
+    text-decoration: none !important;
+}

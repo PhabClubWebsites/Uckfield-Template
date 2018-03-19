@@ -1,0 +1,19 @@
+<div class="pipe-container">
+  <div class="page__header">
+    <hr class="page__header-line-before">
+    <% if @page.site_page == "event" %>
+      <h1>What's On</h1>
+    <% elsif @page.site_page == "home" %>
+      <h1>Latest Club News</h1>
+    <% end %>
+    <hr class="page__header-line-after">
+  </div>
+  <div class="outer-well">
+    <div class="content">
+      <%= render 'article_list', obj: @page %>
+    </div>
+    <%= link_to pages_path do %>
+      <i class="btn btn-md btn-success btn-back">&larr; Back to Articles</i>
+    <% end %>
+  </div>
+</div>

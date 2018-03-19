@@ -1,0 +1,46 @@
+$color-primary-red: #8b0000;
+$color-primary-green: #54b948;
+$color-secondary-pink: #fefbf7;
+
+.home__banner {
+    height: 500px;
+    width: 100%;
+    //  background-image: linear-gradient(
+    //     to right bottom, 
+    //     rgba($color-primary-green, 0.1), 
+    //     rgba($color-primary-green, 0.3)), 
+    // url(phab-background-grid.png);
+    // background-size: cover;
+    // background-position: top;
+    position: relative;
+    
+    &-logo {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 160px;
+    }
+
+    &-text {
+        background-color: rgba($color-primary-red, .6);
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        width: 100%;
+        transform: translate(-50%, -50%);
+        font-size: 2.5rem;
+        text-align: center;
+        padding: 20px 0px;
+        &--title {
+            color: white;
+        }
+        
+        &--fancy {
+            font-family: 'Homemade Apple', cursive;
+            color: $color-primary-green;
+        }
+    }
+
+}
+

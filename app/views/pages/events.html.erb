@@ -1,0 +1,17 @@
+<div class="pipe-container">
+    <div class="page__header">
+        <hr class="page__header-line-before">
+        <h1>What's On</h1>
+        <hr class="page__header-line-after">
+    </div>
+    <div class="outer-well">
+        <div class="content">
+            <% @event_pages.each_with_index do |event, i| %>
+                <%= render partial: "article_list", locals: {obj: event} %>
+                <% if @event_pages.size - 1 != i %>
+                    <hr class="article-separator">
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+</div>

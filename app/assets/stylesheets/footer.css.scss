@@ -1,0 +1,12 @@
+$color-primary-red: #8b0000;
+$color-primary-green: #54b948;
+$color-secondary-pink: #fefbf7;
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    background-color: $color-secondary-pink;
+    border-top: 4px solid rgba($color-primary-green, .2);
+}
