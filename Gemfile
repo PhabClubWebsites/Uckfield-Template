@@ -9,7 +9,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.6'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -52,6 +52,9 @@ gem 'devise', '4.2.0'
 
 # Use Paperclip for image upload
 gem 'paperclip', '4.3.6'
+
+# Use Social Share for sharing articles on Social Media
+gem 'social-share-button'
 
 
 group :development, :test do
