@@ -1,0 +1,37 @@
+<div class="pipe-container" style="height: 1000px;">
+  <div class="well" style="height: 1000px;">
+    <h1>Galleries</h1>
+    <%= link_to 'New', new_gallery_path, :class => 'btn btn-mini' %>
+    <p></p>
+    <!--<ul class="thumbnails files">-->
+      <% @galleries.each do |gallery| %>
+          <div class="well" id="gallery_<%= gallery.id %>">
+            <h2 class="text-center"><%= gallery.name %></h2>
+            
+            <%= render 'gallery_row', obj: gallery %>
+            
+            <!--<div class="thumbnail">-->
+            <!--  <%# if gallery.cover %>-->
+            <!--    <%#= link_to image_tag(gallery.find_cover_image), gallery_path(gallery) %>-->
+            <!--  <%# elsif gallery.pictures.first %>-->
+            <!--    <%#= link_to image_tag(gallery.pictures.first.image.url), gallery_path(gallery) %>-->
+            <!--  <%# else %>-->
+            <!--    N/A-->
+            <!--  <%# end %>-->
+            <!--  <div class="caption">-->
+            <!--    <p style="text-align: center;">-->
+            <!--      <#%= link_to "Show", gallery_path(gallery) %>-->
+            <!--      <%#= link_to "Edit", edit_gallery_path(gallery) %>-->
+            <!--      <%#= link_to "Delete", gallery,-->
+            <!--        :data => { :confirm => "Are you sure?" },-->
+            <!--        :method => :delete-->
+            <!--      %>-->
+            <!--    </p>-->
+            <!--  </div>-->
+            <!--</div>-->
+          </div>
+      <% end %>
+    <!--</ul>-->
+  
+  </div>  
+</div>

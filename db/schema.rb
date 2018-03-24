@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180315084322) do
+ActiveRecord::Schema.define(version: 20180322183959) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -29,17 +29,62 @@ ActiveRecord::Schema.define(version: 20180315084322) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "clubs", force: :cascade do |t|
+    t.string   "club_name"
+    t.string   "club_leader"
+    t.string   "contact_number"
+    t.string   "contact_email"
+    t.string   "meeting_time"
+    t.string   "meeting_address"
+    t.string   "club_logo_file_name"
+    t.string   "club_logo_content_type"
+    t.integer  "club_logo_file_size"
+    t.datetime "club_logo_updated_at"
+  end
+
+  create_table "galleries", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "cover"
+    t.string   "token"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "pages", force: :cascade do |t|
     t.string   "title"
     t.text     "content_one"
     t.text     "content_two"
     t.text     "content_three"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.string   "site_page"
     t.integer  "admin_id"
-    t.boolean  "published",     default: false
+    t.boolean  "published",            default: false
     t.datetime "date_of_event"
+    t.string   "img_one_file_name"
+    t.string   "img_one_content_type"
+    t.integer  "img_one_file_size"
+    t.datetime "img_one_updated_at"
+    t.string   "img_two_file_name"
+    t.string   "img_two_content_type"
+    t.integer  "img_two_file_size"
+    t.datetime "img_two_updated_at"
+    t.string   "img_one_format"
+    t.string   "img_two_format"
+  end
+
+  create_table "pictures", force: :cascade do |t|
+    t.string   "description"
+    t.string   "image"
+    t.integer  "gallery_id"
+    t.string   "gallery_token"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
 end

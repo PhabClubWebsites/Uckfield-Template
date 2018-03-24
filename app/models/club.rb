@@ -1,6 +1,6 @@
 class Club < ActiveRecord::Base
-  belongs_to :admin 
-  has_many :page
+  belongs_to :admin, optional: true
+  has_many :pages
   
   has_attached_file :club_logo, 
                     :styles => { :medium => "300x300>", :thumb => "100x100>" },

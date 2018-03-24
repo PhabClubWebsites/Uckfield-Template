@@ -1,0 +1,16 @@
+<tr>
+  <td><%= link_to gallery.name, gallery_path(gallery) %></td>
+  <td><%= truncate(gallery.description, length: 53) %></td>
+  <td><%= gallery.pictures.size %></td>
+  <td class="text-right">
+    <%= link_to gallery_path(gallery) do %>
+        <i class="fa fa-eye btn btn-sm btn-primary"></i>
+    <% end %>
+    <%= link_to edit_gallery_path(gallery) do %>
+        <i class="fa fa-edit btn btn-sm btn-default"></i>
+    <% end %>
+    <%= link_to gallery_path(gallery), :method => 'delete', :confirm => 'Are you sure?' do %>
+      <i class="fa fa-trash btn btn-sm btn-danger"></i>
+    <% end %>
+  </td>
+</tr>

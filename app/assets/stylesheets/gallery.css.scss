@@ -1,0 +1,32 @@
+.gallery-row {
+    width: 90%;
+    margin-left: 5%;
+    height: 250px;
+    overflow-x: scroll;
+    background-color: gray;
+    padding: 10px;
+    
+    .picture-row {
+        width: max-content;
+        background-color: white;
+        height:220px;
+        padding: 5px;
+        display: inline-block;
+        
+        .picture-box {
+            position: relative;
+            width: 200px;
+            display: inline-block;
+            height: 200px;
+            
+            img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 95%;
+                
+            }
+        }
+    }
+}

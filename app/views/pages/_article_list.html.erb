@@ -1,12 +1,30 @@
 <%= link_to obj.title, class:"content__title" do %>
     <h2><%= obj.title %></h2>
 <% end %>
+<% if obj.site_page == "event" && !obj.date_of_event.blank? %>
+    <span style="font-size: 24px; float: right;"><%= obj.date_of_event.strftime("%-d %B %Y") %></span>
+<% end %>
 <hr class="phab-separator">
 <p class="article__details"><%= time_ago_in_words(obj.created_at) %> ago </p>
 <div class="content__text">
-    <p><%= obj.content_one %></p>
+    <% if !obj.img_one.blank? && obj.img_one_format == "in-square" %>
+        <%= image_tag(obj.img_one, class:"inline-square") %>
+    <% end %>
+    <p id="text_box_one"><%= obj.content_one %></p>
+    <% if !obj.img_one.blank? && obj.img_one_format != "in-square" %>
+        <div class="image-separator">
+            <% if obj.img_one_format == "banner" %>
+                <%= image_tag(obj.img_one, class:"banner") %> 
+            <% elsif obj.img_one_format == "square-sep" %>
+                <%= image_tag(obj.img_one, class:"square-sep") %>
+            <% end %>
+        </div>
+    <% end %>
     <% if obj.content_two != "" %>
         <p><%= obj.content_two %></p>
+        <% if obj.img_two %>
+            <%= image_tag(obj.img_two) %>
+        <% end %>
         <% if obj.content_three != "" %>
             <p><%= obj.content_three %></p>
         <% end %>

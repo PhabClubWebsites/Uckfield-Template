@@ -1,8 +1,18 @@
 <div class="home__banner">
-    <%= image_tag("logox1.png", class:"home__banner-logo") %>
+    <% if !club.blank? && club.club_logo %>
+        <%= image_tag(club.club_logo, class:"home__banner-logo") %>
+    <% else %>
+        <%= image_tag("logox1.png", class:"home__banner-logo") %>
+    <% end %>
     <div class="home__banner-text">
         
-        <h1 class="home__banner-text--title">Welcome to I AM Phab Bebington</h1>
+        <h1 class="home__banner-text--title">Welcome to I AM Phab 
+            <% if !club.blank? && club.club_name %>
+                <%= club.club_name %>
+            <% else %>
+                Bebington
+            <% end %>
+        </h1>
         <h1 class="home__banner-text--fancy">Making more of life together</h1>
     </div>
 </div>
@@ -10,7 +20,7 @@
     <div class="outer-well">
         <div class="content">
             <a href="#" class="content__title">
-                <h1>Welcome to I AM Phab Bebington's new digital home :)</h1>
+                <h1>Welcome to I AM Phab <% if !club.blank? && club.club_name %> <%= club.club_name %> <% else %> Bebington<% end %>'s new digital home :)</h1>
             </a>
             <hr class="phab-separator">
             <p class="article__details">Mon 5th of March 2018</p>

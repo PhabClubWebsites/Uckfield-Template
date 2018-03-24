@@ -16,5 +16,14 @@ Rails.application.routes.draw do
   
   resources :clubs
   
+  resources :galleries do 
+    resources :pictures do
+      member do
+        post :make_default
+      end
+    end
+  end
+  
+  
   
 end

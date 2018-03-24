@@ -59,11 +59,29 @@
         </tbody>
       </table>
       <%= link_to "New article for news page", new_page_path(:site_page => "news"), class:"btn btn-md btn-primary" %>
-      <!--<%# if @club.size == 1 %>-->
-      <!--  <%#= link_to "Update Club Details", edit_club_path(@club), class:"btn btn-md- btn-success" %>-->
-      <!--<%# elsif @club.size == 0 %>-->
-      <!--  <%#= link_to "Set Club Details", new_club_path, class:"btn btn-success btn-md" %>-->
-      <!--<%# end %>-->
+      <hr></hr>
+      <h2>Galleries</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Pictures</th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @galleries.each do |gallery| %>
+            <%= render 'galleries/gallery_table', gallery: gallery %> 
+          <% end %>
+        </tbody>
+      </table>
+      <%= link_to "New article for news page", new_page_path(:site_page => "news"), class:"btn btn-md btn-primary" %>
+      <% if !club.blank? %>
+        <%= link_to "Update Club Details", edit_club_path(club.id), class:"btn btn-md- btn-success" %>
+      <% else %>
+        <%= link_to "Set Club Details", new_club_path, class:"btn btn-success btn-md" %>
+      <% end %>
     </div>  
   </div>
 </div>

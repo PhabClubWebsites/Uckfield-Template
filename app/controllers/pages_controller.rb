@@ -47,8 +47,8 @@ class PagesController < ApplicationController
     @event_pages = Page.all.where("site_page = ?", "event");
     @news_pages = Page.all.where("site_page = ?", "news");
     @about_pages = Page.all.where("site_page = ?", "about");
-    #@club = Club.all.where("id = ?", 1);
-
+    @club = Club.find_by_id(1)
+    @galleries = Gallery.all
   end
   
   def published
@@ -85,7 +85,7 @@ class PagesController < ApplicationController
   private
   
   def page_params
-    params.require(:page).permit(:title, :content_one, :content_two, :content_three, :site_page, :admin_id)
+    params.require(:page).permit(:title, :date_of_event, :content_one, :img_one, :img_one_format, :content_two, :img_two, :img_two_format, :content_three, :site_page, :admin_id)
   end
   
   def set_page

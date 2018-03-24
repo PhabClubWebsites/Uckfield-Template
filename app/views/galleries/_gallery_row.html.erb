@@ -1,0 +1,11 @@
+<div class="gallery-row">
+    <div class="picture-row">
+        <% obj.pictures.each do |pic| %>
+            <div class="picture-box" id="picture_box_<%= pic.id %>">
+                <div class="picture">
+                    <%= image_tag(pic.image.url) %>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>
