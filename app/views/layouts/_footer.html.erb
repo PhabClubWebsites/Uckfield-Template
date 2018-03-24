@@ -1,9 +1,11 @@
 <div class="footer">
-    <ul style="display: inline-block; margin: 0 auto;">
-        <li style="display: inline-block">Leader: <%= club.club_leader %></li>
-        <li style="display: inline-block">Contact Number: <%= club.contact_number %></li>
-        <li style="display: inline-block">Contact Email: <%= club.contact_email %></li>
-        <li style="display: inline-block">Meeting times: <%= club.meeting_time %></li>
-        <li style="display: inline-block">Meeting Addres: <%= club.meeting_address %></li>
-    </ul>
+    <% if !club.blank? %>
+        <ul style="display: inline-block; margin: 0 auto;">
+            <li style="display: inline-block">Leader: <%= club.club_leader %></li>
+            <li style="display: inline-block">Contact Number: <%= club.contact_number %></li>
+            <li style="display: inline-block">Contact Email: <%= club.contact_email %></li>
+            <li style="display: inline-block">Meeting times: <%= club.meeting_time %></li>
+            <li style="display: inline-block">Meeting Addres: <%= club.meeting_address %></li>
+        </ul>
+    <% end %>
 </div>
