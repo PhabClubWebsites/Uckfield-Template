@@ -1,0 +1,20 @@
+.admin {
+    height: 100% !important;
+    background-color: #fafafa !important;
+}
+
+.articles-table {
+    display: block; 
+    overflow-y: scroll !important; 
+    max-height: 300px; 
+    width: 100%;
+    margin-bottom: 0 !important;
+    
+    td {
+        vertical-align: middle !important;
+    }
+}
+
+.dashboard-p {
+    font-size: 14px !important;
+}

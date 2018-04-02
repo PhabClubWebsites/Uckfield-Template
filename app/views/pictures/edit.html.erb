@@ -6,3 +6,19 @@
         <%= render 'form' %>        
     </div>
 </div>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready( function() {
+      console.log("meh");
+    });
+    $(function () {
+      $('#make_default').click(function(event) {
+        event.preventDefault();
+        $.ajax({
+          url: '<%= make_default_gallery_picture_path %>',
+          type: 'POST',
+          data: {id : <%= @picture.id %>, gallery_id : <%= @gallery.id %>}
+        });
+      });
+    });
+</script>

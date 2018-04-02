@@ -1,0 +1,77 @@
+<div class="sidebar-well">
+    <div class="sidebar-container">
+        <div class="sidebar-block">
+            <h3 class="sidebar-header">Recent Posts</h3>
+            <hr class="sidebar-separator"></hr>
+            <% recent_posts.each do |post| %>
+                <div class="row post-block">
+                    <% if !post.img_one.blank? %>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <%= image_tag(post.img_one.url(:thumb), class:"post-thumbnail-img") %>
+                        </div>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <p class="post-title"><%= link_to post.title, page_path(post) %></p>
+                            <small class="post-description"><%= truncate(post.content_one, length:83) %></small>
+                        </div>
+                    <% else %>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <p class="post-title"><%= link_to post.title, page_path(post) %></p>
+                            <small class="post-description"><%= truncate(post.content_one, length:53) %></small>
+                        </div>
+                    <% end %>
+                </div>
+            <% end %>        
+        </div>
+        <div class="sidebar-block">
+            <h3 class="sidebar-header">Upcoming Events</h3>
+            <hr class="sidebar-separator"></hr>
+            <% upcoming_events.each do |post| %>
+                 <div class="row post-block">
+                    <% if !post.img_one.blank? %>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <%= image_tag(post.img_one.url(:thumb), class:"post-thumbnail-img") %>
+                        </div>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <p class="post-title"><%= link_to post.title, page_path(post) %></p>
+                            <small class="post-description"><%= truncate(post.content_one, length:83) %></small>
+                        </div>
+                    <% else %>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <p class="post-title"><%= link_to post.title, page_path(post) %></p>
+                            <small class="post-description"><%= truncate(post.content_one, length:53) %></small>
+                        </div>
+                    <% end %>
+                </div>
+            <% end %>   
+        </div>
+        <div class="sidebar-block">
+            <h3 class="sidebar-header">Club News</h3>
+            <hr class="sidebar-separator"></hr>
+            <% club_news.each do |post| %>
+                 <div class="row post-block">
+                    <% if !post.img_one.blank? %>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <%= image_tag(post.img_one.url(:thumb), class:"post-thumbnail-img") %>
+                        </div>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <p class="post-title"><%= link_to post.title, page_path(post) %></p>
+                            <small class="post-description"><%= truncate(post.content_one, length:83) %></small>
+                        </div>
+                    <% else %>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <p class="post-title"><%= link_to post.title, page_path(post) %></p>
+                            <small class="post-description"><%= truncate(post.content_one, length:53) %></small>
+                        </div>
+                    <% end %>
+                </div>
+            <% end %>   
+        </div>
+    </div>
+    <div class="sidebar-logo-container hidden-xs hidden-sm">
+        <% if club.club_logo.blank? %>
+            <%= image_tag("charity-number-logo.png") %>
+        <% else %>
+            <%= image_tag(club.club_logo) %>
+        <% end %>
+    </div>
+</div>

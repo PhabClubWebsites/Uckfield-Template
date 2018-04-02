@@ -1,43 +1,66 @@
 <nav class="navbar">
     <div class="navbar__beb-logo">
-       <%= image_tag("logox1.png", class:"navbar__beb-logo--img") %>
+      <% if club.club_logo.blank? %>
+        <h2>CLUB LOGO</h2>
+      <% else %>
+       <%= image_tag(club.club_logo, class:"navbar__beb-logo--img") %>
+      <% end %>
     </div>
-    <div class="navbar__links">
-        <ul>
+    <div class="container">
+      <div class="navbar__links">
+          <ul>
             <li><%= link_to "Home", root_path, id:"nav_btn_home" %></li>
-            <li>
-                <%= link_to 'Latest Club News', club_news_path, id:"nav_btn_club_news" %>
-                <ul class="ns-dropdown-menu-ns" id="nav_sub_menu">
-                    <li>Easter Fair</li>
-                    <li>Christmas Carols</li>
-                    <li>Bonfire Night</li>
-                    <li>Phab Ball</li>
+            <li class="dropdown">
+              <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Latest News<span class="caret"></span></a>
+              <% if !nav_news_list.blank? %>
+                <ul class="dropdown-menu">
+                  <% nav_news_list.each do |news| %>
+                    <li><%= link_to news.title, page_path(news) %></li>
+                  <% end %>
+                  <li role="separator" class="nav-separator"></li>
+                  <li><%= link_to "View all", club_news_path %></li>
                 </ul>
+              <% end %>
             </li>
-            <li>
-                <%= link_to "What's on", whats_on_path, id:"nav_btn_whats_on" %>
-                <ul class="ns-dropdown-menu-ns" id="nav_sub_menu">
-                    <li>Easter Fair</li>
-                    <li>Christmas Carols</li>
-                    <li>Bonfire Night</li>
-                    <li>Phab Ball</li>
-                </ul>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">What's On<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <% if !nav_event_list.blank? %>
+                  <% nav_event_list.each do |event| %>
+                    <li><%= link_to event.title, page_path(event) %></li>
+                  <% end %>
+                  <li role="separator" class="nav-separator"></li>
+                <% end %>
+                <li><%= link_to "View all", whats_on_path %></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gallery<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <% if !nav_gallery_list.blank? %>
+                  <% nav_gallery_list.each do |gallery| %>
+                    <li><%= link_to gallery.name, gallery_path(gallery) %></li>
+                  <% end %>
+                  <li role="separator" class="nav-separator"></li>
+                <% end %>
+                <li><%= link_to "View all", galleries_path %></li>
+              </ul>
             </li>
             <li><%= link_to "Contact Us", contact_us_path, id:"nav_btn_contact_us" %></li>
-            <li><%= link_to "Gallery", galleries_path, id:"nav_btn_gallery" %></li>
             <% if admin_signed_in? %>
-              <li>
-                <%= link_to "Admin", pages_path, id:"nav_btn_admin" %>
-                <ul class="ns-dropdown-menu-ns" id="nav_sub_menu">
-                    <li><%= link_to "Admin Dashboard", pages_path %></li>
-                    <li><%= link_to "Create Article", new_page_path %></li>
-                    <li>Christmas Carols</li>
-                    <li>Bonfire Night</li>
-                    <li><%= link_to "Sign Out", destroy_admin_session_path, method: :delete %></li>
+              <li class="dropdown">
+                <a href="#" data-disabled="true" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Dashboard", dashboard_path %></li>
+                  <li><%= link_to "Articles", pages_path %></li>
+                  <li><%= link_to "Galleries", gallery_list_path %></li>
+                  <li role="separator" class="nav-separator"></li>
+                  <li><%= link_to "Sign Out", destroy_admin_session_path, method: :delete %></li>
                 </ul>
               </li>
             <% end %>
-        </ul>
+          </ul>
+      </div>
     </div>
     <div class="navbar__charity-number ">
        <%= image_tag("charity-number-logo.png", class:"navbar__charity-number--img") %>

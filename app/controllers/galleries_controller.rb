@@ -1,8 +1,18 @@
 class GalleriesController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_admin!, only: [:edit, :update, :destroy, :published, :new, :gallery_admin]
+  before_action :set_gallery, only: [:edit, :update, :show, :destroy, :published]
 
   def index
-    @galleries = Gallery.all
+    @galleries = Gallery.where("published = ?", true).paginate(:page => params[:page], :per_page => 5).order(id: :desc)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @galleries }
+    end
+  end
+  
+  def gallery_admin
+    @galleries = Gallery.all.order(id: :desc)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -11,8 +21,7 @@ class GalleriesController < ApplicationController
   end
 
   def show
-    @gallery  = Gallery.find(params[:id])
-    @pictures = @gallery.pictures
+    @pictures = @gallery.pictures.reverse
 
     respond_to do |format|
       format.html # show.html.erb
@@ -30,7 +39,6 @@ class GalleriesController < ApplicationController
   end
 
   def edit
-    @gallery = Gallery.find(params[:id])
   end
 
   def create
@@ -56,7 +64,6 @@ class GalleriesController < ApplicationController
   end
 
   def update
-    @gallery = Gallery.find(params[:id])
 
     respond_to do |format|
       if @gallery.update_attributes(gallery_params)
@@ -66,7 +73,7 @@ class GalleriesController < ApplicationController
             @gallery.pictures.create(image: image)
           }
         end
-        format.html { redirect_to @gallery, notice: 'Gallery was successfully updated.' }
+        format.html { redirect_to @gallery, success: 'Gallery was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,7 +83,6 @@ class GalleriesController < ApplicationController
   end
 
   def destroy
-    @gallery = Gallery.find(params[:id])
     @gallery.destroy
 
     respond_to do |format|
@@ -84,10 +90,38 @@ class GalleriesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def published
+    if @gallery.published == false
+      @gallery.update_attribute(:published, true)
+      flash[:success] = "Your gallery has been published"
+      redirect_to gallery_path(@gallery)
+    elsif @gallery.published == true
+      @gallery.update_attribute(:published, false)
+      flash[:danger] = "Your gallery is no longer published"
+      redirect_to gallery_path(@gallery)
+    end
+  end
+  
+  def make_default
+    # @gallery = Gallery.find(params[:gallery_id])
+    # @picture = Picture.find(params[:id])
+
+    @gallery.cover = @picture.id
+    @gallery.save
+
+    respond_to do |format|
+      format.js
+    end
+  end
 
   private
 
   def gallery_params
-    params.require(:gallery).permit(:description, :name, :pictures)
+    params.require(:gallery).permit(:description, :name, :pictures, :published)
+  end
+  
+  def set_gallery
+    @gallery = Gallery.find(params[:id])
   end
 end

@@ -1,0 +1,42 @@
+<div class="content article-preview-block">
+    <h2 class="article-preview-title">
+        <%= link_to obj.name, gallery_path(obj) %> <span><small>(<%= obj.pictures.size %>)</small></span>
+        <% if admin_signed_in? %>
+            <span style="display: inline-block; padding-left: 10px; font-size: 16px;">
+                <%= link_to gallery_pictures_path(obj) do %>
+                    <i class="fa fa-edit btn btn-xs btn-default"></i>
+                <% end %>
+                <%= link_to gallery_path(obj), method: :delete, data: 
+                            {confirm: "Are you sure you want to delete this gallery?"} do %>
+                    <i class="fa fa-trash btn btn-xs btn-danger"></i>
+                <% end %>
+            </span>
+        <% end %>
+        <hr class="article-preview-separator"></hr>
+    </h2>
+    <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-4 img-preview-box">
+            <% if obj.cover %>
+                <%= link_to image_tag(obj.find_cover_image, class:"article-preview-img"), gallery_path(obj) %>
+            <% elsif obj.pictures.first %>
+                <%= link_to image_tag(obj.pictures.first.image.url(:medium), class:"article-preview-img"), gallery_path(obj) %>
+            <% else %>
+                N/A
+            <% end %>
+        </div>
+        <div class="col-md-8 col-sm-8 col-xs-8">
+            <p class="article-preview-text">
+                <%= truncate(obj.description, length: 200, separator:' ') %>
+            </p>
+            <%= link_to "View more...", gallery_path(obj), class:"read-more-link" %>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-4">
+            <span class="article-preview-date"><small><%= time_ago_in_words(obj.created_at) %> ago</small></span>
+        </div>
+        <div class="col-md-8 col-sm-8 col-xs-8">
+            <%= social_share_button_tag(obj.name) %>
+        </div>
+    </div>
+</div>

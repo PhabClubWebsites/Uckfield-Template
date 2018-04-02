@@ -1,52 +1,190 @@
 <%= form_for(@page, html: {multipart: true, role: "form"}) do |f| %>
+    <%#= f.label :site_page, "Page" %>
+    <%# if params[:site_page].present? %>
+        <%#= select_tag "page[site_page]", options_for_select([["Home", "home"], ["Event", "event"], ["News", "news"], ["About", "about"]], params[:site_page]), class: "form-control" %>
+    <%# else %>
+        <%#= select_tag "page[site_page]", options_for_select([["Home", "home"], ["Event", "event"], ["News", "news"], ["About", "about"]], f.object.site_page ), class: "form-control" %>
+    <%# end %>
+  <%= f.hidden_field :site_page, value: params[:site_page] %>
   <div class="form-group">
-    <%= f.label :site_page, "Page" %>
-    <% if params[:site_page].present? %>
-        <%= select_tag "page[site_page]", options_for_select([["Home", "home"], ["Event", "event"], ["News", "news"], ["About", "about"]], params[:site_page]), class: "form-control" %>
-    <% else %>
-        <%= select_tag "page[site_page]", options_for_select([["Home", "home"], ["Event", "event"], ["News", "news"], ["About", "about"]], f.object.site_page ), class: "form-control" %>
-    <% end %>
-    
+    <div class="row">
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <%= f.label :title %>
+      </div>
+      <div class="col-md-8 col-sm-8 col-xs-12">
+        <%= f.text_field :title, class:"form-control", placeholder: "Article title...", autofocus: true %>
+      </div>
+    </div>
+  </div>
+  <% if params[:site_page] == "event" %>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <%= f.label :date_of_event, "Date and time of event" %>
+        </div>
+        <div class="col-md-8 col-sm-8 col-xs-12">
+          <div class="row">
+            <div class="col-md-7 col-sm-12 col-xs-12">
+              <div class="date-group">
+                <%= f.date_select :date_of_event, value:"#{Date.today.strftime("%Y-%m-%d")}" %>
+              </div>
+            </div>
+            <div class="col-md-5 col-sm-12 col-xs-12">
+              <div class="date-group">
+                <%= f.time_select(:time_of_event, class:"form-control", ignore_date: true) %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <%= f.label "First Block" %>
+      </div>
+      <div class="col-md-8 col-sm-8 col-xs-12">
+        <%= f.text_area :content_one, class:"form-control", rows: 6, placeholder: "Content..." %>
+      </div>
+    </div>
   </div>
   <div class="form-group">
-    <%= f.label :title %>
-    <%= f.text_field :title, class:"form-control", placeholder: "Article title...", autofocus: true %>
+    <div class="row">
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <%= f.label :img_one, "First Image & Format" %> <em>(optional)</em>
+      </div>
+      <div class="col-md-8 col-sm-8 col-xs-12">
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <%= f.file_field :img_one %>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <%= select_tag "page[img_one_format]", options_for_select([["Banner Separator", "banner"], ["Square Separator", "square-sep"], ["Inline Square", "in-square"]], f.object.img_one_format), class: "form-control" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="form-separator"></hr>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <%= f.label "Second Block" %> <em>(optional)</em>
+      </div>
+      <div class="col-md-8 col-sm-8 col-xs-12">
+        <%= f.text_area :content_two, class:"form-control", rows: 6, placeholder: "More content..." %>
+      </div>
+    </div>
   </div>
   <div class="form-group">
-    <%= f.label :date_of_event %>
-    <%= f.date_select :date_of_event, class:"form-control" %>
+    <div class="row">
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <%= f.label :img_two, "Second Image & Format" %> <em>(optional)</em>
+      </div>
+      <div class="col-md-8 col-sm-8 col-xs-12">
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <%= f.file_field :img_two %>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <%= select_tag "page[img_two_format]", options_for_select([["Banner Separator", "banner"], ["Square Separator", "square-sep"], ["Inline Square", "in-square"]], f.object.img_two_format), class: "form-control" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="form-separator"></hr>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <%= f.label "Third Block" %> <em>(optional)</em>
+      </div>
+      <div class="col-md-8 col-sm-8 col-xs-12">
+        <%= f.text_area :content_three, class:"form-control", rows: 6, placeholder: "More content..." %>
+      </div>
+    </div>
+  </div>
+  <hr class="form-separator"></hr>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <%= f.label :img_three, "Third Image & Format" %> <em>(optional)</em>
+      </div>
+      <div class="col-md-8 col-sm-8 col-xs-12">
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <%= f.file_field :img_three %>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <%= select_tag "page[img_three_format]", options_for_select([["Banner Separator", "banner"], ["Square Separator", "square-sep"], ["Inline Square", "in-square"]], f.object.img_three_format), class: "form-control" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="form-separator"></hr>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <%= f.label :links_position, "Related links" %> <em>(optional)</em>
+      </div>
+      <div class="col-md-8 col-sm-8 col-xs-12">
+        <div class="row related-link-inputs">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <%= f.label "Position" %>
+          </div>
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <%= select_tag "page[links_position]", options_for_select([["Top", "top"], ["Bottom", "bottom"]], f.object.links_position), class: "form-control" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <%= f.label "Text" %>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <%= f.label "Links" %>
+          </div>
+        </div>
+        <div class="row related-link-inputs">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <%= f.text_field :link_text_one, class:"form-control", placeholder: "Eg. Click here" %>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <%= f.text_field :link_url_one, class:"form-control", placeholder: "Eg. www.google.com" %>
+          </div>
+        </div>
+        <div class="row related-link-inputs">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <%= f.text_field :link_text_two, class:"form-control", placeholder: "Eg. Click here" %>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <%= f.text_field :link_url_two, class:"form-control", placeholder: "Eg. www.google.com" %>
+          </div>
+        </div>
+        <div class="row related-link-inputs">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <%= f.text_field :link_text_three, class:"form-control", placeholder: "Eg. Click here" %>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <%= f.text_field :link_url_three, class:"form-control", placeholder: "Eg. www.google.com" %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="form-group">
-    <%= f.label "Content" %>
-    <%= f.text_area :content_one, class:"form-control", rows: 6, placeholder: "Content..." %>
-  </div>
-  <div class="form-group">
-    <%= f.label "Image" %>
-    <%= f.file_field :img_one, class:"form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :img_one_format, "First Image Format" %>
-    <%= select_tag "page[img_one_format]", options_for_select([["Banner Separator", "banner"], ["Square Separator", "square-sep"], ["Inline Square", "in-square"]], f.object.img_one_format), class: "form-control" %>
-  </div>
-  <div class="form-group" id="block_2" style="display: none;">
-    <%= f.label "More Content" %>
-    <%= f.text_area :content_two, class:"form-control", placeholder: "More content..." %>
-  </div>
-  <div class="form-group" id="image_2" style="display: none;">
-    <%= f.label "Another Image" %>
-    <%= f.file_field :img_two, class:"form-control" %>
-  </div>
-  <div class="form-group" style="display: none;">
-    <%= f.label :img_two_format, "Second Image Format" %>
-    <%= select_tag "page[img_two_format]", options_for_select([["Banner Separator", "banner"], ["Square Separator", "square-sep"], ["Inline Square", "in-square"]], f.object.img_two_format), class: "form-control" %>
-  </div>
-  <div class="form-group" id="block_3" style="display: none;">
-    <%= f.label "Event More Content" %>
-    <%= f.text_area :content_three, class:"form-control", placeholder: "More content..." %>
-  </div>
-  <div class="form-group">
-    <%= f.submit class:"btn btn-success btn-md" %>
-    <button type="button" class="btn btn-md btn-primary" id="more_content">Add Content Block</button>
-    <button type="button" class="btn btn-md btn-primary" id="more_images">Add Image</button>
+    <div class="right">
+      <%= f.submit class:"btn btn-phab-form btn-md", id:"article_form" %>
+    </div>
   </div>
 <% end %>
+<script>
+  $(document).ready( function() {
+    $("select").each( function() {
+      if (!$(this).hasClass("form-control")) {
+        $(this).addClass("form-control");
+      }
+    })
+  });
+</script>

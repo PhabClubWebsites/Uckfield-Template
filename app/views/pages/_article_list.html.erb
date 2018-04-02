@@ -1,44 +1,159 @@
-<%= link_to obj.title, class:"content__title" do %>
-    <h2><%= obj.title %></h2>
+<% if admin_signed_in? %>
+    <% if obj.published == false %>
+        <div class="row">
+            <div class="col-md-2 col-md-offset-10">
+                <%= link_to "Publish #{obj.site_page}", published_page_path(obj), class:"btn btn-md btn-phab no-margin" %>
+            </div>
+        </div>
+    <% end %>
 <% end %>
-<% if obj.site_page == "event" && !obj.date_of_event.blank? %>
-    <span style="font-size: 24px; float: right;"><%= obj.date_of_event.strftime("%-d %B %Y") %></span>
+<div class="content__title">
+    <h2 id="pg_<%=handlise(obj.title) %>">
+        <%= obj.title %>
+    </h2>
+    <hr class="phab-separator">
+    <% if obj.site_page == "event" && !obj.date_of_event.blank? %>
+        <small>
+            <i class="fa fa-calendar"></i> <%= obj.date_of_event.strftime("%-d %B %Y") %>
+        </small>    
+    <% end %>
+    <% if obj.site_page == "event" && !obj.time_of_event.blank? %>
+        <br>
+        <small>
+            <i class="glyphicon glyphicon-time"></i> <%= obj.time_of_event.strftime("%H:%M") %>
+        </small>
+    <% end %>
+</div>
+<% if obj.links_position == "top" && !obj.link_text_one.blank? %>
+    <div class="row related-links">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <hr></hr>
+            <h4>Important Links: </h4>
+            <ul class="related-links-list">
+                <% if !obj.link_text_one.blank? %>
+                    <li><%= link_to obj.link_text_one, "https://#{obj.link_url_one}", class: "related-link" %></li>
+                <% end %>
+                <% if !obj.link_text_two.blank? %>
+                    <li><%= link_to obj.link_text_two, "https://#{obj.link_url_two}", class: "related-link" %></li>
+                <% end %>
+                <% if !obj.link_text_three.blank? %>
+                    <li><%= link_to obj.link_text_three, "https://#{obj.link_url_three}", class: "related-link" %></li>
+                <% end %>
+            </ul>
+            <hr></hr>
+        </div>
+    </div>
 <% end %>
-<hr class="phab-separator">
-<p class="article__details"><%= time_ago_in_words(obj.created_at) %> ago </p>
 <div class="content__text">
     <% if !obj.img_one.blank? && obj.img_one_format == "in-square" %>
-        <%= image_tag(obj.img_one, class:"inline-square") %>
+        <%= image_tag(obj.img_one.url(:medium), class:"inline-square") %>
     <% end %>
-    <p id="text_box_one"><%= obj.content_one %></p>
+    <p class="content-block" id="text_box_one"><%= obj.content_one %></p>
     <% if !obj.img_one.blank? && obj.img_one_format != "in-square" %>
         <div class="image-separator">
             <% if obj.img_one_format == "banner" %>
-                <%= image_tag(obj.img_one, class:"banner") %> 
+                <%= image_tag(obj.img_one.url(:medium), class:"banner") %> 
             <% elsif obj.img_one_format == "square-sep" %>
-                <%= image_tag(obj.img_one, class:"square-sep") %>
+                <%= image_tag(obj.img_one.url(:medium), class:"square-sep") %>
             <% end %>
         </div>
     <% end %>
-    <% if obj.content_two != "" %>
-        <p><%= obj.content_two %></p>
-        <% if obj.img_two %>
-            <%= image_tag(obj.img_two) %>
+    <% if !obj.img_one.blank? && obj.img_one_format == "in-square" %>
+        <% if !obj.img_two.blank? && obj.img_two_format != "in-square" %>
+            <div class="image-separator">
+                <% if obj.img_two_format == "banner" && !obj.img_one.blank? %>
+                    <%= image_tag(obj.img_two.url(:medium), class:"banner") %> 
+                <% elsif obj.img_two_format == "square-sep" && !obj.img_one.blank? %>
+                    <%= image_tag(obj.img_two.url(:medium), class:"square-sep") %>
+                <% end %>
+            </div>
         <% end %>
-        <% if obj.content_three != "" %>
-            <p><%= obj.content_three %></p>
+    <% end %>
+    <% if !obj.img_two_format.blank? && obj.img_two_format == "in-square" %>
+        <%= image_tag(obj.img_two.url(:medium), class:"inline-square") %>
+    <% end %>
+    <% if !obj.content_two.blank? %>
+        <p class="content-block"><%= obj.content_two %></p>
+        <% if !obj.img_two.blank? && !obj.img_one.blank? %>
+            <% if obj.img_one_format == "banner" || obj.img_one_format == "square-sep" %>
+                <div class="image-separator">
+                    <% if obj.img_two_format == "banner" && !obj.img_one.blank? %>
+                        <%= image_tag(obj.img_two.url(:medium), class:"banner") %> 
+                    <% elsif obj.img_two_format == "square-sep" %>
+                        <%= image_tag(obj.img_two.url(:medium), class:"square-sep") %>
+                    <% end %>
+                </div>
+            <% end %>
+        <% end %>
+        <% if obj.img_one_format == "in-square" || obj.img_two_format == "in-square" %>
+            <div class="image-separator">
+                <% if obj.img_three_format == "banner" && !obj.img_three.blank? %>
+                    <%= image_tag(obj.img_three.url(:medium), class:"banner") %> 
+                <% elsif obj.img_three_format == "square-sep" && !obj.img_three.blank? %>
+                    <%= image_tag(obj.img_three.url(:medium), class:"square-sep") %>
+                <% end %>
+            </div>
+        <% end %>
+        <% if !obj.img_three.blank? && obj.img_three_format == "in-square" %>
+            <%= image_tag(obj.img_three.url(:medium), class:"inline-square") %>
+        <% end %>
+        <% if !obj.content_three.blank? %>
+            <p class="content-block"><%= obj.content_three %></p>
+        <% end %>
+        <% if !obj.img_three.blank? && (obj.img_three_format == "banner" || obj.img_three_format == "square-sep" )%>
+            <% if obj.img_one_format != "in-square" && obj.img_two_format != "in-square" %>
+                <div class="image-separator">
+                    <% if obj.img_three_format == "banner" %>
+                        <%= image_tag(obj.img_three.url(:medium), class:"banner") %> 
+                    <% elsif obj.img_three_format == "square-sep" %>
+                        <%= image_tag(obj.img_three.url(:medium), class:"square-sep") %>
+                    <% end %>
+                </div>
+            <% end %>
         <% end %>
     <% end %>
 </div>
-<div class="article__cta">
-    <%= social_share_button_tag(obj.title) %>
-    <% if admin_signed_in? %>
-        <%= link_to edit_page_path(obj) do %>
-            <i class="fa fa-edit btn btn-sm btn-default"></i>
+<% if obj.links_position == "bottom" && !obj.link_text_one.blank? %>
+    <div class="row related-links">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <hr></hr>
+            <h4>Related Links: </h4>
+            <ul class="related-links-list">
+                <% if !obj.link_text_one.blank? %>
+                    <li><%= link_to obj.link_text_one, "https://#{obj.link_url_one}", class: "related-link" %></li>
+                <% end %>
+                <% if !obj.link_text_two.blank? %>
+                    <li><%= link_to obj.link_text_two, "https://#{obj.link_url_two}", class: "related-link" %></li>
+                <% end %>
+                <% if !obj.link_text_three.blank? %>
+                    <li><%= link_to obj.link_text_three, "https://#{obj.link_url_three}", class: "related-link" %></li>
+                <% end %>
+            </ul>
+            <hr></hr>
+        </div>
+    </div>
+<% end %>
+<div class="row article__cta">
+    <div class="col-md-4 col-sm-4 col-xs-4">
+        <p class="article__details">
+            <%= time_ago_in_words(obj.created_at) %> ago
+        </p>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-4" style="padding-top: 8px;">
+        <%= social_share_button_tag(obj.title) %>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-4">
+        <% if admin_signed_in? %>
+            <span style="float: right; padding-top: 4px">
+                <%= link_to edit_page_path(obj, site_page: obj.site_page) do %>
+                    <i class="fa fa-edit btn btn-sm btn-default"></i>
+                <% end %>
+                <%= link_to page_path(obj, site_page: obj.site_page), method: :delete, data: 
+                            {confirm: "Are you sure you want to delete this article?"} do %>
+                    <i class="fa fa-trash btn btn-sm btn-danger"></i>
+                <% end %>
+            </span>
         <% end %>
-        <%= link_to page_path(obj), method: :delete, data: 
-                    {confirm: "Are you sure you want to delete this article?"} do %>
-            <i class="fa fa-trash btn btn-sm btn-danger"></i>
-        <% end %>
-    <% end %>
+    </div>    
 </div>
+

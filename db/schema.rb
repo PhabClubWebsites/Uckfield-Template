@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180322183959) do
+ActiveRecord::Schema.define(version: 20180331165459) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -47,8 +47,9 @@ ActiveRecord::Schema.define(version: 20180322183959) do
     t.string   "description"
     t.integer  "cover"
     t.string   "token"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "published",   default: false
   end
 
   create_table "pages", force: :cascade do |t|
@@ -56,11 +57,11 @@ ActiveRecord::Schema.define(version: 20180322183959) do
     t.text     "content_one"
     t.text     "content_two"
     t.text     "content_three"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.string   "site_page"
     t.integer  "admin_id"
-    t.boolean  "published",            default: false
+    t.boolean  "published",              default: false
     t.datetime "date_of_event"
     t.string   "img_one_file_name"
     t.string   "img_one_content_type"
@@ -72,6 +73,19 @@ ActiveRecord::Schema.define(version: 20180322183959) do
     t.datetime "img_two_updated_at"
     t.string   "img_one_format"
     t.string   "img_two_format"
+    t.time     "time_of_event"
+    t.string   "links_position"
+    t.string   "link_text_one"
+    t.string   "link_url_one"
+    t.string   "link_text_two"
+    t.string   "link_url_two"
+    t.string   "link_text_three"
+    t.string   "link_url_three"
+    t.string   "img_three_file_name"
+    t.string   "img_three_content_type"
+    t.integer  "img_three_file_size"
+    t.datetime "img_three_updated_at"
+    t.string   "img_three_format"
   end
 
   create_table "pictures", force: :cascade do |t|

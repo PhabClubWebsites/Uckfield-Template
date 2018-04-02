@@ -1,10 +1,19 @@
-<div class="pipe-container">
-  <div class="well">
-    <%- model_class = @gallery.class -%>
-    <div class="page-header">
-      <h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
-                                     :default => "New #{model_class.model_name.human}") %></h1>
+<div class="container pipe-container">
+    <div class="outer-well">
+      <div class="content">
+        <% if admin_signed_in? %>
+          <div class="back-to-admin">
+            <%= link_to galleries_path do %>
+              <i class="fa fa-chevron-left"></i>&nbsp;Galleries
+            <% end %>
+          </div>
+        <% end %>
+      <%- model_class = @gallery.class -%>
+      <div class="page-header">
+        <h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
+                                       :default => "New #{model_class.model_name.human}") %></h1>
+      </div>
+      <%= render :partial => 'form' %>
     </div>
-    <%= render :partial => 'form' %>
   </div>
 </div>

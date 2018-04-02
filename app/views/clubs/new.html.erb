@@ -1,4 +1,11 @@
 <div class="pipe-container">
+  <% if admin_signed_in? %>
+    <div class="back-to-admin">
+      <%= link_to dashboard_path do %>
+        <i class="fa fa-chevron-left"></i>&nbsp;Back To Dashboard
+      <% end %>
+    </div>
+  <% end %>
   <div class="page__header">
     <hr class="page__header-line-before">
     <h1>Club Details</h1>

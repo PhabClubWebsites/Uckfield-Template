@@ -1,0 +1,46 @@
+<div class="content article-preview-block">
+    <h2 class="article-preview-title">
+        <%= link_to obj.title, page_path(obj) %>
+        <% if admin_signed_in? %>
+            <span style="display: inline-block; padding-left: 10px; font-size: 16px;">
+                <%= link_to edit_page_path(obj, site_page: obj.site_page) do %>
+                    <i class="fa fa-edit btn btn-xs btn-default"></i>
+                <% end %>
+                <%= link_to page_path(obj, site_page: obj.site_page), method: :delete, data: 
+                            {confirm: "Are you sure you want to delete this article?"} do %>
+                    <i class="fa fa-trash btn btn-xs btn-danger"></i>
+                <% end %>
+            </span>
+        <% end %>
+        <hr class="article-preview-separator"></hr>
+    </h2>
+    <div class="row">
+        <% if !obj.img_one.blank? %>
+            <div class="col-md-4 col-sm-4 col-xs-4 img-preview-box">
+                <%= link_to page_path(obj) do %>
+                    <%= image_tag(obj.img_one.url(:medium), class:"article-preview-img") %>
+                <% end %>
+            </div>
+            <div class="col-md-8 col-sm-8 col-xs-8">
+                <p class="article-preview-text">
+                    <%= truncate(obj.content_one, length: 200, separator:' ') %>
+                </p>
+                <%= link_to "Read more...", page_path(obj), class:"read-more-link" %>
+            </div>
+        <% else %>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <p class="article-preview-text">
+                    <%= truncate(obj.content_one, length: 300) %>
+                </p>
+            </div>
+        <% end %>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-4">
+            <span class="article-preview-date"><small><%= time_ago_in_words(obj.created_at) %> ago</small></span>
+        </div>
+        <div class="col-md-8 col-sm-8 col-xs-8">
+            <%= social_share_button_tag(obj.title) %>
+        </div>
+    </div>
+</div>

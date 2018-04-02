@@ -9,4 +9,20 @@ $color-secondary-pink: #fefbf7;
     height: 80px;
     background-color: $color-secondary-pink;
     border-top: 4px solid rgba($color-primary-green, .2);
+    
+    .footer-club-info {
+        display: block;
+        text-align: center;
+         .footer-club-list {
+            display: block;
+            margin: 0 auto;
+            .footer-club-detail {
+                color: $color-primary-red;
+                font-weight: bold;
+                display: inline-block;
+                padding: 6px 12px;
+            }
+        }
+    }
+   
 }

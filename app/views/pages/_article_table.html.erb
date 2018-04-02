@@ -9,24 +9,21 @@
     <% end %>
   </td>
   <td style="text-align:right;">
-    <% if obj.published == false %>
-      <%= link_to page_path(obj) do %>
-        <i class="fa fa-eye btn btn-sm btn-primary"></i>
-      <% end %>
-      <%= link_to published_page_path(obj) do %>
-        <i class="fa fa-check btn btn-sm btn-success"></i>
-      <% end %>
-    <% else %>
-      <%= link_to published_page_path(obj) do %>
-        <i class="fa fa-times btn btn-sm btn-danger"></i>
-      <% end %>
-    <% end %>
-    <%= link_to edit_page_path(obj) do %>
-      <i class="fa fa-edit btn btn-sm btn-default"></i>
-    <% end %>
-    <%= link_to page_path(obj), method: :delete, data: 
-      {confirm: "Are you sure you want to delete this article?"} do %>
-      <i class="fa fa-trash btn btn-sm btn-danger"></i>
-    <% end %>
+    <li class="list-unstyled dropdown">
+      <i class="glyphicon glyphicon-option-vertical" data-toggle="dropdown"></i>
+      <ul class="dropdown-menu dropdown-menu-right">
+        <% if obj.published == false %>
+          <li><%= link_to "Preview", page_path(obj) %></li>
+          <li><%= link_to "Publish", published_page_path(obj) %></li>
+        <% else %>
+          <li><%= link_to "Unpublish", published_page_path(obj) %></li>
+        <% end %>
+        <li><%= link_to "Edit", edit_page_path(obj, site_page: obj.site_page) %></li>
+        <li>
+          <%= link_to "Delete", page_path(obj), method: :delete, data: 
+            {confirm: "Are you sure you want to delete this article?"} %>
+        </li>
+      </ul>
+    </li>
   </td>
 </tr>

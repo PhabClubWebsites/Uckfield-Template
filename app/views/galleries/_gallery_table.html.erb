@@ -1,16 +1,23 @@
 <tr>
   <td><%= link_to gallery.name, gallery_path(gallery) %></td>
-  <td><%= truncate(gallery.description, length: 53) %></td>
+  <td><%= truncate(gallery.description, length: 83) %></td>
   <td><%= gallery.pictures.size %></td>
   <td class="text-right">
-    <%= link_to gallery_path(gallery) do %>
-        <i class="fa fa-eye btn btn-sm btn-primary"></i>
-    <% end %>
-    <%= link_to edit_gallery_path(gallery) do %>
-        <i class="fa fa-edit btn btn-sm btn-default"></i>
-    <% end %>
-    <%= link_to gallery_path(gallery), :method => 'delete', :confirm => 'Are you sure?' do %>
-      <i class="fa fa-trash btn btn-sm btn-danger"></i>
-    <% end %>
+    <li class="list-unstyled dropdown">
+      <i class="glyphicon glyphicon-option-vertical" data-toggle="dropdown"></i>
+      <ul class="dropdown-menu dropdown-menu-right">
+        <% if gallery.published == false %>
+          <li><%= link_to "Preview", gallery_path(gallery) %></li>
+          <li><%= link_to "Publish", published_gallery_path(gallery) %></li>
+        <% else %>
+          <li><%= link_to "Unpublish", published_gallery_path(gallery) %></li>
+        <% end %>
+        <li><%= link_to "Edit", gallery_pictures_path(gallery) %></li>
+        <li>
+          <%= link_to "Delete", gallery_path(gallery), method: :delete, data: 
+            {confirm: "Are you sure you want to delete this gallery?"} %>
+        </li>
+      </ul>
+    </li>
   </td>
 </tr>

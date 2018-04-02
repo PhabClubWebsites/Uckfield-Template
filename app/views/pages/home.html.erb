@@ -1,35 +1,31 @@
-<div class="home__banner">
+<div class="new-home__banner">
     <% if !club.blank? && club.club_logo %>
-        <%= image_tag(club.club_logo, class:"home__banner-logo") %>
+        <%= image_tag(club.club_logo, class:"new-home__banner-logo") %>
     <% else %>
-        <%= image_tag("logox1.png", class:"home__banner-logo") %>
+        <%= image_tag("logox1.png", class:"new-home__banner-logo") %>
     <% end %>
-    <div class="home__banner-text">
-        
-        <h1 class="home__banner-text--title">Welcome to I AM Phab 
+    <div class="new-home__banner-text">
+        <h1 class="new-home__banner-text--title">Welcome to I AM Phab 
             <% if !club.blank? && club.club_name %>
                 <%= club.club_name %>
             <% else %>
                 Bebington
             <% end %>
         </h1>
-        <h1 class="home__banner-text--fancy">Making more of life together</h1>
+        <h1 class="new-home__banner-text--fancy">Making more of life together</h1>
     </div>
 </div>
-<div class="pipe-container">
-    <div class="outer-well">
-        <div class="content">
-            <a href="#" class="content__title">
-                <h1>Welcome to I AM Phab <% if !club.blank? && club.club_name %> <%= club.club_name %> <% else %> Bebington<% end %>'s new digital home :)</h1>
-            </a>
-            <hr class="phab-separator">
-            <p class="article__details">Mon 5th of March 2018</p>
-            <p class="article__details" style="float: right;">Nathan Saunders</p>
-            <div class="content__text">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                
+<div class="container pipe-container">
+    <div class="row">
+        <div class="col-md-8 col-sm-12 col-xs-12">
+            <div class="outer-well">
+                <% @home_pages.each_with_index do |news, i| %>
+                    <%= render "article_preview", obj: news %>
+                <% end %>
             </div>
         </div>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+            <%= render 'layouts/page_sidebar' %>
+        </div>  
     </div>
 </div>

@@ -3,7 +3,8 @@
         <% obj.pictures.each do |pic| %>
             <div class="picture-box" id="picture_box_<%= pic.id %>">
                 <div class="picture">
-                    <%= image_tag(pic.image.url) %>
+                    <%= image_tag(pic.image.url, id:"img_#{obj.id}_#{pic.id}") %>
+                    <%= image_tag(pic.image.url, id:"lg_img_#{obj.id}_#{pic.id}" ,class:"hidden") %>
                 </div>
             </div>
         <% end %>

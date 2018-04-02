@@ -1,0 +1,40 @@
+<div class="container pipe-container">
+  <div class="outer-well">
+    <div class="content">
+      <% if admin_signed_in? %>
+        <div class="back-to-admin">
+          <%= link_to dashboard_path do %>
+            <i class="fa fa-chevron-left"></i>&nbsp;Dashboard
+          <% end %>
+        </div>
+      <% end %>
+      <div class="page-header">
+        <h1>Admin Users</h1>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <h4>Account details</h4>
+        </div>
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <div class="image-table-area">
+            <table class="table table-striped articles-table">
+              <thead>
+                <tr>
+                  <th>Email</th>
+                  <th>Last Signed In</th>
+                  <th class="text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @admin_users.each do |user| %>
+                  <%= render 'admin_table', obj: user %>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <%= link_to "Create User", new_admin_registration_path, class:"btn btn-md btn-phab" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

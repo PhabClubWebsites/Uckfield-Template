@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :admins
+  devise_for :admins, controllers: { registrations: 'admins/registrations' }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'pages#home'
   get 'what-is-phab', to: 'pages#about'
@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get 'whats-on', to: 'pages#events'
   get 'shop', to: 'pages#shop'
   get 'contact-us', to: 'pages#contact_us'
+  
+  get 'dashboard', to: 'admins#dashboard'
+  get 'admins/all', to: 'admins#index'
   
   resources :pages do
     member do
@@ -17,12 +20,17 @@ Rails.application.routes.draw do
   resources :clubs
   
   resources :galleries do 
+    member do
+  		get :published
+  	end
     resources :pictures do
       member do
         post :make_default
       end
     end
   end
+  
+  get 'gallery_list', to: 'galleries#gallery_admin'
   
   
   

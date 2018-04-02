@@ -10,7 +10,7 @@
   </head>
   <%= render 'layouts/navigation' %>
   <body>
-    <div class="flash-container text-center col-xs-6 col-xs-offset-3">
+    <div class="flash-container text-center col-xs-12">
       <% flash.each do |type, msg| %>
         <%= content_tag :div, msg, class: "alert alert-#{type}"  %>
       <% end %>
@@ -19,3 +19,8 @@
   </body>
   <%= render 'layouts/footer' %>
 </html>
+<script>
+  $(document).ready( function() {
+    $('.alert').delay(1000).fadeOut(4000);
+  });
+</script>

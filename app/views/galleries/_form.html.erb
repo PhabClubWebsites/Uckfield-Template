@@ -1,23 +1,38 @@
 <%= form_for @gallery, :html => { multipart: true } do |f| %>
   <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class:"form-control" %>
+    <div class="row">
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <%= f.label :name, "Title" %>
+      </div>
+      <div class="col-md-8 col-sm-8 col-xs-12">
+        <%= f.text_field :name, class:"form-control", placeholder: "Gallery title...", autofocus: true %>
+      </div>
+    </div>
   </div>
   <div class="form-group">
-    <%= f.label :description %>
-    <%= f.text_field :description, class:"form-control" %>
+    <div class="row">
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <%= f.label :description %>
+      </div>
+      <div class="col-md-8 col-sm-8 col-xs-12">
+        <%= f.text_area :description, class:"form-control", rows: 3, placeholder: "Description...", autofocus: true %>
+      </div>
+    </div>
   </div>
-
   <div class="form-group">
-    <%= f.label :pictures %>
-    <div class="controls">
-      <%= file_field_tag "images[]", type: :file, multiple: true %>
+    <div class="row">
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <%= f.label :pictures, "Images" %>
+      </div>
+      <div class="col-md-8 col-sm-8 col-xs-12">
+        <%= file_field_tag "images[]", type: :file, multiple: true %>
+      </div>
     </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                galleries_path, :class => 'btn btn-mini' %>
+  <div class="form-group">
+    <div class="right">
+      <%= f.submit nil, :class => 'btn btn-md btn-phab-form' %>
+    </div>
   </div>
 <% end %>

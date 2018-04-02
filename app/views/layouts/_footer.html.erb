@@ -1,11 +1,15 @@
 <div class="footer">
-    <% if !club.blank? %>
-        <ul style="display: inline-block; margin: 0 auto;">
-            <li style="display: inline-block">Leader: <%= club.club_leader %></li>
-            <li style="display: inline-block">Contact Number: <%= club.contact_number %></li>
-            <li style="display: inline-block">Contact Email: <%= club.contact_email %></li>
-            <li style="display: inline-block">Meeting times: <%= club.meeting_time %></li>
-            <li style="display: inline-block">Meeting Addres: <%= club.meeting_address %></li>
-        </ul>
-    <% end %>
+    <div class="container" style="background-color: transparent;">
+        <% if !club.blank? %>
+            <div class="footer-club-info">
+                <ul class="footer-club-list">
+                    <li class="footer-club-detail"><i class="fa fa-user"></i> <%= club.club_leader %></li>
+                    <li class="footer-club-detail"><i class="fa fa-phone"></i> <%= club.contact_number %></li>
+                    <li class="footer-club-detail"><i class="fa fa-envelope"></i> <%= club.contact_email %></li>
+                    <li class="footer-club-detail"><i class="fa fa-calendar"></i> <%= club.meeting_time %></li>
+                    <li class="footer-club-detail"><i class="fa fa-map-marker"></i> <%= club.meeting_address %></li>
+                </ul>
+            </div>
+        <% end %>
+    </div>
 </div>

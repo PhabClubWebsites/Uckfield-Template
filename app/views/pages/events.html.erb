@@ -1,17 +1,27 @@
-<div class="pipe-container">
-    <div class="page__header">
-        <hr class="page__header-line-before">
-        <h1>What's On</h1>
+<div class="home__banner">
+    <div class="home__banner-text">
+      <hr class="page__header-line-before">
+        <h1 class="home__banner-text--title fancy">
+            What's On
+        </h1>
         <hr class="page__header-line-after">
     </div>
-    <div class="outer-well">
-        <div class="content">
-            <% @event_pages.each_with_index do |event, i| %>
-                <%= render partial: "article_list", locals: {obj: event} %>
-                <% if @event_pages.size - 1 != i %>
-                    <hr class="article-separator">
+</div>
+
+<div class="container pipe-container">
+    <div class="row">
+        <div class="col-md-8 col-sm-12 col-xs-12">
+            <div class="outer-well">
+                <% @event_pages.each_with_index do |event, i| %>
+                    <%= render "article_preview", obj: event %>
                 <% end %>
-            <% end %>
+                <div class="apple_pagination">
+                  <%= will_paginate @event_pages, :container => false, :previous_label => prev_page_button, :next_label => next_page_button  %>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+            <%= render 'layouts/page_sidebar' %>
         </div>
     </div>
 </div>

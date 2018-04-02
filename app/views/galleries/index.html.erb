@@ -1,37 +1,190 @@
-<div class="pipe-container" style="height: 1000px;">
-  <div class="well" style="height: 1000px;">
-    <h1>Galleries</h1>
-    <%= link_to 'New', new_gallery_path, :class => 'btn btn-mini' %>
-    <p></p>
-    <!--<ul class="thumbnails files">-->
-      <% @galleries.each do |gallery| %>
-          <div class="well" id="gallery_<%= gallery.id %>">
-            <h2 class="text-center"><%= gallery.name %></h2>
-            
-            <%= render 'gallery_row', obj: gallery %>
-            
-            <!--<div class="thumbnail">-->
-            <!--  <%# if gallery.cover %>-->
-            <!--    <%#= link_to image_tag(gallery.find_cover_image), gallery_path(gallery) %>-->
-            <!--  <%# elsif gallery.pictures.first %>-->
-            <!--    <%#= link_to image_tag(gallery.pictures.first.image.url), gallery_path(gallery) %>-->
-            <!--  <%# else %>-->
-            <!--    N/A-->
-            <!--  <%# end %>-->
-            <!--  <div class="caption">-->
-            <!--    <p style="text-align: center;">-->
-            <!--      <#%= link_to "Show", gallery_path(gallery) %>-->
-            <!--      <%#= link_to "Edit", edit_gallery_path(gallery) %>-->
-            <!--      <%#= link_to "Delete", gallery,-->
-            <!--        :data => { :confirm => "Are you sure?" },-->
-            <!--        :method => :delete-->
-            <!--      %>-->
-            <!--    </p>-->
-            <!--  </div>-->
-            <!--</div>-->
-          </div>
-      <% end %>
-    <!--</ul>-->
-  
+<div class="home__banner">
+    <div class="home__banner-text">
+      <hr class="page__header-line-before">
+        <h1 class="home__banner-text--title fancy">
+            Galleries
+        </h1>
+        <hr class="page__header-line-after">
+    </div>
+</div>
+<div class="container pipe-container">
+  <div class="row">
+      <div class="col-md-8 col-sm-12 col-xs-12">
+        <div class="outer-well">
+          <% if !@galleries.blank? %>
+            <% @galleries.each_with_index do |gallery, i| %>
+              <%= render "gallery_preview", obj: gallery %>
+            <% end %>
+            <div class="apple_pagination">
+              <%= will_paginate @galleries, :container => false, :previous_label => prev_page_button, :next_label => next_page_button  %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-12 col-xs-12">
+          <%= render 'layouts/page_sidebar' %>
+      </div>
   </div>  
 </div>
+<div class="image-slide" id="image_slide">
+  <div class="image-container" id="image_container">
+    <div class="image-display" id="image_display">
+      <button type="button" class="image-close" id="close_gallery">&times;</button>
+      <%#= image_tag(club.club_logo, class:"image-display--img") %>
+      <button type="button" class="image-prev" id="prev_image_button">
+        <i class="fa fa-angle-left fa-4x"></i>
+      </button>
+      <button type="button" class="image-next" id="next_image_button">
+        <i class="fa fa-angle-right fa-4x"></i>
+      </button>
+      <p class="image-position-text" id="image_text"></p>
+    </div>
+  </div>  
+</div>
+<script>
+    var $gallery_images_array = [];
+    var $gallery_image_position = 0;
+    
+    $(document).ready(function() {
+       $("img[id^='img_']").on("click", function() {
+         var img_id = $(this).attr("id");
+         
+         setSlideDisplay();
+         setGalleryArray(img_id);
+         $gallery_image_position = findImagePosition(img_id);
+         console.log($gallery_image_position);
+         console.log($gallery_images_array);
+         displayFirstImage(img_id);
+       });
+       
+       $("#next_image_button").click(function() {
+         var current_image = document.getElementsByClassName("image-display--img active");
+         var img_id = $(current_image).attr("id");
+         $gallery_image_position++;
+         toggleNextImage(img_id);
+         console.log($gallery_image_position);
+       });
+       
+       $("#prev_image_button").click(function() {
+         var current_image = document.getElementsByClassName("image-display--img active");
+         var img_id = $(current_image).attr("id");
+         $gallery_image_position--;
+         togglePrevImage(img_id);
+         console.log($gallery_image_position);
+       });
+       
+       $("#close_gallery").click( function() {
+         removeSlideDisplay();
+       });
+    });
+    
+    function setSlideDisplay() {
+      $("#image_container").css("opacity", "1");
+      $("#image_container").css("visibility", "visible");
+      $("#image_container").css("transform", "translate(-50%, -50%) scale(1)");
+      $("#image_slide").css("opacity", "1");
+      $("#image_slide").css("visibility", "visible");
+    }
+    
+    function removeSlideDisplay() {
+      $("#image_slide").css("opacity", "0");
+      $("#image_slide").css("visibility", "hidden");
+      $("#image_container").css("opacity", "0");
+      $("#image_container").css("visibility", "hidden");
+      $("#image_container").css("transform", "translate(-50%, -50%) scale(.25)");
+      
+      $("img[class='image-display--img right-image'], img[class='image-display--img left-image'], img[class='image-display--img active']").each( function() {
+        $(this).attr("class", "hidden");
+      });
+      
+      $gallery_images_array = [];
+      $gallery_image_position = 0;
+    }
+    
+    function setGalleryArray(img_id) {
+      var id_array = img_id.split("_"),
+           gallery_id = id_array[id_array.length-2]
+      
+        $(document)
+              .find("img[id^='lg_img_"+ gallery_id +"_']")
+              .each(function(){ 
+                $gallery_images_array.push(this.id);
+              });
+    }
+    
+    function displayFirstImage(img_id) {
+       var id_array = img_id.split("_"),
+           gallery_id = id_array[id_array.length-2],
+           pic_id = id_array[id_array.length-1];
+        var display_image_id = "#lg_img_" + gallery_id + "_" + pic_id;
+        
+        $("#image_display").append($(display_image_id));
+        loadGalleryImages(display_image_id);
+    }
+    
+    function loadGalleryImages(img_id) {
+      var i, 
+      g_len,
+      isLeft;
+      
+      g_len = $gallery_images_array.length;
+      
+      for (i=0;i<g_len;i++) {
+        $("#image_display").append($("#"+$gallery_images_array[i]));
+        if (i < $gallery_image_position) {
+          $("#"+$gallery_images_array[i]).addClass("image-display--img left-image").removeClass("hidden");
+        } else if (i == $gallery_image_position) {
+          $("#"+$gallery_images_array[i]).addClass("image-display--img active").removeClass("hidden left-image right-image");
+          $("#image_text").text((i+1)+"/"+g_len);
+        } else {
+          $("#"+$gallery_images_array[i]).addClass("image-display--img right-image").removeClass("hidden");
+        }
+      }
+    }
+
+    function toggleNextImage(current_img_id) {
+      $("#"+current_img_id).removeClass("active").addClass("left-image");
+      $("#"+$gallery_images_array[($gallery_image_position)%($gallery_images_array.length)]).removeClass("right-image").addClass("active");
+      console.log(($gallery_image_position)%($gallery_images_array.length-1));
+      $("#"+$gallery_images_array[($gallery_image_position+1)%($gallery_images_array.length)]).removeClass("left-image").addClass("right-image");
+      if ($gallery_image_position == $gallery_images_array.length-1) {
+        $gallery_image_position = -1;
+      }
+      $("#image_text").text(($gallery_image_position+1)+"/"+$gallery_images_array.length);
+    }
+    
+    function togglePrevImage(current_img_id) {
+      
+      console.log("modulo: "+($gallery_image_position)%($gallery_images_array.length-1));
+      console.log("img pos: "+$gallery_image_position);
+      $("#"+current_img_id).removeClass("active left-image").addClass("right-image");
+      $("#"+$gallery_images_array[($gallery_image_position-1)%($gallery_images_array.length)]).removeClass("right-image").addClass("left-image");
+      
+      if ($gallery_image_position <= 0) {
+        $("#"+$gallery_images_array[$gallery_images_array.length-1]).removeClass("right-image").addClass("left-image");
+        $("#"+$gallery_images_array[$gallery_images_array.length-1]).removeClass("right-image left-image").addClass("active");
+        
+        $gallery_image_position = $gallery_images_array.length-1;
+        
+        //$("#"+$gallery_images_array[$gallery_images_array.length-1]).removeClass("right-image left-image").addClass("active");
+        console.log("change");
+      } else {
+        $("#"+$gallery_images_array[($gallery_image_position)%($gallery_images_array.length)]).removeClass("left-image").addClass("active");  
+      }
+      $("#image_text").text(($gallery_image_position+1)+"/"+$gallery_images_array.length);
+    }
+    
+    function findImagePosition(img_id) {
+      var i,
+          g_len;
+          
+      g_len = $gallery_images_array.length;
+      
+      for (i=0;i<g_len;i++) {
+        if ("#"+$gallery_images_array[i] == "#lg_"+ img_id) {
+          return i;
+        }
+      }
+    }
+  
+</script>

@@ -14,12 +14,12 @@ $color-secondary-pink: #fefbf7;
     border-radius: 0 !important;
     z-index: 100 !important;
     border-bottom: 4px solid rgba($color-primary-green, .2) !important;
-    height: auto;
+    height: 123px;
     
     &__beb-logo {
         display: inline-block !important;
         position: relative !important;
-        top: 15px !important;
+        top: 10px !important;
         left: 20px !important;
         
         &--img {
@@ -27,18 +27,22 @@ $color-secondary-pink: #fefbf7;
             height: 100px !important;
         }
     }
-    
+    .container {
+        display: block;
+        background-color: transparent;
+        margin-top: -27px;
+    }
     &__links {
-        padding: 0 80px !important;
+        text-align: center;
+        width: 90%;
         
         li {
             border-top-left-radius: 8px !important;
             border-top-right-radius: 8px !important;
-            padding: 10px 30px 10px 30px !important;
             display: inline-block !important;
             cursor: pointer !important;
             position: relative !important;
-            min-width: 150px;
+            
             
             &:hover {
                 background-color: $color-primary-red !important;
@@ -48,9 +52,7 @@ $color-secondary-pink: #fefbf7;
                 }
             }
             
-            &.active {
-                background-color: $color-primary-red !important !important;
-            }
+            
             
             a {
                 color: $color-primary-red !important;
@@ -59,38 +61,47 @@ $color-secondary-pink: #fefbf7;
                 font-weight: 600 !important;
                 transition: all .3s !important;
                 display: block !important;
+                text-align: center;
+                padding: 10px 30px 10px 30px !important;
+                min-width: 150px;
                 
                 &.active {
                     color: white !important !important;
                 }
             }
             
-            .ns-dropdown-menu-ns {
-                display: none;
-                position: absolute !important;
-                height: auto;
-                background-color: rgba($color-primary-red, .9) !important;
+            .dropdown-menu {
+                background-color: $color-primary-red;
+                padding: 0 !important;
                 border-bottom-left-radius: 8px !important;
                 border-bottom-right-radius: 8px !important;
-                top: 40px !important;
-                left: 0 !important;
-                width: 100% !important;
+                //min-width: -webkit-fill-available;
+                width: 250px;
                 
                 li {
                     display: block !important;
                     color: white !important;
                     font-size: 16px !important;
                     text-align: left !important;
+                    //width: auto !important;
+                    // padding: 10px !important;
+                    width: 100%;
                     
                     a {
-                        font-weight: 400 !important;
+                        width: 100%;
+                        font-weight: 600 !important;
                         text-decoration: none !important;
                         color: white !important;
                         font-size: 16px !important;
+                        text-align: left;
+                        padding: 10px;
+                        display: block !important;
+                        white-space: unset !important;
                         
                         &:hover {
                             text-decoration: none !important;
                             color: $color-primary-red !important;
+                            background-color: transparent !important;
                         }
                     }
                     
@@ -98,24 +109,60 @@ $color-secondary-pink: #fefbf7;
                         background-color: white !important;
                         color: $color-primary-red !important;
                         border-radius: 0 !important;
+                        
+                        a {
+                            color: $color-primary-red !important;
+                        }
                     }
                     &:last-child {
                         border-bottom-left-radius: 8px !important;
                         border-bottom-right-radius: 8px !important;
                     }
                 }
+                
+                .nav-separator {
+                    height: 1px;
+                    margin: 9px 0;
+                    overflow: hidden;
+                    background-color: white !important;
+                    padding: 0 !important;
+                    margin: 0 !important;
+                }
             }
+            
+            
+            // .ns-dropdown-menu-ns {
+            //     display: none;
+            //     position: absolute !important;
+            //     height: auto;
+            //     background-color: rgba($color-primary-red, .9) !important;
+            //     border-bottom-left-radius: 8px !important;
+            //     border-bottom-right-radius: 8px !important;
+            //     top: 40px !important;
+            //     left: 0 !important;
+            //     width: 100% !important;
+                
+            //     
+            //     }
+            // }
             
             
         }
         
+        
+        li.open {
+            background-color: $color-primary-red !important;
+            a {
+                color: white !important;
+            }
+        }
     }
     
     &__charity-number {
         display: inline-block;
         float: right;
         position: absolute;
-        top: 15px;
+        top: 10px;
         right: 20px;
         
         &--img {
@@ -124,3 +171,4 @@ $color-secondary-pink: #fefbf7;
         }
     }
 }
+

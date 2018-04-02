@@ -1,11 +1,13 @@
 class PicturesController < ApplicationController
+  before_action :authenticate_admin!
+  
   # GET /pictures
   # GET /pictures.json
   def index
 
     @gallery = Gallery.find(params[:gallery_id])
 
-    @pictures = @gallery.pictures
+    @pictures = @gallery.pictures.reverse
 
     respond_to do |format|
       format.html # index.html.erb
@@ -75,7 +77,7 @@ class PicturesController < ApplicationController
 
     respond_to do |format|
       if @picture.update_attributes(picture_params)
-        format.html { redirect_to gallery_path(@gallery), notice: 'Picture was successfully updated.' }
+        format.html { redirect_to gallery_pictures_path(@gallery), success: 'Your picture was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -87,13 +89,13 @@ class PicturesController < ApplicationController
   # DELETE /pictures/1
   # DELETE /pictures/1.json
   def destroy
-    #@gallery = Gallery.find(params[:gallery_id])
+    @gallery = Gallery.find(params[:gallery_id])
     #@picture = @gallery.pictures.find(params[:id])
     @picture = Picture.find(params[:id])
     @picture.destroy
 
     respond_to do |format|
-      format.html { redirect_to root_path }
+      format.html { redirect_to gallery_pictures_path(@gallery) }
       format.js
     end
   end
@@ -104,8 +106,8 @@ class PicturesController < ApplicationController
 
     @gallery.cover = @picture.id
     @gallery.save
-
-    respond_to do |format|
+      respond_to do |format|
+      format.html { redirect_to gallery_pictures_path(@gallery) }
       format.js
     end
   end
