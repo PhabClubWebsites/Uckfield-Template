@@ -1,9 +1,13 @@
 <nav class="navbar">
     <div class="navbar__beb-logo">
-      <% if club.club_logo.blank? %>
+      <% if club.blank? %>
         <h2>CLUB LOGO</h2>
       <% else %>
-       <%= image_tag(club.club_logo, class:"navbar__beb-logo--img") %>
+        <% if !club.club_logo.blank? %>
+          <%= image_tag(club.club_logo, class:"navbar__beb-logo--img") %>
+        <% else %>
+          <h2>CLUB LOGO</h2>
+        <% end %>
       <% end %>
     </div>
     <div class="container">
