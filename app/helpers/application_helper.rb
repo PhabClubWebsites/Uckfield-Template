@@ -4,7 +4,7 @@ module ApplicationHelper
         if Club.exists?(1)
             return Club.first
         else
-            return Null
+            return ''
         end
     end
     
