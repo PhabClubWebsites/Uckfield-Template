@@ -1,5 +1,5 @@
 <div class="new-home__banner">
-    <% if club.blank? %>
+    <% if club == Null %>
         <%= image_tag("logox1.png", class:"new-home__banner-logo") %>
     <% else %>
         <% if !club.club_logo.blank? %>
