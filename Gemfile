@@ -59,6 +59,12 @@ gem 'social-share-button'
 # Use will paginate for pagination
 gem 'will_paginate', '~> 3.1.0'
 
+# Use aws for file storage in production
+gem 'aws-sdk', '~> 2.3'
+
+# Use Figaro for ENV variables
+gem 'figaro', '1.1.1'
+
 # Use DropZone for drag and drop image upload wth Paperclip
 #gem 'dropzonejs-rails'
 
