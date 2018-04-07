@@ -60,7 +60,7 @@ gem 'social-share-button'
 gem 'will_paginate', '~> 3.1.0'
 
 # Use aws for file storage in production
-gem 'aws-sdk', '~> 2.3'
+gem 'aws-sdk', '< 2.0'
 
 # Use Figaro for ENV variables
 gem 'figaro', '1.1.1'
