@@ -1,7 +1,7 @@
 module ApplicationHelper
     
     def club
-        if Club.exists?(1)
+        if Club.size > 0
             return Club.first
         else
             return ''
