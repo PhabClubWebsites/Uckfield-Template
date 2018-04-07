@@ -1,8 +1,9 @@
 module ApplicationHelper
     
     def club
-        if Club.size > 0
-            return Club.first
+        club = Club.first
+        if !club.blank?
+            return club
         else
             return ''
         end
