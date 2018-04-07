@@ -1,18 +1,16 @@
-<div class="pipe-container">
-  <% if admin_signed_in? %>
-    <div class="back-to-admin">
-      <%= link_to dashboard_path do %>
-        <i class="fa fa-chevron-left"></i>&nbsp;Back To Dashboard
-      <% end %>
-    </div>
-  <% end %>
-  <div class="page__header">
-    <hr class="page__header-line-before">
-    <h1>Club Details</h1>
-    <hr class="page__header-line-after">
-  </div>
+<div class="container pipe-container">
   <div class="outer-well">
     <div class="content">
+      <% if admin_signed_in? %>
+        <div class="back-to-admin">
+          <%= link_to dashboard_path do %>
+            <i class="fa fa-chevron-left"></i>&nbsp;Dashboard
+          <% end %>
+        </div>
+      <% end %>
+      <div class="page-header">
+        <h1>Edit Club Info</h1>
+      </div>
       <%= render 'club_form' %>
     </div>
   </div>
