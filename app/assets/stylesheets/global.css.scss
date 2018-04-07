@@ -42,8 +42,8 @@ body {
     background-image: linear-gradient(
         to right bottom, 
         rgba($color-primary-green, 0.1), 
-        rgba($color-primary-green, 0.3)), 
-    url(../images/phab-background-grid.png);
+        rgba($color-primary-green, 0.3)),
+    url(asset-path('phab-background-grid.png'));
     background-size: contain;
     background-position: top;
     background-repeat: repeat;
