@@ -15,7 +15,7 @@ Rails.application.configure do
   config.action_controller.perform_caching = true
 
   # Include local images for background
-  config.serve_static_assets = true
+  config.serve_static_files = true
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
