@@ -7,7 +7,7 @@ class PicturesController < ApplicationController
 
     @gallery = Gallery.find(params[:gallery_id])
 
-    @pictures = @gallery.pictures.reverse
+    @pictures = @gallery.pictures.order('id DESC')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -77,7 +77,7 @@ class PicturesController < ApplicationController
 
     respond_to do |format|
       if @picture.update_attributes(picture_params)
-        format.html { redirect_to gallery_pictures_path(@gallery), success: 'Your picture was successfully updated.' }
+        format.html { redirect_to gallery_pictures_path(@gallery), success: 'Your picture was successfully updated' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -95,7 +95,7 @@ class PicturesController < ApplicationController
     @picture.destroy
 
     respond_to do |format|
-      format.html { redirect_to gallery_pictures_path(@gallery) }
+      format.html { redirect_to gallery_pictures_path(@gallery), danger: 'Your photo has been deleted' }
       format.js
     end
   end
@@ -107,7 +107,7 @@ class PicturesController < ApplicationController
     @gallery.cover = @picture.id
     @gallery.save
       respond_to do |format|
-      format.html { redirect_to gallery_pictures_path(@gallery) }
+      format.html { redirect_to gallery_pictures_path(@gallery), success: 'Your gallery has a new cover photo' }
       format.js
     end
   end

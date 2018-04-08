@@ -5,6 +5,7 @@
     <%# else %>
         <%#= select_tag "page[site_page]", options_for_select([["Home", "home"], ["Event", "event"], ["News", "news"], ["About", "about"]], f.object.site_page ), class: "form-control" %>
     <%# end %>
+  <%= f.hidden_field :admin_id, value: current_admin.id %>
   <%= f.hidden_field :site_page, value: params[:site_page] %>
   <div class="form-group">
     <div class="row">

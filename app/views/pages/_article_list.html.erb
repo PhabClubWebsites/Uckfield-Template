@@ -12,6 +12,7 @@
         <%= obj.title %>
     </h2>
     <hr class="phab-separator">
+    <!--<h1 style="margin: 0; line-height: 1; font-size: 32px;">~</h1>-->
     <% if obj.site_page == "event" && !obj.date_of_event.blank? %>
         <small>
             <i class="fa fa-calendar"></i> <%= obj.date_of_event.strftime("%-d %B %Y") %>

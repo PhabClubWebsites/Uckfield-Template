@@ -85,12 +85,19 @@ li {
     margin-top: 30px;
     width: 30%;
     z-index: 9999;
+    opacity: .9;
 }
 
 .alert-notice {
     color: #3c763d;
     background-color: #dff0d8;
     border-color: #d6e9c6;
+}
+
+.alert-alert {
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442;
 }
 
 .flash-container {

@@ -4,9 +4,6 @@
 }
 
 .articles-table {
-    display: block; 
-    overflow-y: scroll !important; 
-    max-height: 300px; 
     width: 100%;
     margin-bottom: 0 !important;
     
@@ -17,4 +14,8 @@
 
 .dashboard-p {
     font-size: 14px !important;
+}
+
+.login-page {
+    max-width: 600px !important;
 }

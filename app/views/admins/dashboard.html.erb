@@ -5,13 +5,13 @@
         <hr></hr>
         <div class="row">
             <div class="col-md-4 col-sm-6 col-xs-12">
-                <h2 style="margin: 0;">Articles <small>(12<%#= Article.size %>)</small></h2>
-                <p class="dashboard-p">Publish and edit your website articles</p>
+                <h2 style="margin: 0;">Articles <small>(<%= Page.all.size %>)</small></h2>
+                <p class="dashboard-p">Publish and edit your content for the website</p>
             </div>
             <div class="col-md-8 col-sm-6 col-xs-12">
                 <div class="row">
                     <div class="col-xs-4">
-                        <h4>Home <small><span><%= link_to "View all..", pages_path(anchor:"home") %></span></small></h4>
+                        <h4>Home <small><span><%= link_to "View all..", pages_path %></span></small></h4>
                     </div>
                     <div class="col-xs-8">
                         <p style="float: right;"><%= link_to "Post article", new_page_path(site_page:"home"), class:"btn btn-md btn-primary btn-phab" %></p>
@@ -20,7 +20,7 @@
                 <hr></hr>
                 <div class="row">
                     <div class="col-xs-4">
-                        <h4>Events <small><span><%= link_to "View all..", pages_path(anchor:"events") %></span></small></h4>
+                        <h4>Events <small><span><%= link_to "View all..", pages_path %></span></small></h4>
                     </div>
                     <div class="col-xs-8">
                         <p style="float: right;"><%= link_to "Create event", new_page_path(site_page:"event"), class:"btn btn-md btn-primary btn-phab" %></p>
@@ -29,7 +29,7 @@
                 <hr></hr>
                 <div class="row">
                     <div class="col-xs-4">
-                        <h4>News <small><span><%= link_to "View all..", pages_path(anchor:"news") %></span></small></h4>
+                        <h4>News <small><span><%= link_to "View all..", pages_path %></span></small></h4>
                     </div>
                     <div class="col-xs-8">
                         <p style="float: right;"><%= link_to "Post news", new_page_path(site_page:"news"), class:"btn btn-md btn-primary btn-phab" %></p>
@@ -40,7 +40,7 @@
         <hr></hr>
         <div class="row">
             <div class="col-md-4 col-sm-6 col-xs-12">
-                <h2 style="margin: 0;">Galleries <small>(12<%#= Article.size %>) <span><%= link_to "View all..", galleries_path %></span></small></h2>
+                <h2 style="margin: 0;">Galleries <small>(<%= Gallery.all.size %>) <span><%= link_to "View all..", gallery_list_path %></span></small></h2>
                 <p class="dashboard-p">Publish and edit your galleries</p>
             </div>
             <div class="col-md-8 col-sm-6 col-xs-12">
@@ -50,7 +50,7 @@
         <hr></hr>
         <div class="row">
             <div class="col-md-4 col-sm-6 col-xs-12">
-                <h2 style="margin: 0;">Admin</h2>
+                <h2 style="margin: 0;">Admin <small>(<%= Admin.all.size %>) <span><%= link_to "View all..", admins_path %></span></small></h2>
                 <p class="dashboard-p">Create new admin users</p>
             </div>
             <div class="col-md-8 col-sm-6 col-xs-12">

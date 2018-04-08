@@ -1,6 +1,7 @@
 class ClubsController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_club, only: [:edit, :update]
+  
     def new
       @club = Club.new
     end
@@ -8,8 +9,8 @@ class ClubsController < ApplicationController
     def create
       @club = Club.new(club_params)
       if @club.save
-         flash[:success] = "Your club info has been created!"
-         redirect_to pages_path
+         flash[:success] = "Your club has been created!"
+         redirect_to dashboard_path
       else
          flash[:danger] = @club.errors.full_messages.join(", ")
          render 'new'
@@ -22,7 +23,7 @@ class ClubsController < ApplicationController
     
     def update
       if @club.update(club_params)
-        flash[:success] = "The club details were successfully updated"
+        flash[:success] = "The club information was successfully updated"
         redirect_to pages_path
       else
         flash[:danger] = @club.errors.full_messages.join(", ")

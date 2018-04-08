@@ -1,17 +1,18 @@
-<div class="home__banner">
-    <div class="home__banner-text">
-      <hr class="page__header-line-before">
-        <h1 class="home__banner-text--title fancy">
-          <% if @page.site_page == "event" %>
-            What's On
-          <% elsif @page.site_page == "news" %>
-            Latest Club News
-          <% end %>
-        </h1>
-        <hr class="page__header-line-after">
-    </div>
-</div>
-
+<% if @page.site_page != "home" %>
+  <div class="home__banner">
+      <div class="home__banner-text">
+        <hr class="page__header-line-before">
+          <h1 class="home__banner-text--title">
+            <% if @page.site_page == "event" %>
+              What's On
+            <% elsif @page.site_page == "news" %>
+              Latest Club News
+            <% end %>
+          </h1>
+          <hr class="page__header-line-after">
+      </div>
+  </div>
+<% end %>
 <!--<div class="">-->
 <div class="container pipe-container">
     <!--<div class="page__header">-->

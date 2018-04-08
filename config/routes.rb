@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'contact-us', to: 'pages#contact_us'
   
   get 'dashboard', to: 'admins#dashboard'
-  get 'admins/all', to: 'admins#index'
+  get 'admins', to: 'admins#index'
   
   resources :pages do
     member do

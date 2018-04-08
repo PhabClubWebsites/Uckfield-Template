@@ -1,9 +1,13 @@
 class Admins::RegistrationsController < Devise::RegistrationsController
   
-  prepend_before_action :require_no_authentication, only: [:new, :create, :cancel]
+  prepend_before_action :require_no_authentication, only: [:cancel]
   prepend_before_action :authenticate_scope!, only: [:edit, :update, :destroy]
   prepend_before_action :set_minimum_password_length, only: [:new, :edit]
   #prepend_before_action :authenticate_admin!, only: [:new, :create]
+  
+  if Admin.all.count > 0
+    prepend_before_action :authenticate_scope!, only: [:edit, :update, :destroy, :new, :create]
+  end
 
   # GET /resource/sign_up
   def new
@@ -26,7 +30,11 @@ class Admins::RegistrationsController < Devise::RegistrationsController
       else
         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
         expire_data_after_sign_in!
-        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+        if !admin_signed_in?
+          respond_with resource, location: after_inactive_sign_up_path_for(resource)
+        else
+          redirect_to admins_path
+        end
       end
     else
       clean_up_passwords resource

@@ -1,6 +1,7 @@
 <tr>
+  <td><%= link_to gallery_path(gallery) do %><%= image_tag(gallery.find_thumb_image) %><% end %></td>
   <td><%= link_to gallery.name, gallery_path(gallery) %></td>
-  <td><%= truncate(gallery.description, length: 83) %></td>
+  <td><%= truncate(gallery.description, length: 43) %></td>
   <td><%= gallery.pictures.size %></td>
   <td class="text-right">
     <li class="list-unstyled dropdown">
