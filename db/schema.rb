@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180331165459) do
+ActiveRecord::Schema.define(version: 20180412173918) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 20180331165459) do
     t.string   "club_logo_content_type"
     t.integer  "club_logo_file_size"
     t.datetime "club_logo_updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "galleries", force: :cascade do |t|
