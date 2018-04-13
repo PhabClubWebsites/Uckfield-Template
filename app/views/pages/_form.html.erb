@@ -46,7 +46,8 @@
         <%= f.label "First Block" %>
       </div>
       <div class="col-md-8 col-sm-8 col-xs-12">
-        <%= f.text_area :content_one, class:"form-control", rows: 6, placeholder: "Content..." %>
+        <%= f.hidden_field :content_one, id: "post_body" %>
+        <trix-editor input="post_body"></trix-editor>
       </div>
     </div>
   </div>
@@ -74,7 +75,8 @@
         <%= f.label "Second Block" %> <em>(optional)</em>
       </div>
       <div class="col-md-8 col-sm-8 col-xs-12">
-        <%= f.text_area :content_two, class:"form-control", rows: 6, placeholder: "More content..." %>
+        <%= f.hidden_field :content_two, id: "post_body_two" %>
+        <trix-editor input="post_body_two"></trix-editor>
       </div>
     </div>
   </div>
@@ -102,7 +104,8 @@
         <%= f.label "Third Block" %> <em>(optional)</em>
       </div>
       <div class="col-md-8 col-sm-8 col-xs-12">
-        <%= f.text_area :content_three, class:"form-control", rows: 6, placeholder: "More content..." %>
+        <%= f.hidden_field :content_three, id: "post_body_three" %>
+        <trix-editor input="post_body_three"></trix-editor>
       </div>
     </div>
   </div>

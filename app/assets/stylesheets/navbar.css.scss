@@ -42,6 +42,7 @@ $color-secondary-pink: #fefbf7;
             display: inline-block !important;
             cursor: pointer !important;
             position: relative !important;
+            transition: all .3s !important;
             
             
             &:hover {

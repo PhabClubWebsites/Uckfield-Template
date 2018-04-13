@@ -15,4 +15,5 @@
 //= require bootstrap-sprockets
 // = require turbolinks
 //= require social-share-button
+//= require trix
 //= require_tree .

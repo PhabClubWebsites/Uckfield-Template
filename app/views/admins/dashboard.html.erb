@@ -3,9 +3,9 @@
     <div class="content">
         <h1><% if !club.blank? && !club.club_name.blank? %><%= club.club_name %><% end %> Phab Dashboard</h1>    
         <hr></hr>
-        <div class="row">
+        <div class="row dashboard-row">
             <div class="col-md-4 col-sm-6 col-xs-12">
-                <h2 style="margin: 0;">Articles <small>(<%= Page.all.size %>)</small></h2>
+                <h2 style="margin: 0;">Pages <small>(<%= Page.all.size %>)</small></h2>
                 <p class="dashboard-p">Publish and edit your content for the website</p>
             </div>
             <div class="col-md-8 col-sm-6 col-xs-12">
@@ -14,7 +14,7 @@
                         <h4>Home <small><span><%= link_to "View all..", pages_path %></span></small></h4>
                     </div>
                     <div class="col-xs-8">
-                        <p style="float: right;"><%= link_to "Post article", new_page_path(site_page:"home"), class:"btn btn-md btn-primary btn-phab" %></p>
+                        <p style="float: right;"><%= link_to "Create homepage", new_page_path(site_page:"home"), class:"btn btn-md btn-primary btn-phab" %></p>
                     </div>
                 </div>
                 <hr></hr>
@@ -32,13 +32,13 @@
                         <h4>News <small><span><%= link_to "View all..", pages_path %></span></small></h4>
                     </div>
                     <div class="col-xs-8">
-                        <p style="float: right;"><%= link_to "Post news", new_page_path(site_page:"news"), class:"btn btn-md btn-primary btn-phab" %></p>
+                        <p style="float: right;"><%= link_to "Create page", new_page_path(site_page:"news"), class:"btn btn-md btn-primary btn-phab" %></p>
                     </div>
                 </div>
             </div>
         </div>
         <hr></hr>
-        <div class="row">
+        <div class="row dashboard-row">
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <h2 style="margin: 0;">Galleries <small>(<%= Gallery.all.size %>) <span><%= link_to "View all..", gallery_list_path %></span></small></h2>
                 <p class="dashboard-p">Publish and edit your galleries</p>
@@ -48,17 +48,17 @@
             </div>
         </div>
         <hr></hr>
-        <div class="row">
+        <div class="row dashboard-row">
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <h2 style="margin: 0;">Admin <small>(<%= Admin.all.size %>) <span><%= link_to "View all..", admins_path %></span></small></h2>
                 <p class="dashboard-p">Create new admin users</p>
             </div>
             <div class="col-md-8 col-sm-6 col-xs-12">
-                <p style="float: right;"><%= link_to "Create admin", new_admin_registration_path, class:"btn btn-md btn-primary btn-phab" %></p>
+                <p style="float: right;"><%= link_to "Create user", new_admin_registration_path, class:"btn btn-md btn-primary btn-phab" %></p>
             </div>
         </div>
         <hr></hr>
-        <div class="row">
+        <div class="row dashboard-row">
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <h2 style="margin: 0;">Club details</h2>
                 <p class="dashboard-p">Set or edit your club details</p>
