@@ -5,6 +5,7 @@ class Contact < MailForm::Base
   attribute :nickname,  :captcha  => true
 
   def headers
+      club = Club.first
     {
       :subject => "You have an Email from Phab #{club.club_name}",
       :to => club.club_email,
