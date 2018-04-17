@@ -88,7 +88,7 @@ class PagesController < ApplicationController
   end
   
   def contact_us
-     
+    @contact = Contact.new
   end
   
   private
