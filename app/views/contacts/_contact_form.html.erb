@@ -1,4 +1,4 @@
-<%= form_for @contact do |f| %>
+<%= form_for @contact, :url => url_for(:controller => 'contacts', :action => 'create') do |f| %>
     <% if flash[:error].present? %>
         <p> flash[:error]</p>
     <% end %>
