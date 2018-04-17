@@ -42,7 +42,7 @@ gem 'bootstrap-sass', '3.3.7'
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 
 # Use font Awesome sass gem for adding icons
-gem 'font-awesome-sass', '4.6.2'
+gem 'font-awesome-sass', '~> 5.0.9'
 
 # Use Hirb for better database table display in console
 gem 'hirb', '0.7.3'

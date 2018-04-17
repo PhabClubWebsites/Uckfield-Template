@@ -17,3 +17,25 @@
 //= require social-share-button
 //= require trix
 //= require_tree .
+
+
+$(document).ready(function() {
+   $("#club_leader_btn").click( function() {
+       $("#icon_bar").addClass("open");
+       $("#leader_block").addClass("open");
+       $("#club_dates_btn").removeClass("open");
+       $("#club_address_btn").removeClass("open");
+   });
+   $("#club_dates_btn").click( function() {
+       $("#icon_bar").addClass("open");
+       $("#club_dates_btn").addClass("open");
+       $("#leader_block").removeClass("open");
+       $("#club_address_btn").removeClass("open");
+   });
+   $("#club_address_btn").click( function() {
+       $("#icon_bar").addClass("open");
+       $("#club_address_btn").addClass("open");
+       $("#club_leader_btn").removeClass("open");
+       $("#club_address_btn").removeClass("open");
+   });
+});

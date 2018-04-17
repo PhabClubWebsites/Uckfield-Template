@@ -1,0 +1,99 @@
+@import 'variables';
+
+.leader-block {
+    width: 200px;
+    height: 150px;
+    background-color: $color-primary-green;
+    position: fixed;
+    top: 50%;
+    left: -200px;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    z-index: 9999;
+    
+    &.open {
+        left: 0px;
+    }
+}
+
+.date-time-block {
+    width: 200px;
+    height: 150px;
+    background-color: $color-primary-blue;
+    position: fixed;
+    top: 50%;
+    left: -200px;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    z-index: 9999;
+    
+    &.open {
+        left: 0px;
+    }
+}
+
+.icon-bar {
+  position: fixed;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: 9999;
+  transition: all .2s !important;
+  
+  &.open {
+      left: 200px;
+  }
+}
+
+/* Style the icon bar links */
+.icon-bar a {
+  display: block;
+  text-align: center;
+  padding: 14px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 12px;
+  height: 50px;
+}
+
+/* Style the social media icons with color, if you want */
+.icon-bar a:hover {
+  background-color: #000;
+  color: white;
+}
+
+.icon-bar a:focus {
+  color: white;
+}
+
+.facebook {
+  background: $color-primary-green;
+  color: white;
+}
+
+.twitter {
+  background: $color-primary-purple;
+  color: white;
+}
+
+.google {
+  background: #dd4b39;
+  color: white;
+}
+
+.linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.youtube {
+  background: $color-primary-red;
+  color: white;
+}
+
+.sidebar-block {
+    
+}

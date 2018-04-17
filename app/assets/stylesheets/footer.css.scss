@@ -1,13 +1,11 @@
-$color-primary-red: #8b0000;
-$color-primary-green: #54b948;
-$color-secondary-pink: #fefbf7;
+@import 'variables';
 
 .footer {
     position: absolute;
     bottom: 0;
     width: 100%;
     height: 80px;
-    background-color: $color-secondary-pink;
+    background-color: white;
     border-top: 4px solid rgba($color-primary-green, .2);
     
     .footer-club-info {
@@ -17,7 +15,7 @@ $color-secondary-pink: #fefbf7;
             display: block;
             margin: 0 auto;
             .footer-club-detail {
-                color: $color-primary-red;
+                color: $color-primary-green;
                 font-weight: bold;
                 display: inline-block;
                 padding: 6px 12px;

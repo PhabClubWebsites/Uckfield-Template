@@ -1,6 +1,4 @@
-$color-primary-red: #8b0000;
-$color-primary-green: #54b948;
-$color-secondary-pink: #fefbf7;
+@import 'variables';
 
 #more_content {
     display: inline;
@@ -13,8 +11,8 @@ $color-secondary-pink: #fefbf7;
 
 .btn-phab {
     min-width: 120px !important;
-    background-color: $color-primary-red !important;
-    border-color: #610000 !important;
+    background-color: #4b903c !important;
+    border-color: #006400 !important;
     color: white !important;
     float: right;
     margin-top: 20px;
@@ -33,8 +31,8 @@ $color-secondary-pink: #fefbf7;
 }
 
 .btn-current-page {
-    background-color: $color-primary-red !important;
-    border-color: #610000 !important;
+    background-color: #4b903c !important;
+    border-color: #006400 !important;
     color: white !important;
 }
 
@@ -43,14 +41,14 @@ $color-secondary-pink: #fefbf7;
     left: 50%;
     transform: translate(-50%, 0);
     display: inline-block;
-    background-color: $color-primary-red !important;
-    border-color: #610000 !important;
+    background-color: #4b903c !important;
+    border-color: #006400 !important;
     color: white !important;
 }
 
 .btn-phab-form {
     min-width: 120px !important;
-    background-color: $color-primary-red !important;
-    border-color: #610000 !important;
+    background-color: #4b903c !important;
+    border-color: #006400 !important;
     color: white !important;
 }

@@ -1,0 +1,45 @@
+<div class="container pipe-container">
+  <div class="outer-well">
+    <div class="content">
+      <% if admin_signed_in? %>
+        <div class="back-to-admin">
+          <%= link_to dashboard_path do %>
+            <i class="fa fa-chevron-left"></i>&nbsp;Dashboard
+          <% end %>
+        </div>
+      <% end %>
+      <div class="page-header">
+        <h1>Events</h1>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <h4 id="news">Pages</h4>
+        </div>
+        <div class="col-md-8 col-sm-6 col-xs-12">
+            <% if @event_pages.blank? %>
+              <p class="text-center blank-object">You have no news on your site yet!</p>
+            <% else %>
+              <div class="image-table-area">
+                <table class="table table-striped articles-table">
+                  <thead>
+                    <tr>
+                      <th>Title</th>
+                      <th>Content</th>
+                      <th class="text-center">Published</th>
+                      <th class="text-center">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @event_pages.each do |news| %>
+                      <%= render 'article_table', obj: news %>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            <% end %>
+          <%= link_to "Post news", new_page_path(:site_page => "event"), class:"btn btn-md btn-phab" %>
+        </div>
+      </div>
+    </div>  
+  </div>
+</div>

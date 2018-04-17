@@ -1,6 +1,4 @@
-$color-primary-red: #8b0000;
-$color-primary-green: #54b948;
-$color-secondary-pink: #fefbf7;
+@import 'variables';
 
 .home__banner {
     height: 500px;
@@ -23,7 +21,7 @@ $color-secondary-pink: #fefbf7;
     }
 
     &-text {
-        background-color: rgba($color-primary-red, .6);
+        background-color: rgba($color-primary-green, .6);
         position: absolute;
         top: 60%;
         left: 50%;
@@ -38,7 +36,7 @@ $color-secondary-pink: #fefbf7;
         
         &--fancy {
             font-family: 'Homemade Apple', cursive;
-            color: $color-primary-green;
+            color: $color-primary-red;
         }
     }
 
@@ -65,7 +63,9 @@ $color-secondary-pink: #fefbf7;
     }
 
     &-text {
-        background-color: rgba($color-primary-red, .6);
+        //background-color: rgba($color-primary-green, .6);
+        //background-color: rgba($color-primary-orange, .6);
+        background-color: rgba(255,255,255,.2);
         position: absolute;
         top: 60%;
         left: 50%;

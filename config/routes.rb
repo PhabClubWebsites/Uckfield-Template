@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'contact/new'
+
   devise_for :admins, controllers: { registrations: 'admins/registrations' }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'pages#home'
@@ -10,6 +12,10 @@ Rails.application.routes.draw do
   
   get 'dashboard', to: 'admins#dashboard'
   get 'admins', to: 'admins#index'
+  
+  get 'gallery_list', to: 'galleries#gallery_admin'
+  get 'event_list', to: 'pages#event_list'
+  get 'news_list', to: 'pages#news_list'
   
   resources :pages do
     member do
@@ -30,7 +36,9 @@ Rails.application.routes.draw do
     end
   end
   
-  get 'gallery_list', to: 'galleries#gallery_admin'
+  
+  resources :contacts, only: [:new, :create]
+  
   
   
   

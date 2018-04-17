@@ -1,9 +1,7 @@
-$color-primary-red: #8b0000;
-$color-primary-green: #54b948;
-$color-secondary-pink: #fefbf7;
+@import 'variables';
 
 .navbar {
-    background-color: $color-secondary-pink !important;
+    background-color: white !important;
     padding: 0  !important;
     margin: 0 !important;
     width: 100% !important;
@@ -46,17 +44,17 @@ $color-secondary-pink: #fefbf7;
             
             
             &:hover {
-                background-color: $color-primary-red !important;
+                // background-color: $color-primary-green !important;
                 a  { 
                     text-decoration: none !important;
-                    color: white !important;
+                    // color: white !important;
                 }
             }
             
             
             
             a {
-                color: $color-primary-red !important;
+                //color: $color-primary-green !important;
                 text-decoration: none !important;
                 font-size: 18px !important;
                 font-weight: 600 !important;
@@ -67,12 +65,12 @@ $color-secondary-pink: #fefbf7;
                 min-width: 150px;
                 
                 &.active {
-                    color: white !important !important;
+                    //color: white !important !important;
                 }
             }
             
             .dropdown-menu {
-                background-color: $color-primary-red;
+                //background-color: $color-primary-green;
                 padding: 0 !important;
                 border-bottom-left-radius: 8px !important;
                 border-bottom-right-radius: 8px !important;
@@ -87,6 +85,7 @@ $color-secondary-pink: #fefbf7;
                     //width: auto !important;
                     // padding: 10px !important;
                     width: 100%;
+                    border-radius: 0px;
                     
                     a {
                         width: 100%;
@@ -101,18 +100,18 @@ $color-secondary-pink: #fefbf7;
                         
                         &:hover {
                             text-decoration: none !important;
-                            color: $color-primary-red !important;
+                            // color: $color-primary-green !important;
                             background-color: transparent !important;
                         }
                     }
                     
                     &:hover {
                         background-color: white !important;
-                        color: $color-primary-red !important;
+                        //color: $color-primary-green !important;
                         border-radius: 0 !important;
                         
                         a {
-                            color: $color-primary-red !important;
+                            //color: $color-primary-green !important;
                         }
                     }
                     &:last-child {
@@ -152,7 +151,7 @@ $color-secondary-pink: #fefbf7;
         
         
         li.open {
-            background-color: $color-primary-red !important;
+            // background-color: $color-primary-green !important;
             a {
                 color: white !important;
             }
@@ -169,6 +168,162 @@ $color-secondary-pink: #fefbf7;
         &--img {
             width: 100px;
             height: 100px;
+        }
+    }
+}
+
+
+.orange {
+    
+    a {
+        color: $color-primary-orange !important;
+    }
+    
+    &:hover {
+        background-color: rgba($color-primary-orange,.8) !important;
+        
+        a {
+            color: white !important;
+        }
+    }
+    
+    &.open {
+        background-color: rgba($color-primary-orange,.8) !important;
+        
+        a {
+            color: white !important;
+        }
+        
+        .dropdown-menu {
+            background-color: rgba($color-primary-orange,.8) !important;
+            
+            a:hover {
+                color: $color-primary-orange !important;
+            }
+        }
+    }
+}
+
+.blue {
+    
+    a {
+        color: $color-primary-blue !important;
+    }
+    
+    &:hover {
+        background-color: rgba($color-primary-blue,.8) !important;
+        
+        a {
+            color: white !important;
+        }
+    }
+    
+    &.open {
+        background-color: rgba($color-primary-blue,.8) !important;
+        
+        a {
+            color: white !important;
+        }
+        
+        .dropdown-menu {
+            background-color: rgba($color-primary-blue,.8) !important;
+            
+            a:hover {
+                color: $color-primary-blue !important;
+            }
+        }
+    }
+}
+
+.red {
+    
+    a {
+        color: $color-primary-red !important;
+    }
+    
+    &:hover {
+        background-color: rgba($color-primary-red,.8) !important;
+        
+        a {
+            color: white !important;
+        }
+    }
+    
+    &.open {
+        background-color: rgba($color-primary-red,.8) !important;
+        
+        a {
+            color: white !important;
+        }
+        
+        .dropdown-menu {
+            background-color: rgba($color-primary-red,.8) !important;
+            
+            a:hover {
+                color: $color-primary-red !important;
+            }
+        }
+    }
+}
+
+.purple {
+    
+    a {
+        color: $color-primary-purple !important;
+    }
+    
+    &:hover {
+        background-color: rgba($color-primary-purple, .8) !important;
+        
+        a {
+            color: white !important;
+        }
+    }
+    
+    &.open {
+        background-color: rgba($color-primary-purple,.8) !important;
+        
+        a {
+            color: white !important;
+        }
+        
+        .dropdown-menu {
+            background-color: rgba($color-primary-purple,.8) !important;
+            
+            a:hover {
+                color: $color-primary-purple !important;
+            }
+        }
+    }
+}
+
+.green {
+    
+    a {
+        color: $color-primary-green !important;
+    }
+    
+    &:hover {
+        background-color: rgba($color-primary-green,.8) !important;
+        
+        a {
+            color: white !important;
+        }
+    }
+    
+    &.open {
+        background-color: rgba($color-primary-green,.8) !important;
+        
+        a {
+            color: white !important;
+        }
+        
+        .dropdown-menu {
+            background-color: rgba($color-primary-green,.8) !important;
+            
+            a:hover {
+                color: $color-primary-green !important;
+            }
         }
     }
 }

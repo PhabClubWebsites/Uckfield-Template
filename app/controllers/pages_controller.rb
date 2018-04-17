@@ -45,10 +45,16 @@ class PagesController < ApplicationController
   
   def index
     @home_pages = Page.all.where("site_page = ?", "home").reverse;
-    @event_pages = Page.all.where("site_page = ?", "event").reverse;
-    @news_pages = Page.all.where("site_page = ?", "news").reverse;
     @about_pages = Page.all.where("site_page = ?", "about").reverse;
     @galleries = Gallery.all
+  end
+  
+  def event_list
+    @event_pages = Page.all.where("site_page = ?", "event").reverse;
+  end
+  
+  def news_list
+    @news_pages = Page.all.where("site_page = ?", "news").reverse;
   end
   
   def published

@@ -9,11 +9,34 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <%= render 'layouts/navigation' %>
-  <body>
+  <body style="
+    <% if !club.blank? && !club.bg_image.blank? %>
+      background-image: linear-gradient(
+      to right bottom, 
+      rgba(86, 166, 68, 0.1), 
+      rgba(86, 166, 68, 0.8)),
+      url(<%= club.bg_image.url(:medium) %>);
+      background-position: 0% <% if !club.bg_position.blank? %><%= club.bg_position %><% else %>255<% end %>%;
+    <% else %>
+      background: linear-gradient(to right bottom, rgba(86, 166, 68, 0.1), rgba(86, 166, 68, 0.8));
+    <% end %>
+  ">
     <div class="flash-container text-center col-xs-12">
       <% flash.each do |type, msg| %>
         <%= content_tag :div, msg, class: "alert alert-#{type}"  %>
       <% end %>
+    </div>
+    <div class="sidebar">
+      <div class="leader-block" id="leader_block"></div>
+      <div class="date-time-block" id="date_time_block"></div>
+      <div class="leader-block" id="leader_block"></div>
+      <div class="icon-bar" id="icon_bar">
+        <a href="javascript:void(0);" id="club_leader_btn" class="facebook"><i class="fa fa-2x fa-user"></i></a> 
+        <!--<a href="#" class="twitter"><i class="fa fa-2x fa-phone"></i></a> -->
+        <!--<a href="#" class="google"><i class="fa fa-2x fa-envelope"></i></a> -->
+        <a href="javascript:void(0);" id="club_dates_btn" class="linkedin"><i class="fa fa-2x fa-calendar"></i></a>
+        <a href=javascript:void(0);" id="club_address_btn" class="youtube"><i class="fa fa-2x fa-map-marker"></i></a> 
+      </div>
     </div>
     <%= yield %>
   </body>

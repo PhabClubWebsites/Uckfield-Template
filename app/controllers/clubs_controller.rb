@@ -24,7 +24,7 @@ class ClubsController < ApplicationController
     def update
       if @club.update(club_params)
         flash[:success] = "The club information was successfully updated"
-        redirect_to pages_path
+        redirect_to root_path
       else
         flash[:danger] = @club.errors.full_messages.join(", ")
         render 'edit'
@@ -34,7 +34,7 @@ class ClubsController < ApplicationController
     private
     
     def club_params
-       params.require(:club).permit(:club_name, :club_leader, :contact_email, :club_logo, :contact_number, :meeting_time, :meeting_address, :latitude, :longitude) 
+       params.require(:club).permit(:club_name, :club_leader, :contact_email, :club_logo, :bg_image, :bg_position, :contact_number, :meeting_time, :meeting_address, :latitude, :longitude) 
     end
     
     def set_club

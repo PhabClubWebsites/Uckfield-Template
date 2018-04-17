@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180412173918) do
+ActiveRecord::Schema.define(version: 20180416212032) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -42,6 +42,11 @@ ActiveRecord::Schema.define(version: 20180412173918) do
     t.datetime "club_logo_updated_at"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "bg_image_file_name"
+    t.string   "bg_image_content_type"
+    t.integer  "bg_image_file_size"
+    t.datetime "bg_image_updated_at"
+    t.integer  "bg_position",            default: 100
   end
 
   create_table "galleries", force: :cascade do |t|

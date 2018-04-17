@@ -11,7 +11,7 @@
             <% if club.blank? %>
                 Bebington
             <% else %>
-                <% if !club.club_name %>
+                <% if !club.club_name.blank? %>
                     <%= club.club_name %>
                 <% end %>
             <% end %>    
@@ -25,7 +25,7 @@
             <div class="outer-well">
                 <% if !@home_pages.blank? %>
                     <% @home_pages.each_with_index do |news, i| %>
-                        <%= render "article_preview", obj: news %>
+                        <%= render "article_list", obj: news %>
                     <% end %>
                 <% end %>
             </div>

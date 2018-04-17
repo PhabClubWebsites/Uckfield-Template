@@ -1,6 +1,4 @@
-$color-primary-red: #8b0000;
-$color-primary-green: #54b948;
-$color-secondary-pink: #fefbf7;
+@import 'variables';
 
 .page-header {
     margin-top: 20px !important;
@@ -10,29 +8,29 @@ $color-secondary-pink: #fefbf7;
     display: inline-block;
     font-size: 16px;
     margin-top: 10px;
-    color: $color-primary-red;
+    color: $color-primary-green;
 }
 
 .outer-well {
     padding: 60px 20px 40px 40px;
-    //background-color: $color-secondary-pink;
+    //background-color: $color-secondary-red;
     background-color: white;
         
     .content {
         padding: 20px 40px 20px 40px;
         //background-color: white;
-        background-color: $color-secondary-pink;
+        background-color: rgba($color-primary-green, .1);
         border-radius: 8px;
         
         &__title {
             text-align: center;
             text-decoration: none;
-            color: $color-primary-red;
+            color: $color-primary-green;
             font-size: 16px;
         }
         
         .phab-separator {
-            border: .5px solid $color-primary-red;
+            border: .5px solid $color-primary-green;
             margin-left: 40%;
             width: 20%;
             margin-top: 20px;
@@ -86,7 +84,7 @@ $color-secondary-pink: #fefbf7;
         }
         
         .article-separator {
-            border: 2px solid $color-primary-red;
+            border: 2px solid $color-primary-green;
             width: 100%;
             margin: 30px 0;
         }
@@ -104,7 +102,7 @@ $color-secondary-pink: #fefbf7;
 
 .page__header {
     width: 100%;
-    background-color: $color-primary-red;
+    background-color: rgba($color-primary-green,.5);
     height: 120px;
     position: relative;
     
@@ -165,9 +163,9 @@ $color-secondary-pink: #fefbf7;
     .sidebar-container {
         border-radius: 8px;
         padding: 20px 20px 0px 10px;
-        // background-color: $color-secondary-pink;
+        // background-color: $color-secondary-red;
         background-color: white;
-        color: $color-primary-red;
+        color: $color-primary-green;
         display: block;
         
         .sidebar-block:not(:last-child) {
@@ -176,7 +174,7 @@ $color-secondary-pink: #fefbf7;
         
         .sidebar-block {
             padding: 15px 30px;
-            background-color: $color-secondary-pink;
+            background-color: rgba($color-primary-green, .1);
             border-radius: 8px;
             min-height: 300px;
             
@@ -185,7 +183,7 @@ $color-secondary-pink: #fefbf7;
             }
             
             .sidebar-separator {
-                border: .5px solid $color-primary-red;
+                border: .5px solid $color-primary-green;
                 width: 30%;
                 margin: 15px 0 15px 35%;
             }
@@ -237,7 +235,7 @@ $color-secondary-pink: #fefbf7;
     position: relative;
 
     &-text {
-        background-color: rgba($color-primary-red, 1);
+        background-color: rgba($color-primary-green, .5);
         position: absolute;
         top: 40%;
         left: 50%;
@@ -275,18 +273,18 @@ $color-secondary-pink: #fefbf7;
         margin-bottom: 0px;
         
         a {
-            color: $color-primary-red !important;
+            color: $color-primary-green !important;
         }
     }
     
     .article-preview-separator {
-        border: .5px solid $color-primary-red;
+        border: .5px solid $color-primary-green;
         width: 50%;
         margin: 15px 0;
     }
     
     .article-preview-text {
-        color: $color-primary-red;
+        color: $color-primary-green;
     }
     
     .img-preview-box {
@@ -364,7 +362,7 @@ $color-secondary-pink: #fefbf7;
     color: white;
     font-style: normal;
     font-weight: bold;
-    background-color: $color-primary-red;
+    background-color: $color-primary-green;
     display: inline-block;
     line-height: 1.5;
     -moz-border-radius: 4px;
