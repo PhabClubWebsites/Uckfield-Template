@@ -8,7 +8,7 @@ class Contact < MailForm::Base
       club = Club.first
     {
       :subject => "You have an Email from Phab #{club.club_name}",
-      :to => club.club_email,
+      :to => club.contact_email,
       :from => %("#{name}" <#{email}>)
     }
   end
