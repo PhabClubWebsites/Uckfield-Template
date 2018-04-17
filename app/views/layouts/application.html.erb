@@ -15,7 +15,7 @@
       to right bottom, 
       rgba(86, 166, 68, 0.1), 
       rgba(86, 166, 68, 0.8)),
-      url(<%= club.bg_image.url(:medium) %>);
+      url(<%= club.bg_image.url %>);
       background-position: 0% <% if !club.bg_position.blank? %><%= club.bg_position %><% else %>255<% end %>%;
     <% else %>
       background: linear-gradient(to right bottom, rgba(86, 166, 68, 0.1), rgba(86, 166, 68, 0.8));
