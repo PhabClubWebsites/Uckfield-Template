@@ -141,25 +141,29 @@
     
     .image-table-container {
         background-color: white;
-        height: 500px;
-        overflow: auto;
+        // height: 500px;
+        // overflow: auto;
         border-radius: 8px;
         padding: 0;
         
-        .image-table {
-            height: 500px;
+        .table {
+            margin-bottom: 50px !important;
+        }
+        
+        td {
+            // padding: 20px 4px;
+            vertical-align: middle !important;
             
-            td {
-                // padding: 20px 4px;
-                vertical-align: middle !important;
-                
-                .pic-thumbnail {
-                    width: 100px;
-                    display: block;
-                    margin: 0 auto;
-                    border-radius: 4px;
-                }
+            .pic-thumbnail {
+                width: 100px;
+                display: block;
+                margin: 0 auto;
+                border-radius: 4px;
             }
+        }
+        
+        tr:last-child {
+            padding-bottom: 60px;
         }
     }    
 }

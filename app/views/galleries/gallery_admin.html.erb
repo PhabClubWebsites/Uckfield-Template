@@ -20,21 +20,23 @@
             <p class="text-center blank-object">You have no galleries on your site yet!</p>
           <% else %>
             <div class="image-table-area">
-              <table class="table articles-table">
-                <thead>
-                  <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th class="text-center">Published</th>
-                    <th class="text-center">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @galleries.each do |gallery| %>
-                    <%= render 'gallery_table', gallery: gallery %>
-                  <% end %>
-                </tbody>
-              </table>
+              <div class="image-table-container">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Title</th>
+                      <th>Description</th>
+                      <th class="text-center">Published</th>
+                      <th class="text-center">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @galleries.each do |gallery| %>
+                      <%= render 'gallery_table', gallery: gallery %>
+                    <% end %>
+                  </tbody>
+                </table>                
+              </div>
             </div>
           <% end %>
           <%= link_to "Create gallery", new_gallery_path, class:"btn btn-md btn-phab" %>
