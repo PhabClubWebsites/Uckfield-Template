@@ -80,17 +80,17 @@
         
         &--fancy {
             font-family: 'Homemade Apple', cursive;
-            color: $color-primary-green;
+            color: $color-primary-red;
         }
     }
 
 }
 
 .address-title {
-    color: $color-primary-red;   
+    color: $color-primary-green;   
 }
 
 .address-line {
-    margin-bottom: 0px;
+    margin-bottom: 5px;
     font-size: 18px;
 }

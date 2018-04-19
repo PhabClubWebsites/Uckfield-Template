@@ -20,11 +20,38 @@
                         <hr class="phab-separator">
                     </div>
                     <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <h2 class="address-title">Address</h2>
-                            <% club.split_address.each do |line| %>
-                                <p class="address-line"><%=- line -%></p>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <h2 class="address-title">Contact Info</h2>
+                            <% if !club.club_leader.blank? %>
+                                <p class="address-line">
+                                    <%=- club.club_leader -%>
+                                </p>
                             <% end %>
+                            <% if !club.contact_number.blank? %>
+                                <p class="address-line">
+                                    <%=- club.contact_number -%>
+                                </p>
+                            <% end %>
+                            <% if !club.contact_email.blank? %>
+                                <p class="address-line">
+                                    <%=- club.contact_email -%>
+                                </p>
+                            <% end %>
+                            <% if !club.meeting_time.blank? %>
+                                <p class="address-line">
+                                    <%=- club.meeting_time -%>
+                                </p>
+                            <% end %>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <h2 class="address-title" style="text-align: right;">Address</h2>
+                            <% club.split_address.each do |line| %>
+                                <p style="text-align: right;" class="address-line"><%=- line -%></p>
+                            <% end %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
                             <div id="map" class="club-map">Your club map will go here.</div>
                         </div>
                     </div>

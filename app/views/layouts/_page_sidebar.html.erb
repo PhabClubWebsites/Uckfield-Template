@@ -11,13 +11,13 @@
                                 <%= image_tag(post.img_one.url(:thumb), class:"post-thumbnail-img") %>
                             </div>
                             <div class="col-md-8 col-sm-8 col-xs-12">
-                                <p class="post-title"><%= link_to post.title, page_path(post) %></p>
-                                <small class="post-description"><%= truncate(post.content_one, length:83) %></small>
+                                <p class="post-title"><%= link_to truncate(post.title, length:36), page_path(post) %></p>
+                                <small class="post-description"><%= truncate(post.content_one, length:43) %></small>
                             </div>
                         <% else %>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <p class="post-title"><%= link_to post.title, page_path(post) %></p>
-                                <small class="post-description"><%= truncate(post.content_one, length:53) %></small>
+                                <small class="post-description"><%= truncate(post.content_one, length:83) %></small>
                             </div>
                         <% end %>
                     </div>
