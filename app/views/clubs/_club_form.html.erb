@@ -81,8 +81,15 @@
          <%= f.label :bg_image, "Website Background" %>
       </div>
       <div class="col-md-8 col-sm-8 col-xs-12">
-        <%= f.file_field :bg_image %>
-        <%= f.number_field :bg_position, class:"form-control", placeholder: "Background position" %>
+        <% if !club.bg_image.blank? %>
+          <div class="">
+            <small style="vertical-align: top; font-size: 14px;">Current:</small>
+            <%= image_tag(club.bg_image.url(:thumb)) %>
+          </div>
+        <% end %>
+        <div style="margin-top: 20px;">
+          <%= f.file_field :bg_image %>  
+        </div>
       </div>
     </div>
   </div>

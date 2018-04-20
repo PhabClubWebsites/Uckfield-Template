@@ -14,13 +14,13 @@
     <hr class="phab-separator">
     <!--<h1 style="margin: 0; line-height: 1; font-size: 32px;">~</h1>-->
     <% if obj.site_page == "event" && !obj.date_of_event.blank? %>
-        <small>
+        <small class="event-details">
             <i class="fa fa-calendar"></i> <%= obj.date_of_event.strftime("%-d %B %Y") %>
         </small>    
     <% end %>
     <% if obj.site_page == "event" && !obj.time_of_event.blank? %>
         <br>
-        <small>
+        <small class="event-details">
             <i class="glyphicon glyphicon-time"></i> <%= obj.time_of_event.strftime("%H:%M") %>
         </small>
     <% end %>
@@ -118,7 +118,7 @@
     <div class="row related-links">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <hr></hr>
-            <h4>Related Links: </h4>
+            <h4 class="related-links-title">Related Links: </h4>
             <ul class="related-links-list">
                 <% if !obj.link_text_one.blank? %>
                     <li><%= link_to obj.link_text_one, "https://#{obj.link_url_one}", class: "related-link" %></li>

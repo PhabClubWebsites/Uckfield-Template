@@ -3,7 +3,7 @@
   <head>
     <title>PhabSite</title>
     <%= csrf_meta_tags %>
-    
+    <%= favicon_link_tag 'phab-icon.ico' %>
     <link href="https://fonts.googleapis.com/css?family=Homemade+Apple" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -17,7 +17,6 @@
       rgba(86, 166, 68, 0.1), 
       rgba(86, 166, 68, 0.8)),
       url(<%= club.bg_image.url %>);
-      background-position: 0% <% if !club.bg_position.blank? %><%= club.bg_position %><% else %>255<% end %>%;
       background-size: cover;
     <% else %>
       background: linear-gradient(to right bottom, rgba(86, 166, 68, 0.1), rgba(86, 166, 68, 0.8));

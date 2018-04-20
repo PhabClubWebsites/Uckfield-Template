@@ -27,6 +27,12 @@
             text-decoration: none;
             color: $color-primary-green;
             font-size: 16px;
+            
+            .event-details {
+                color: $color-primary-green;
+                font-size: 16px;
+                margin-bottom: 5px;
+            }
         }
         
         .phab-separator {
@@ -39,6 +45,10 @@
         
         .related-links {
             margin-bottom: -20px;
+            
+            .related-links-title {
+                color: $color-primary-green;
+            }
             
             .related-links-list {
                 font-size: 16px;
