@@ -11,7 +11,7 @@
 
 html {
     // defines what 1rem is
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Lato', sans-serif;
     font-weight: 400;
     font-size: 62.5%; // 1rem = 10px; 10px/16px = 62.5%
     box-sizing: border-box;
@@ -37,14 +37,12 @@ body {
     box-sizing: border-box;
     // background-color: rgba($color-primary-green, .1);
     width: 100%;
+    font-family: 'Lato', sans-serif;
     // background-image: linear-gradient(
     //     to right bottom, 
     //     rgba($color-primary-blue, 0.1), 
     //     rgba($color-primary-blue, 0.3)),
     // url(asset-path('IMG_0116.JPG'));
-    background-size: contain;
-    background-position: top;
-    background-repeat: repeat;
     margin-top: 160px !important;
     margin-bottom: 100px !important;
     // @include respond(tab-port) {
@@ -127,4 +125,8 @@ a {
 
 .glyphicon-option-vertical {
     cursor: pointer !important;
+}
+
+.dashboard-p {
+    font-style: italic;
 }

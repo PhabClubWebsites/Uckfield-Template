@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PhabSite</title>
+    <title>I Am Phab <% if !club.club_name.blank? %> - <%= club.club_name %><% end %></title>
     <%= csrf_meta_tags %>
     <%= favicon_link_tag 'phab-icon.ico' %>
     <link href="https://fonts.googleapis.com/css?family=Homemade+Apple" rel="stylesheet">

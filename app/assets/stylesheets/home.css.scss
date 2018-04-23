@@ -61,7 +61,7 @@
         transform: translate(-50%,-50%);
         width: 160px;
     }
-
+    
     &-text {
         //background-color: rgba($color-primary-green, .6);
         //background-color: rgba($color-primary-orange, .6);
@@ -76,6 +76,7 @@
         padding: 20px 0px;
         &--title {
             color: white;
+            font-family: 'Lato', sans-serif;
         }
         
         &--fancy {

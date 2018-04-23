@@ -8,7 +8,9 @@
                     <div class="row post-block">
                         <% if !post.img_one.blank? %>
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                <%= image_tag(post.img_one.url(:thumb), class:"post-thumbnail-img") %>
+                                <div class="thumb-container">
+                                    <%= image_tag(post.img_one.url(:thumb), class:"post-thumbnail-img") %>
+                                </div>
                             </div>
                             <div class="col-md-8 col-sm-8 col-xs-12">
                                 <p class="post-title"><%= link_to truncate(post.title, length:36), page_path(post) %></p>
@@ -32,7 +34,9 @@
                      <div class="row post-block">
                         <% if !post.img_one.blank? %>
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                <%= image_tag(post.img_one.url(:thumb), class:"post-thumbnail-img") %>
+                                <div class="thumb-container">
+                                    <%= image_tag(post.img_one.url(:thumb), class:"post-thumbnail-img") %>    
+                                </div>
                             </div>
                             <div class="col-md-8 col-sm-8 col-xs-12">
                                 <p class="post-title"><%= link_to truncate(post.title, length:36), page_path(post) %></p>
@@ -56,7 +60,9 @@
                      <div class="row post-block">
                         <% if !post.img_one.blank? %>
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                <%= image_tag(post.img_one.url(:thumb), class:"post-thumbnail-img") %>
+                                <div class="thumb-container">
+                                    <%= image_tag(post.img_one.url(:thumb), class:"post-thumbnail-img") %>
+                                </div>
                             </div>
                             <div class="col-md-8 col-sm-8 col-xs-12">
                                 <p class="post-title"><%= link_to truncate(post.title, length:36), page_path(post) %></p>
