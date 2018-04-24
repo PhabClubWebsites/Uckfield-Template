@@ -49,7 +49,7 @@
     <% if !obj.img_one.blank? && obj.img_one_format == "in-square" %>
         <%= image_tag(obj.img_one.url(:medium), class:"inline-square") %>
     <% end %>
-    <p class="content-block" id="text_box_one"><%= sanitize obj.content_one %></p>
+    <div class="content-block" id="text_box_one"><%= sanitize obj.content_one %></div>
     <% if !obj.img_one.blank? && obj.img_one_format != "in-square" %>
         <div class="image-separator">
             <% if obj.img_one_format == "banner" %>
