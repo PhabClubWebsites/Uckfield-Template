@@ -10,4 +10,6 @@ class Page < ActiveRecord::Base
     
     has_attached_file :img_three, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
     validates_attachment_content_type :img_three, content_type: /\Aimage\/.*\z/
+    
+    validates :title, :content_one, presence: true
 end

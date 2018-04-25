@@ -14,7 +14,7 @@ class PagesController < ApplicationController
        redirect_to page_path(@page)
     else
        flash[:danger] = @page.errors.full_messages.join(", ")
-       render 'new'
+       redirect_to dashboard_path
     end
   end
   
