@@ -6,22 +6,19 @@
             <% if !recent_posts.blank? %>
                 <% recent_posts.each do |post| %>
                     <div class="row post-block">
-                        <% if !post.img_one.blank? %>
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                <div class="thumb-container">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="thumb-container">
+                                <% if !post.img_one.blank? %>
                                     <%= image_tag(post.img_one.url(:thumb), class:"post-thumbnail-img") %>
-                                </div>
+                                <% else %>
+                                    <%= image_tag(club.club_logo.url(:thumb), class:"post-thumbnail-img") %>
+                                <% end %>
                             </div>
-                            <div class="col-md-8 col-sm-8 col-xs-12">
-                                <p class="post-title"><%= link_to truncate(post.title, length:36), page_path(post) %></p>
-                                <small class="post-description"><%= sanitize(post.content_one.truncate(43)) %></small>
-                            </div>
-                        <% else %>
-                            <div class="col-md-12 col-sm-12 col-xs-12" style="min-height: 75px;">
-                                <p class="post-title"><%= link_to post.title, page_path(post) %></p>
-                                <small class="post-description"><%= sanitize(post.content_one.truncate(83)) %></small>
-                            </div>
-                        <% end %>
+                        </div>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <p class="post-title"><%= link_to truncate(post.title, length:36), page_path(post) %></p>
+                            <small class="post-description"><%= sanitize(post.content_one.truncate(43)) %></small>
+                        </div>
                     </div>
                 <% end %> 
             <% end %>  
@@ -32,22 +29,19 @@
             <% if !upcoming_events.blank? %>
                 <% upcoming_events.each do |post| %>
                      <div class="row post-block">
-                        <% if !post.img_one.blank? %>
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                <div class="thumb-container">
-                                    <%= image_tag(post.img_one.url(:thumb), class:"post-thumbnail-img") %>    
-                                </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="thumb-container">
+                                <% if !post.img_one.blank? %>
+                                    <%= image_tag(post.img_one.url(:thumb), class:"post-thumbnail-img") %>
+                                <% else %>
+                                    <%= image_tag(club.club_logo.url(:thumb), class:"post-thumbnail-img") %>
+                                <% end %>
                             </div>
-                            <div class="col-md-8 col-sm-8 col-xs-12">
-                                <p class="post-title"><%= link_to truncate(post.title, length:36), page_path(post) %></p>
-                                <small class="post-description"><%= sanitize(post.content_one.truncate(43)) %></small>
-                            </div>
-                        <% else %>
-                            <div class="col-md-12 col-sm-12 col-xs-12" style="min-height: 75px;">
-                                <p class="post-title"><%= link_to post.title, page_path(post) %></p>
-                                <small class="post-description"><%= sanitize(post.content_one.truncate(83)) %></small>
-                            </div>
-                        <% end %>
+                        </div>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <p class="post-title"><%= link_to truncate(post.title, length:36), page_path(post) %></p>
+                            <small class="post-description"><%= sanitize(post.content_one.truncate(43)) %></small>
+                        </div>
                     </div>
                 <% end %>   
             <% end %> 
@@ -58,22 +52,19 @@
             <% if !club_news.blank? %>
                 <% club_news.each do |post| %>
                      <div class="row post-block">
-                        <% if !post.img_one.blank? %>
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                <div class="thumb-container">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="thumb-container">
+                                <% if !post.img_one.blank? %>
                                     <%= image_tag(post.img_one.url(:thumb), class:"post-thumbnail-img") %>
-                                </div>
+                                <% else %>
+                                    <%= image_tag(club.club_logo.url(:thumb), class:"post-thumbnail-img") %>
+                                <% end %>
                             </div>
-                            <div class="col-md-8 col-sm-8 col-xs-12">
-                                <p class="post-title"><%= link_to truncate(post.title, length:36), page_path(post) %></p>
-                                <small class="post-description"><%= sanitize(post.content_one.truncate(43)) %></small>
-                            </div>
-                        <% else %>
-                            <div class="col-md-12 col-sm-12 col-xs-12" style="min-height: 75px;">
-                                <p class="post-title"><%= link_to post.title, page_path(post) %></p>
-                                <small class="post-description"><%= sanitize(post.content_one.truncate(83)) %></small>
-                            </div>
-                        <% end %>
+                        </div>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <p class="post-title"><%= link_to truncate(post.title, length:36), page_path(post) %></p>
+                            <small class="post-description"><%= sanitize(post.content_one.truncate(43)) %></small>
+                        </div>
                     </div>
                 <% end %>   
             <% end %>

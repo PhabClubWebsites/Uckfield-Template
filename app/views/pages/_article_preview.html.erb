@@ -15,25 +15,23 @@
         <hr class="article-preview-separator"></hr>
     </h2>
     <div class="row">
-        <% if !obj.img_one.blank? %>
-            <div class="col-md-4 col-sm-4 col-xs-4 img-preview-box">
+        <div class="col-md-4 col-sm-4 col-xs-4 img-preview-box">
+            <% if !obj.img_one.blank? %>
                 <%= link_to page_path(obj) do %>
                     <%= image_tag(obj.img_one.url(:medium), class:"article-preview-img") %>
                 <% end %>
-            </div>
-            <div class="col-md-8 col-sm-8 col-xs-8">
-                <p class="article-preview-text">
-                    <%= truncate(obj.content_one, length: 200, separator:' ') %>
-                </p>
-                <%= link_to "Read more...", page_path(obj), class:"read-more-link" %>
-            </div>
-        <% else %>
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <p class="article-preview-text">
-                    <%= truncate(obj.content_one, length: 300) %>
-                </p>
-            </div>
-        <% end %>
+            <% else %>
+                <%= link_to page_path(obj) do %>
+                    <%= image_tag(club.club_logo.url(:medium), class:"article-preview-img") %>
+                <% end %>
+            <% end %>
+        </div>
+        <div class="col-md-8 col-sm-8 col-xs-8">
+            <p class="article-preview-text">
+                <%= truncate(obj.content_one, length: 200, separator:' ') %>
+            </p>
+            <%= link_to "Read more...", page_path(obj), class:"read-more-link" %>
+        </div>
     </div>
     <div class="row">
         <div class="col-md-4 col-sm-4 col-xs-4">
