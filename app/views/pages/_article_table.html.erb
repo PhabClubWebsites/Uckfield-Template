@@ -1,6 +1,6 @@
 <tr>
   <td><%= link_to obj.title, page_path(obj) %></td>
-  <td><%= truncate(obj.content_one, length: 53) %></td>
+  <td><%= sanitize(obj.content_one.truncate(53)) %></td>
   <td class="text-center">
     <% if obj.published == true %>
       Yes
