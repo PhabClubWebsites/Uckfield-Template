@@ -17,7 +17,7 @@
       rgba(86, 166, 68, 0.1), 
       rgba(86, 166, 68, 0.8)),
       url(<%= club.bg_image.url %>);
-      background-size: cover;
+      background-size: contain;
     <% else %>
       background: linear-gradient(to right bottom, rgba(86, 166, 68, 0.1), rgba(86, 166, 68, 0.8));
     <% end %>
@@ -46,5 +46,10 @@
 <script>
   $(document).ready( function() {
     $('.alert').delay(1000).fadeOut(4000);
+    if ($(window).width() < 992) {
+        $("div[id^='container_']").each( function() {
+           $(this).removeClass("container").addClass("container-fluid"); 
+        });
+    } 
   });
 </script>

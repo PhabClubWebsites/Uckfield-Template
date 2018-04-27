@@ -141,7 +141,7 @@
         </p>
     </div>
     <div class="col-md-4 col-sm-4 col-xs-4" style="padding-top: 8px;">
-        <%= social_share_button_tag(obj.title) %>
+        <%= social_share_button_tag(obj.title, desc: obj.title) %>
     </div>
     <div class="col-md-4 col-sm-4 col-xs-4">
         <% if admin_signed_in? %>

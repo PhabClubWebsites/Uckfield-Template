@@ -440,3 +440,13 @@ trix-editor {
 .trix-button {
     background-color: white !important;
 }
+
+@media only screen and (max-width: 991px) {
+    .outer-well {
+        padding: 60px 40px 40px 40px;
+    }
+    
+    .sidebar-well {
+        padding: 40px 20px 40px 30px;
+    }
+}
