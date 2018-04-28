@@ -7,7 +7,7 @@
         <hr class="page__header-line-after">
     </div>
 </div>
-<div class="container pipe-container">
+<div class="container pipe-container" id="container_gallery">
   <div class="row">
     <div class="col-md-8 col-sm-12 col-xs-12">
       <div class="outer-well">
@@ -37,7 +37,7 @@
             </div>
           <% end %>
           <hr></hr>
-          <h3 class="gallery-image-title">Images <small>(<%= @pictures.size %>)</small><span style="float: right; font-size: 16px;"><a class="btn btn-md btn-phab-form" id="open_gallery_button">Open gallery</a></span></h3>
+          <h3 class="gallery-image-title">Images <small>(<%= @pictures.size %>)</small><span style="float: right; font-size: 16px;"><a class="btn btn-md btn-phab-form" onclick="openModal();currentSlide(1)">Open gallery</a></span></h3>
           <hr></hr>
           <% unless @pictures.empty? %>
             <% @pictures.each_with_index do |pic, i| %>
@@ -47,7 +47,7 @@
               <div id="picture_<%= pic.id %>" class="col-md-6 col-sm-6 col-xs-12">
                 <div class="image-thumbnail">
                   <div class="image-thumbnail-img-container">
-                    <%= image_tag(pic.image.url(:medium), class:"image-thumbnail-img") %>
+                    <%= image_tag(pic.image.url(:medium), class:"image-thumbnail-img", id:"lg_img_#{pic.id}", onclick:"openModal();currentSlide(#{i+1})") %>
                   </div>
                   <% if !pic.description.blank? %>
                   <div class="image-caption">
@@ -95,260 +95,363 @@
     </div>
   </div>
 </div>
-<div class="image-slide" id="image_slide">
-  <div class="image-container" id="image_container">
-    <div class="image-display" id="image_display">
-      <button type="button" class="image-close" id="close_gallery">&times;</button>
+<!--<div class="image-slide" id="image_slide">-->
+<!--  <div class="image-container" id="image_container">-->
+<!--    <div class="image-display" id="image_display">-->
+<!--      <button type="button" class="image-close" id="close_gallery">&times;</button>-->
       <%#= image_tag(@gallery.pictures.first.image.url, class:"image-display--img active") %>
-      <% @gallery.pictures.each do |pic| %>
-        <%= image_tag(pic.image.url(:medium), class:"image-display--img", id:"lg_img_#{pic.id}") %>
-      <% end %>
-    </div>
-    <div class="image-text" id="image_text_box">
-      <% if !@gallery.pictures.first.description.blank? %>
-        <hr></hr>
-        <p class="image-description-text" id="image_text_descr"><%= @gallery.pictures.first.description %></p>
-        <hr></hr>
-      <% end %>
-      <% @gallery.pictures.each do |pic| %>
-        <% if !pic.description.blank? %>
-          <p class="image-description-text hidden" id="descr_<%= pic.id %>"><%= pic.description %></p>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="row">
-      <div class="col-md-12 col-sm-12 sol-xs-12">
-        <div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4">
-          <% @gallery.pictures.each do |pic| %>
-            <div id="social_share_buttons" class="text-center hidden">
-              <%= social_share_button_tag(@gallery.pictures.first.description) %>
-            </div>
+<!--      <%# @gallery.pictures.each do |pic| %>-->
+<!--        <%#= image_tag(pic.image.url(:medium),  class:"image-display--img", id:"lg_img_#{pic.id}") %>-->
+<!--      <%# end %>-->
+<!--    </div>-->
+<!--    <div class="image-text" id="image_text_box">-->
+<!--      <%# if !@gallery.pictures.first.description.blank? %>-->
+<!--        <hr></hr>-->
+<!--        <p class="image-description-text" id="image_text_descr"><%#= @gallery.pictures.first.description %></p>-->
+<!--        <hr></hr>-->
+<!--      <%# end %>-->
+<!--      <%#@gallery.pictures.each do |pic| %>-->
+<!--        <%# if !pic.description.blank? %>-->
+<!--          <p class="caption hidden" id="descr_<%#= pic.id %>"><%#= pic.description %></p>-->
+<!--        <%# end %>-->
+<!--      <%# end %>-->
+<!--    </div>-->
+<!--    <div class="row">-->
+<!--      <div class="col-md-12 col-sm-12 sol-xs-12">-->
+<!--        <div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4">-->
+<!--          <%# @gallery.pictures.each do |pic| %>-->
+<!--            <div id="social_share_buttons" class="text-center hidden">-->
+<!--              <%#= social_share_button_tag(@gallery.pictures.first.description) %>-->
+<!--            </div>-->
+<!--          <%# end %>-->
+<!--        </div>-->
+<!--        <div class="col-md-4 col-sm-4 col-xs-4">-->
+<!--          <p class="image-position-text" id="image_text">1/12</p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <button type="button" class="image-prev" id="prev_image_button">-->
+<!--      <i class="fa fa-angle-left fa-4x"></i>-->
+<!--    </button>-->
+<!--    <button type="button" class="image-next" id="next_image_button">-->
+<!--      <i class="fa fa-angle-right fa-4x"></i>-->
+<!--    </button>-->
+<!--  </div>  -->
+<!--</div>-->
+<div id="myModal" class="image-slide">
+  <div class="image-container" id="image_container">
+    <button type="button" class="image-close" onclick="closeModal()">
+      &times;
+    </button>
+    <% @gallery.pictures.reverse.each_with_index do |pic, i| %>
+      <div class="image-display">
+        <div class="numbertext"><%= i+1 %> / <%= @gallery.pictures.size %></div>
+        <%= image_tag(pic.image.url(:medium),  class:"image-display--img", id:"imge_#{pic.id}") %>
+        <div class="caption-block" id="cap_<%= pic.id %>">
+          <% if pic.description %>
+            <p class="caption"><%= pic.description %></p>
           <% end %>
-        </div>
-        <div class="col-md-4 col-sm-4 col-xs-4">
-          <p class="image-position-text" id="image_text">1/12</p>
+          <div class="text-center">
+            <%= social_share_button_tag(@gallery.pictures.first.description) %>
+          </div>
         </div>
       </div>
-    </div>
-    <button type="button" class="image-prev" id="prev_image_button">
-      <i class="fa fa-angle-left fa-4x"></i>
+    <% end %>
+    
+    <button type="button" class="image-prev" onclick="plusSlides(-1)" id="prev_image_button">
+      &#10094;
     </button>
-    <button type="button" class="image-next" id="next_image_button">
-      <i class="fa fa-angle-right fa-4x"></i>
+    <button type="button" onclick="plusSlides(1)" class="image-next" id="next_image_button">
+      &#10095;
     </button>
-  </div>  
+  </div>
 </div>
 
 <script>
-    var $gallery_images_array = [];
-    var $gallery_image_position = 0;
-    
-    $(document).ready(function() {
-      
-      $("#open_gallery_button").on("click", function() {
-        $gallery_images_array.length = 0;
-        $gallery_image_position = 0;
-        
-        $(document).find("img[id^='lg_img_']").each(function(){ 
-          $gallery_images_array.push(this.id);
-        });
-        
-        var img_id = splitImgId($gallery_images_array[0]);
-        var first_id = "#" + $gallery_images_array[0];
-        
-        $("#image_display").prepend($(first_id));
-        $(first_id).addClass("active");
-        setSlideDisplay();
-        $("#prev_image_button").attr("disabled", true);
-        $("#image_text").text(($gallery_image_position+1)+"/"+$gallery_images_array.length);
-        for(var i=1;i<$gallery_images_array.length;i++) {
-          $("#"+$gallery_images_array[i]).addClass("right-image");
-        }
-      });
-      
-      $("#next_image_button").click(function() {
-        
-        
-        console.log("before: "+$gallery_image_position);
-        $("#prev_image_button").attr("disabled", false);
-        var cur_img_id = "#"+$gallery_images_array[$gallery_image_position];
-        var next_img_position = ($gallery_image_position+1) > $gallery_images_array.length-1 ? ($gallery_image_position+1)-$gallery_images_array.length : $gallery_image_position+1
-        var disable_arrow = ($gallery_image_position+2) > $gallery_images_array.length-1 ? ($gallery_image_position+2)-$gallery_images_array.length : $gallery_image_position+2
-        var next_img_id = "#"+$gallery_images_array[next_img_position];
-        var id_img_set = splitImgId(next_img_id);
-        //var two_ahead_id = "#"+$gallery_images_array[two_ahead_position];
-        console.log("before next: "+next_img_position);
-        //console.log("before two: "+two_ahead_position);
-        
-        //$(two_ahead_id).removeClass("left-image").addClass("right-image");
-        
-        $(cur_img_id).removeClass("active").addClass("left-image");
-        $(next_img_id).removeClass("right-image").addClass("active");
-        
-        if ($("#descr_"+id_img_set).length > 0) {
-          $("#image_text_descr").text($("#descr_"+id_img_set).text());
-          $("#image_text_box").slideDown();
-        } else {
-          $("#image_text_box").slideUp();
-        }
-        //$("#image_text_box").slideDown();
-        console.log($("#descr_"+id_img_set).length + "#descr_"+id_img_set + "text: " + $("#descr_"+id_img_set).text())
-        $gallery_image_position = ($gallery_image_position == $gallery_images_array.length-1) ? $gallery_images_array.length-1 : $gallery_image_position+1
-        
-        $("#image_text").text(($gallery_image_position+1)+"/"+$gallery_images_array.length);
-        
-        if ($gallery_image_position == $gallery_images_array.length-1) {
-          $("#next_image_button").attr("disabled", true);
-        }
-         
-        console.log("after: "+$gallery_image_position);
-       });
-       
-       $("#prev_image_button").click(function() {
-         
-        var cur_img_id = "#"+$gallery_images_array[$gallery_image_position];
-        var prev_img_position = ($gallery_image_position-1) < 0 ? -1 : $gallery_image_position-1
-        var disable_arrow = (prev_img_position-1) < 0 ? true : false
-        var prev_img_id = "#"+$gallery_images_array[prev_img_position];
-        var id_img_set = splitImgId(prev_img_id);
-        $("#next_image_button").attr("disabled", false);
-        //var two_behind_id = "#"+$gallery_images_array[two_behind_position];
-        console.log("before prev: "+prev_img_id);
-        //console.log("before two id: "+two_behind_id+"  index: " + two_behind_position);
-        //$(prev_img_id).removeClass("right-image").addClass("left-image");
-        //$(two_behind_id).removeClass("right-image").addClass("left-image");
-        
-        $(cur_img_id).removeClass("active").addClass("right-image");
-        $(prev_img_id).removeClass("left-image").addClass("active");
-        
-        $gallery_image_position = ( $gallery_image_position == 0 ) ? 0 : $gallery_image_position-1
-         
-        $("#image_text").text(($gallery_image_position+1)+"/"+$gallery_images_array.length);
-        
-        if ($gallery_image_position == 0) {
-          $("#prev_image_button").attr("disabled", true);
-        }
-        
-        if ($("#descr_"+id_img_set).length > 0) {
-          $("#image_text_descr").text($("#descr_"+id_img_set).text());
-          $("#image_text_box").slideDown();
-        } else {
-          $("#image_text_box").slideUp();
-        }
-         
-         console.log("after: "+$gallery_image_position);
-       });
-       
-       $("#close_gallery").click( function() {
-         removeSlideDisplay();
-       });
-    });
-    
-    function setSlideDisplay() {
-      $("#image_container").css("opacity", "1");
-      $("#image_container").css("visibility", "visible");
-      $("#image_container").css("transform", "translate(-50%, -50%) scale(1)");
-      $("#image_slide").css("opacity", "1");
-      $("#image_slide").css("visibility", "visible");
-    }
-    
-    function removeSlideDisplay() {
-      $("#image_slide").css("opacity", "0");
-      $("#image_slide").css("visibility", "hidden");
-      $("#image_container").css("opacity", "0");
-      $("#image_container").css("visibility", "hidden");
-      $("#image_container").css("transform", "translate(-50%, -50%) scale(.25)");
-      
-      $("img[class='image-display--img right-image'], img[class='image-display--img left-image'], img[class='image-display--img active']").each( function() {
-        $(this).attr("class", "hidden");
-      });
-      
-      $gallery_images_array.length = 0;
-      $gallery_image_position = 0;
-    }
-    
-    function setGalleryArray(img_id) {
-      var id_array = img_id.split("_"),
-           gallery_id = id_array[id_array.length-2]
-      
-        $(document)
-              .find("img[id^='lg_img_"+ gallery_id +"_']")
-              .each(function(){ 
-                $gallery_images_array.push(this.id);
-              });
-    }
-    
-    function splitImgId(img_id) {
-       var id_array = img_id.split("_");
-      
-      return id_array[id_array.length-1]
-    }
-    
-    function loadGalleryImages(img_id) {
-      var i, 
-      g_len,
-      isLeft;
-      
-      g_len = $gallery_images_array.length;
-      
-      for (i=0;i<g_len;i++) {
-        $("#image_display").append($("#"+$gallery_images_array[i]));
-        if (i < $gallery_image_position) {
-          $("#"+$gallery_images_array[i]).addClass("image-display--img left-image").removeClass("hidden");
-        } else if (i == $gallery_image_position) {
-          $("#"+$gallery_images_array[i]).addClass("image-display--img active").removeClass("hidden left-image right-image");
-          $("#image_text").text((i+1)+"/"+g_len);
-        } else {
-          $("#"+$gallery_images_array[i]).addClass("image-display--img right-image").removeClass("hidden");
-        }
-      }
-    }
+$(document).ready(function() {
+  $("div[id^='cap_']").each( function() {
+    var id = splitId($(this).attr("id"));
+    console.log(id);
+    var width = $("imge_"+id).width();
+    console.log(width);
+    $(this).width(width);
+  });
+});
 
-    function toggleNextImage(current_img_id) {
-      $("#"+current_img_id).fadeOut("fast");
-      $("#"+$gallery_images_array[$gallery_image_position]).fadeIn("slow");
-      // $("#"+current_img_id).removeClass("active").addClass("left-image");
-      // $("#"+$gallery_images_array[($gallery_image_position)%($gallery_images_array.length)]).removeClass("right-image").addClass("active");
-      // console.log(($gallery_image_position)%($gallery_images_array.length-1));
-      // $("#"+$gallery_images_array[($gallery_image_position+1)%($gallery_images_array.length)]).removeClass("left-image").addClass("right-image");
-      // if ($gallery_image_position == $gallery_images_array.length-1) {
-      //   $gallery_image_position = -1;
-      // }
-      // $("#image_text").text(($gallery_image_position+1)+"/"+$gallery_images_array.length);
-    }
+function splitId(id) {
+  var split_id = id.split("_")
+  return split_id[1];
+}
+
+function openModal() {
+  setSlideDisplay();
+}
+
+function closeModal() {
+  removeSlideDisplay();
+}
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("image-display");
+  var dots = document.getElementsByClassName("demo");
+  var captionText = document.getElementById("caption");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      $(slides[i]).hide();
+  }
+  // for (i = 0; i < dots.length; i++) {
+  //     dots[i].className = dots[i].className.replace(" active", "");
+  // }
+  $(slides[slideIndex-1]).show();
+  // dots[slideIndex-1].className += " active";
+  captionText.innerHTML = $(dots[slideIndex-1]).text();
+}
+
+function setSlideDisplay() {
+  $("#image_container").css("opacity", "1");
+  $("#image_container").css("visibility", "visible");
+  $("#image_container").css("transform", "translate(-50%, -50%) scale(1)");
+  $("#myModal").css("opacity", "1");
+  $("#myModal").css("visibility", "visible");
+}
     
-    function togglePrevImage(current_img_id) {
-      
-      console.log("modulo: "+($gallery_image_position)%($gallery_images_array.length-1));
-      console.log("img pos: "+$gallery_image_position);
-      $("#"+current_img_id).removeClass("active left-image").addClass("right-image");
-      $("#"+$gallery_images_array[($gallery_image_position-1)%($gallery_images_array.length)]).removeClass("right-image").addClass("left-image");
-      
-      if ($gallery_image_position <= 0) {
-        $("#"+$gallery_images_array[$gallery_images_array.length-1]).removeClass("right-image").addClass("left-image");
-        $("#"+$gallery_images_array[$gallery_images_array.length-1]).removeClass("right-image left-image").addClass("active");
-        
-        $gallery_image_position = $gallery_images_array.length-1;
-        
-        //$("#"+$gallery_images_array[$gallery_images_array.length-1]).removeClass("right-image left-image").addClass("active");
-        console.log("change");
-      } else {
-        $("#"+$gallery_images_array[($gallery_image_position)%($gallery_images_array.length)]).removeClass("left-image").addClass("active");  
-      }
-      $("#image_text").text(($gallery_image_position+1)+"/"+$gallery_images_array.length);
-    }
-    
-    function findImagePosition(img_id) {
-      var i,
-          g_len;
-          
-      g_len = $gallery_images_array.length;
-      
-      for (i=0;i<g_len;i++) {
-        if ("#"+$gallery_images_array[i] == "#lg_"+ img_id) {
-          return i;
-        }
-      }
-    }
-  
+function removeSlideDisplay() {
+  $("#myModal").css("opacity", "0");
+  $("#myModal").css("visibility", "hidden");
+  $("#image_container").css("opacity", "0");
+  $("#image_container").css("visibility", "hidden");
+  $("#image_container").css("transform", "translate(-50%, -50%) scale(.25)");
+}
 </script>
+
+
+
+
+
+
+<!--<script>-->
+<!--    var $gallery_images_array = [];-->
+<!--    var $gallery_image_position = 0;-->
+    
+<!--    $(document).ready(function() {-->
+      
+<!--      $("#open_gallery_button").on("click", function() {-->
+<!--        $gallery_images_array.length = 0;-->
+<!--        $gallery_image_position = 0;-->
+        
+<!--        $(document).find("img[id^='lg_img_']").each(function(){ -->
+<!--          $gallery_images_array.push(this.id);-->
+<!--        });-->
+        
+<!--        var img_id = splitImgId($gallery_images_array[0]);-->
+<!--        var first_id = "#" + $gallery_images_array[0];-->
+        
+<!--        $("#image_display").prepend($(first_id));-->
+<!--        $(first_id).addClass("active");-->
+<!--        setSlideDisplay();-->
+<!--        $("#prev_image_button").attr("disabled", true);-->
+<!--        $("#image_text").text(($gallery_image_position+1)+"/"+$gallery_images_array.length);-->
+<!--        for(var i=1;i<$gallery_images_array.length;i++) {-->
+<!--          $("#"+$gallery_images_array[i]).addClass("right-image");-->
+<!--        }-->
+<!--      });-->
+      
+<!--      $("#next_image_button").click(function() {-->
+        
+        
+<!--        console.log("before: "+$gallery_image_position);-->
+<!--        $("#prev_image_button").attr("disabled", false);-->
+<!--        var cur_img_id = "#"+$gallery_images_array[$gallery_image_position];-->
+<!--        var next_img_position = ($gallery_image_position+1) > $gallery_images_array.length-1 ? ($gallery_image_position+1)-$gallery_images_array.length : $gallery_image_position+1-->
+<!--        var disable_arrow = ($gallery_image_position+2) > $gallery_images_array.length-1 ? ($gallery_image_position+2)-$gallery_images_array.length : $gallery_image_position+2-->
+<!--        var next_img_id = "#"+$gallery_images_array[next_img_position];-->
+<!--        var id_img_set = splitImgId(next_img_id);-->
+        <!--//var two_ahead_id = "#"+$gallery_images_array[two_ahead_position];-->
+<!--        console.log("before next: "+next_img_position);-->
+        <!--//console.log("before two: "+two_ahead_position);-->
+        
+        <!--//$(two_ahead_id).removeClass("left-image").addClass("right-image");-->
+        
+<!--        $(cur_img_id).removeClass("active").addClass("left-image");-->
+<!--        $(next_img_id).removeClass("right-image").addClass("active");-->
+        
+<!--        if ($("#descr_"+id_img_set).length > 0) {-->
+<!--          $("#image_text_descr").text($("#descr_"+id_img_set).text());-->
+<!--          $("#image_text_box").slideDown();-->
+<!--        } else {-->
+<!--          $("#image_text_box").slideUp();-->
+<!--        }-->
+        <!--//$("#image_text_box").slideDown();-->
+<!--        console.log($("#descr_"+id_img_set).length + "#descr_"+id_img_set + "text: " + $("#descr_"+id_img_set).text())-->
+<!--        $gallery_image_position = ($gallery_image_position == $gallery_images_array.length-1) ? $gallery_images_array.length-1 : $gallery_image_position+1-->
+        
+<!--        $("#image_text").text(($gallery_image_position+1)+"/"+$gallery_images_array.length);-->
+        
+<!--        if ($gallery_image_position == $gallery_images_array.length-1) {-->
+<!--          $("#next_image_button").attr("disabled", true);-->
+<!--        }-->
+         
+<!--        console.log("after: "+$gallery_image_position);-->
+<!--       });-->
+       
+<!--       $("#prev_image_button").click(function() {-->
+         
+<!--        var cur_img_id = "#"+$gallery_images_array[$gallery_image_position];-->
+<!--        var prev_img_position = ($gallery_image_position-1) < 0 ? -1 : $gallery_image_position-1-->
+<!--        var disable_arrow = (prev_img_position-1) < 0 ? true : false-->
+<!--        var prev_img_id = "#"+$gallery_images_array[prev_img_position];-->
+<!--        var id_img_set = splitImgId(prev_img_id);-->
+<!--        $("#next_image_button").attr("disabled", false);-->
+        <!--//var two_behind_id = "#"+$gallery_images_array[two_behind_position];-->
+<!--        console.log("before prev: "+prev_img_id);-->
+        <!--//console.log("before two id: "+two_behind_id+"  index: " + two_behind_position);-->
+        <!--//$(prev_img_id).removeClass("right-image").addClass("left-image");-->
+        <!--//$(two_behind_id).removeClass("right-image").addClass("left-image");-->
+        
+<!--        $(cur_img_id).removeClass("active").addClass("right-image");-->
+<!--        $(prev_img_id).removeClass("left-image").addClass("active");-->
+        
+<!--        $gallery_image_position = ( $gallery_image_position == 0 ) ? 0 : $gallery_image_position-1-->
+         
+<!--        $("#image_text").text(($gallery_image_position+1)+"/"+$gallery_images_array.length);-->
+        
+<!--        if ($gallery_image_position == 0) {-->
+<!--          $("#prev_image_button").attr("disabled", true);-->
+<!--        }-->
+        
+<!--        if ($("#descr_"+id_img_set).length > 0) {-->
+<!--          $("#image_text_descr").text($("#descr_"+id_img_set).text());-->
+<!--          $("#image_text_box").slideDown();-->
+<!--        } else {-->
+<!--          $("#image_text_box").slideUp();-->
+<!--        }-->
+         
+<!--         console.log("after: "+$gallery_image_position);-->
+<!--       });-->
+       
+<!--       $("#close_gallery").click( function() {-->
+<!--         removeSlideDisplay();-->
+<!--       });-->
+<!--    });-->
+    
+<!--    function setSlideDisplay() {-->
+<!--      $("#image_container").css("opacity", "1");-->
+<!--      $("#image_container").css("visibility", "visible");-->
+<!--      $("#image_container").css("transform", "translate(-50%, -50%) scale(1)");-->
+<!--      $("#image_slide").css("opacity", "1");-->
+<!--      $("#image_slide").css("visibility", "visible");-->
+<!--    }-->
+    
+<!--    function removeSlideDisplay() {-->
+<!--      $("#image_slide").css("opacity", "0");-->
+<!--      $("#image_slide").css("visibility", "hidden");-->
+<!--      $("#image_container").css("opacity", "0");-->
+<!--      $("#image_container").css("visibility", "hidden");-->
+<!--      $("#image_container").css("transform", "translate(-50%, -50%) scale(.25)");-->
+      
+<!--      $("img[class='image-display--img right-image'], img[class='image-display--img left-image'], img[class='image-display--img active']").each( function() {-->
+<!--        $(this).attr("class", "hidden");-->
+<!--      });-->
+      
+<!--      $gallery_images_array.length = 0;-->
+<!--      $gallery_image_position = 0;-->
+<!--    }-->
+    
+<!--    function setGalleryArray(img_id) {-->
+<!--      var id_array = img_id.split("_"),-->
+<!--           gallery_id = id_array[id_array.length-2]-->
+      
+<!--        $(document)-->
+<!--              .find("img[id^='lg_img_"+ gallery_id +"_']")-->
+<!--              .each(function(){ -->
+<!--                $gallery_images_array.push(this.id);-->
+<!--              });-->
+<!--    }-->
+    
+<!--    function splitImgId(img_id) {-->
+<!--       var id_array = img_id.split("_");-->
+      
+<!--      return id_array[id_array.length-1]-->
+<!--    }-->
+    
+<!--    function loadGalleryImages(img_id) {-->
+<!--      var i, -->
+<!--      g_len,-->
+<!--      isLeft;-->
+      
+<!--      g_len = $gallery_images_array.length;-->
+      
+<!--      for (i=0;i<g_len;i++) {-->
+<!--        $("#image_display").append($("#"+$gallery_images_array[i]));-->
+<!--        if (i < $gallery_image_position) {-->
+<!--          $("#"+$gallery_images_array[i]).addClass("image-display--img left-image").removeClass("hidden");-->
+<!--        } else if (i == $gallery_image_position) {-->
+<!--          $("#"+$gallery_images_array[i]).addClass("image-display--img active").removeClass("hidden left-image right-image");-->
+<!--          $("#image_text").text((i+1)+"/"+g_len);-->
+<!--        } else {-->
+<!--          $("#"+$gallery_images_array[i]).addClass("image-display--img right-image").removeClass("hidden");-->
+<!--        }-->
+<!--      }-->
+<!--    }-->
+
+<!--    function toggleNextImage(current_img_id) {-->
+<!--      $("#"+current_img_id).fadeOut("fast");-->
+<!--      $("#"+$gallery_images_array[$gallery_image_position]).fadeIn("slow");-->
+      <!--// $("#"+current_img_id).removeClass("active").addClass("left-image");-->
+      <!--// $("#"+$gallery_images_array[($gallery_image_position)%($gallery_images_array.length)]).removeClass("right-image").addClass("active");-->
+      <!--// console.log(($gallery_image_position)%($gallery_images_array.length-1));-->
+      <!--// $("#"+$gallery_images_array[($gallery_image_position+1)%($gallery_images_array.length)]).removeClass("left-image").addClass("right-image");-->
+      <!--// if ($gallery_image_position == $gallery_images_array.length-1) {-->
+      <!--//   $gallery_image_position = -1;-->
+      <!--// }-->
+      <!--// $("#image_text").text(($gallery_image_position+1)+"/"+$gallery_images_array.length);-->
+<!--    }-->
+    
+<!--    function togglePrevImage(current_img_id) {-->
+      
+<!--      console.log("modulo: "+($gallery_image_position)%($gallery_images_array.length-1));-->
+<!--      console.log("img pos: "+$gallery_image_position);-->
+<!--      $("#"+current_img_id).removeClass("active left-image").addClass("right-image");-->
+<!--      $("#"+$gallery_images_array[($gallery_image_position-1)%($gallery_images_array.length)]).removeClass("right-image").addClass("left-image");-->
+      
+<!--      if ($gallery_image_position <= 0) {-->
+<!--        $("#"+$gallery_images_array[$gallery_images_array.length-1]).removeClass("right-image").addClass("left-image");-->
+<!--        $("#"+$gallery_images_array[$gallery_images_array.length-1]).removeClass("right-image left-image").addClass("active");-->
+        
+<!--        $gallery_image_position = $gallery_images_array.length-1;-->
+        
+        <!--//$("#"+$gallery_images_array[$gallery_images_array.length-1]).removeClass("right-image left-image").addClass("active");-->
+<!--        console.log("change");-->
+<!--      } else {-->
+<!--        $("#"+$gallery_images_array[($gallery_image_position)%($gallery_images_array.length)]).removeClass("left-image").addClass("active");  -->
+<!--      }-->
+<!--      $("#image_text").text(($gallery_image_position+1)+"/"+$gallery_images_array.length);-->
+<!--    }-->
+    
+<!--    function findImagePosition(img_id) {-->
+<!--      var i,-->
+<!--          g_len;-->
+          
+<!--      g_len = $gallery_images_array.length;-->
+      
+<!--      for (i=0;i<g_len;i++) {-->
+<!--        if ("#"+$gallery_images_array[i] == "#lg_"+ img_id) {-->
+<!--          return i;-->
+<!--        }-->
+<!--      }-->
+<!--    }-->
+  
+<!--</script>-->
