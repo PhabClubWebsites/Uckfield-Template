@@ -167,6 +167,10 @@
         border-radius: 8px;
         padding: 0;
         
+        .cover-img {
+            background-color: rgba($color-secondary-red,.2);
+        }
+        
         td {
             // padding: 20px 4px;
             vertical-align: middle !important;
@@ -198,18 +202,18 @@
     margin-bottom: 40px;
     
     .image-thumbnail {
-        max-height: 400px;
         padding: 20px;
         position: relative;
         background-color: white;
         border-radius: 8px;
         
         .image-thumbnail-img-container {
-            max-height: 300px;
-            // padding-bottom: 20px;
+                height: 300px;
+                border-radius: 4px;
+                overflow: hidden;
             
             .image-thumbnail-img {
-                max-width: 200px;
+                height: 100%;
                 display: block;
                 margin: 0 auto;
                 border-radius: 4px;

@@ -20,8 +20,8 @@
                 <%= link_to image_tag(obj.find_cover_image, class:"article-preview-img"), gallery_path(obj) %>
             <% elsif obj.pictures.first %>
                 <%= link_to image_tag(obj.pictures.first.image.url(:medium), class:"article-preview-img"), gallery_path(obj) %>
-            <% else %>
-                N/A
+            <% elsif !club.club_logo.blank? %>
+                <%= link_to image_tag(club.club_logo.url(:medium), class:"article-preview-img"), gallery_path(obj) %>
             <% end %>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-8">
@@ -36,7 +36,7 @@
             <span class="article-preview-date"><small><%= time_ago_in_words(obj.created_at) %> ago</small></span>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-8">
-            <%= social_share_button_tag(obj.name) %>
+            <%= social_share_button_tag(obj.name, desc: obj.name) %>
         </div>
     </div>
 </div>

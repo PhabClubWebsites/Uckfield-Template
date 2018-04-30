@@ -71,7 +71,7 @@
                 </p>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-4" style="padding-top: 8px;">
-                <%= social_share_button_tag(@gallery.name) %>
+                <%= social_share_button_tag(@gallery.name, desc: @gallery.name) %>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-4">
                 <% if admin_signed_in? %>
@@ -152,7 +152,7 @@
             <p class="caption"><%= pic.description %></p>
           <% end %>
           <div class="text-center">
-            <%= social_share_button_tag(@gallery.pictures.first.description) %>
+            <%= social_share_button_tag(pic.description, desc: pic.description) %>
           </div>
         </div>
       </div>

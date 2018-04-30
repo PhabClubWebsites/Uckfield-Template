@@ -64,7 +64,7 @@
                 </thead>
                 <tbody>
                   <% @pictures.each do |picture| %>
-                    <tr>
+                    <tr class="<% if picture.id == picture.gallery.cover %>cover-img<% end %>">
                       <td><%= image_tag(picture.image.url(:thumb), class:"pic-thumbnail") %></td>
                       <td><%= picture.split_image_path %></td>
                       <td><%= truncate(picture.description, length: 83) %></td>
@@ -72,7 +72,11 @@
                         <li class="list-unstyled dropdown">
                           <i class="glyphicon glyphicon-option-vertical" data-toggle="dropdown"></i>
                           <ul class="dropdown-menu dropdown-menu-right">
-                            <li><%= link_to "Add Caption", edit_gallery_picture_path(picture.gallery, picture), "data-toggle" => "modal", "data-target" => "#img_popup_#{picture.id}", remote: true %></li>
+                            <% if picture.description.blank? %>
+                              <li><%= link_to "Add Caption", edit_gallery_picture_path(picture.gallery, picture), "data-toggle" => "modal", "data-target" => "#img_popup_#{picture.id}", remote: true %></li>
+                            <% else %>
+                              <li><%= link_to "Edit Caption", edit_gallery_picture_path(picture.gallery, picture), "data-toggle" => "modal", "data-target" => "#img_popup_#{picture.id}", remote: true %></li>
+                            <% end %>
                             <% if picture.id != picture.gallery.cover %>
                               <li>
                                 <%= link_to 'Make Cover Image', make_default_gallery_picture_path(picture.gallery_id, picture), :id => 'make_default', method: :post %>

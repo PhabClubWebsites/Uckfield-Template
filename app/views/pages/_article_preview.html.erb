@@ -27,9 +27,9 @@
             <% end %>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-8">
-            <p class="article-preview-text">
-                <%= truncate(obj.content_one, length: 200, separator:' ') %>
-            </p>
+            <div class="article-preview-text">
+                <%= sanitize(obj.content_one.truncate(200)) %>
+            </div>
             <%= link_to "Read more...", page_path(obj), class:"read-more-link" %>
         </div>
     </div>
@@ -38,7 +38,7 @@
             <span class="article-preview-date"><small><%= time_ago_in_words(obj.created_at) %> ago</small></span>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-8">
-            <%= social_share_button_tag(obj.title) %>
+            <%= social_share_button_tag(obj.title, desc: obj.title) %>
         </div>
     </div>
 </div>
