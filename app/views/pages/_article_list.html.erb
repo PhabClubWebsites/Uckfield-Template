@@ -121,13 +121,13 @@
             <h4 class="related-links-title">Related Links: </h4>
             <ul class="related-links-list">
                 <% if !obj.link_text_one.blank? %>
-                    <li><%= link_to obj.link_text_one, "https://#{obj.link_url_one}", class: "related-link" %></li>
+                    <li><%= link_to obj.link_text_one, "#{obj.link_url_one}", class: "related-link" %></li>
                 <% end %>
                 <% if !obj.link_text_two.blank? %>
-                    <li><%= link_to obj.link_text_two, "https://#{obj.link_url_two}", class: "related-link" %></li>
+                    <li><%= link_to obj.link_text_two, "#{obj.link_url_two}", class: "related-link" %></li>
                 <% end %>
                 <% if !obj.link_text_three.blank? %>
-                    <li><%= link_to obj.link_text_three, "https://#{obj.link_url_three}", class: "related-link" %></li>
+                    <li><%= link_to obj.link_text_three, "#{obj.link_url_three}", class: "related-link" %></li>
                 <% end %>
             </ul>
             <hr></hr>
