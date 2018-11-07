@@ -1,13 +1,9 @@
-<% if admin_signed_in? %>
-    <% if obj.published == false %>
-        <div class="row">
-            <div class="col-md-2 col-md-offset-10">
-                <%= link_to "Publish #{obj.site_page}", published_page_path(obj), class:"btn btn-md btn-phab no-margin" %>
-            </div>
-        </div>
-    <% end %>
-<% end %>
 <div class="content__title">
+    <% if admin_signed_in? %>
+        <% if obj.published == false %>
+            <%= link_to "Publish #{obj.site_page}", published_page_path(obj), class:"btn btn-md btn-phab no-margin" %>
+        <% end %>
+    <% end %>
     <h2 id="pg_<%=handlise(obj.title) %>">
         <%= obj.title %>
     </h2>
@@ -26,10 +22,9 @@
     <% end %>
 </div>
 <% if obj.links_position == "top" && !obj.link_text_one.blank? %>
-    <div class="row related-links">
+    <div class="row related-links top">
         <div class="col-md-12 col-sm-12 col-xs-12">
-            <hr></hr>
-            <h4>Important Links: </h4>
+            <h4 class="related-links-title">Important Links: </h4>
             <ul class="related-links-list">
                 <% if !obj.link_text_one.blank? %>
                     <li><%= link_to obj.link_text_one, "https://#{obj.link_url_one}", class: "related-link" %></li>
@@ -41,7 +36,6 @@
                     <li><%= link_to obj.link_text_three, "https://#{obj.link_url_three}", class: "related-link" %></li>
                 <% end %>
             </ul>
-            <hr></hr>
         </div>
     </div>
 <% end %>
@@ -134,16 +128,17 @@
         </div>
     </div>
 <% end %>
+<% unless obj.site_page == "home" %>
 <div class="row article__cta">
-    <div class="col-md-4 col-sm-4 col-xs-4">
+    <div class="col-xs-4">
         <p class="article__details">
             <%= time_ago_in_words(obj.created_at) %> ago
         </p>
     </div>
-    <div class="col-md-4 col-sm-4 col-xs-4" style="padding-top: 8px;">
+    <div class="col-xs-4" style="padding-top: 8px;">
         <%= social_share_button_tag(obj.title, desc: obj.title) %>
     </div>
-    <div class="col-md-4 col-sm-4 col-xs-4">
+    <div class="col-xs-4">
         <% if admin_signed_in? %>
             <span style="float: right; padding-top: 4px">
                 <%= link_to edit_page_path(obj, site_page: obj.site_page) do %>
@@ -157,4 +152,4 @@
         <% end %>
     </div>    
 </div>
-
+<% end %>

@@ -1,7 +1,8 @@
 class GalleriesController < ApplicationController
   before_action :authenticate_admin!, only: [:edit, :update, :destroy, :published, :new, :gallery_admin]
   before_action :set_gallery, only: [:edit, :update, :show, :destroy, :published]
-
+  layout "admin", only: [:gallery_admin, :new, :create]
+  
   def index
     @galleries = Gallery.where("published = ?", true).paginate(:page => params[:page], :per_page => 5).order(id: :desc)
 
@@ -42,6 +43,7 @@ class GalleriesController < ApplicationController
   end
 
   def create
+    layout "admin"
     @gallery = Gallery.new(gallery_params)
 
     respond_to do |format|
@@ -54,7 +56,7 @@ class GalleriesController < ApplicationController
           }
         end
 
-        format.html { redirect_to @gallery, notice: 'Gallery was successfully created.' }
+        format.html { redirect_to @gallery, notice: 'Your gallery was successfully created!' }
         format.json { render json: @gallery, status: :created, location: @gallery }
       else
         format.html { render action: "new" }
@@ -73,7 +75,7 @@ class GalleriesController < ApplicationController
             @gallery.pictures.create(image: image)
           }
         end
-        format.html { redirect_to @gallery, success: 'Gallery was successfully updated.' }
+        format.html { redirect_to @gallery, success: 'Your gallery was successfully updated!' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -94,11 +96,11 @@ class GalleriesController < ApplicationController
   def published
     if @gallery.published == false
       @gallery.update_attribute(:published, true)
-      flash[:success] = "Your gallery has been published"
+      flash[:success] = "Your gallery has been published!"
       redirect_to gallery_path(@gallery)
     elsif @gallery.published == true
       @gallery.update_attribute(:published, false)
-      flash[:danger] = "Your gallery is no longer published"
+      flash[:danger] = "Your gallery is no longer published."
       redirect_to gallery_path(@gallery)
     end
   end

@@ -1,27 +1,6 @@
-<div class="container pipe-container">
-  <div class="outer-well">
-    <div class="content">
-      <% if admin_signed_in? %>
-        <div class="back-to-admin">
-          <% if params[:site_page] == "event" %>
-            <%= link_to event_list_path do %>
-              <i class="fa fa-chevron-left"></i>&nbsp;Events
-            <% end %>
-          <% elsif params[:site_page] == "news" %>
-            <%= link_to news_list_path do %>
-                <i class="fa fa-chevron-left"></i>&nbsp;News
-              <% end %>
-          <% elsif params[:site_page] == "home" %>
-            <%= link_to dashboard_path do %>
-              <i class="fa fa-chevron-left"></i>&nbsp;Dashboard
-            <% end %>
-          <% end %>
-        </div>
-      <% end %>
-       <div class="page-header">
-        <h1>Edit <%= params[:site_page].capitalize %></h1>
-      </div>
-      <%= render 'form' %>
-    </div>
+<div class="content">
+  <div class="page-header">
+    <h1>Edit <%= params[:site_page].capitalize %></h1>
   </div>
+  <%= render 'form' %>
 </div>

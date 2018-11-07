@@ -1,0 +1,27 @@
+<div class="sidebar">
+  <div class="main-sidebar-block" id="sidebar_block">
+    <div class="contact-block" id="contact_block">
+      <ul class="list">
+        <li class="item"><%= club.club_leader %></li>
+        <li class="item"><%= club.contact_number %></li>
+        <li class="item"><%= club.contact_email %></li>
+      </ul>
+    </div>
+    <div class="address-block" id="address_block">
+      <ul class="list">
+        <li class="item"><%= club.meeting_time %></li>
+        <% club.split_address.each do |line| %>
+          <li class="item"><%=- line -%></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="icon-bar" id="icon_bar">
+    <a href="javascript:void(0);" id="contact_btn" class="contact-btn"><i class="fa fa-2x fa-user"></i></a>
+    <a href="javascript:void(0);" id="address_btn" class="address-btn"><i class="fa fa-2x fa-map-marker"></i></a>
+    <a href="javascript:void(0);" id="facebook_btn" class="facebook-btn"><i class="fab fa-2x fa-facebook-f"></i></a> 
+    <a href="javascript:void(0);" id="twitter_btn" class="twitter-btn"><i class="fab fa-2x fa-twitter"></i></a>
+    <a href="javascript:void(0);" id="donate_btn" class="donate-btn"><i class="fas fa-2x fa-hand-holding-heart"></i></a>
+  </div>
+</div>

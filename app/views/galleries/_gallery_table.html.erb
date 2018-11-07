@@ -1,7 +1,7 @@
 <tr>
   <td><%= link_to gallery_path(gallery) do %><%= image_tag(gallery.find_thumb_image, class:"pic-thumbnail") %><% end %></td>
   <td><%= link_to gallery.name, gallery_path(gallery) %></td>
-  <td><%= truncate(gallery.description, length: 43) %></td>
+  <td class="hidden-xs"><%= truncate(gallery.description, length: 43) %></td>
   <td>
     <% if gallery.published == true %>
       Yes
@@ -10,7 +10,7 @@
     <% end %>
     
   </td>
-  <td class="text-right">
+  <td class="text-center">
     <li class="list-unstyled dropdown">
       <i class="glyphicon glyphicon-option-vertical" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right">

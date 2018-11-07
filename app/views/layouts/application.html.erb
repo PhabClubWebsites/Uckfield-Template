@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width">
     <title>I Am Phab <% if !club.club_name.blank? %> - <%= club.club_name %><% end %></title>
     <%= csrf_meta_tags %>
     <%= favicon_link_tag 'phab-icon.ico' %>
@@ -9,47 +10,83 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <%= render 'layouts/navigation' %>
-  <body style="
-    <% if !club.blank? && !club.bg_image.blank? %>
-      background-image: linear-gradient(
-      to right bottom, 
-      rgba(86, 166, 68, 0.1), 
-      rgba(86, 166, 68, 0.8)),
-      url(<%= club.bg_image.url %>);
-      background-size: contain;
-    <% else %>
-      background: linear-gradient(to right bottom, rgba(86, 166, 68, 0.1), rgba(86, 166, 68, 0.8));
-    <% end %>
-  ">
+  <%= render 'layouts/navigation' %>  
+  <body>
     <div class="flash-container text-center col-xs-12">
       <% flash.each do |type, msg| %>
         <%= content_tag :div, msg, class: "alert alert-#{type}"  %>
       <% end %>
     </div>
-    <!--<div class="sidebar">-->
-    <!--  <div class="leader-block" id="leader_block"></div>-->
-    <!--  <div class="date-time-block" id="date_time_block"></div>-->
-    <!--  <div class="leader-block" id="leader_block"></div>-->
-    <!--  <div class="icon-bar" id="icon_bar">-->
-    <!--    <a href="javascript:void(0);" id="club_leader_btn" class="facebook"><i class="fa fa-2x fa-user"></i></a> -->
-        <!--<a href="#" class="twitter"><i class="fa fa-2x fa-phone"></i></a> -->
-        <!--<a href="#" class="google"><i class="fa fa-2x fa-envelope"></i></a> -->
-    <!--    <a href="javascript:void(0);" id="club_dates_btn" class="linkedin"><i class="fa fa-2x fa-calendar"></i></a>-->
-    <!--    <a href=javascript:void(0);" id="club_address_btn" class="youtube"><i class="fa fa-2x fa-map-marker"></i></a> -->
-    <!--  </div>-->
-    <!--</div>-->
+    <%= render 'layouts/contact_sidebar' %>
     <%= yield %>
   </body>
-  <%= render 'layouts/footer' %>
+  <%#= render 'layouts/footer' %>
 </html>
 <script>
-  $(document).ready( function() {
-    $('.alert').delay(1000).fadeOut(4000);
-    if ($(window).width() < 992) {
-        $("div[id^='container_']").each( function() {
-           $(this).removeClass("container").addClass("container-fluid"); 
-        });
-    } 
+
+  if ($(window).width() > 992) {
+    $navbar = $("#navbar");
+  } else {
+    $navbar = $("#mob_navbar");
+  }
+
+  var scrolled = false;
+  
+  $(window).scroll(function() {
+      if($(window).scrollTop() > 10 && scrolled == false){
+          $("#pointer_scroll").fadeOut(300);
+          $('#navbar').stop().animate({height : '120px'}, 500);
+          $('.navbar__beb-logo').stop().animate({top : '60px'}, 500);
+          $('.navbar__beb-logo--img').stop().animate({width : '120px'}, 500);
+          // $('.navbar__links').stop().animate({width : '80%'}, 500);
+          $('.navbar__charity-number').stop().animate({width : '80px', top : '60px'}, 500);
+          $('.header').css("transform", 'translateY(-60px)');
+          scrolled = true;
+      } else if($(window).scrollTop() <= 10) {
+          $("#pointer_scroll").fadeIn(300);
+          $('#navbar').stop().animate({height : '180px'}, 500);
+          $('.navbar__beb-logo').stop().animate({top : '100px'}, 500);
+          $('.navbar__beb-logo--img').stop().animate({width : '160px'}, 500);
+          // $('.navbar__links').stop().animate({width : '95%'}, 500);
+          $('.navbar__charity-number').stop().animate({width : '120px', top : '100px'}, 500);
+          $('.header').css("transform", 'translateY(0px)');
+          scrolled = false;
+      }
   });
+
+  $(document).on("turbolinks:load", function() {
+    
+    $('.alert').delay(5000).fadeOut(2000);
+    if ($(window).width() <= 1066) {
+      removeContainerClasses();
+    }
+    $(window).on('resize', function(){
+      var win = $(this);
+      if (win.width() <= 1066) { 
+        removeContainerClasses();
+      }
+    });
+    
+    
+    
+    var lastScrollTop = 0;
+    $(window).scroll(function(event){
+      var st = $(this).scrollTop();
+      var open = $("#sidebar_block").hasClass("sidebar-open");
+      console.log(!open);
+      if (st > lastScrollTop && !open){
+          $('#icon_bar').css("transform", "translateX(-100%)");
+      } else {
+          $('#icon_bar').css("transform", "translateX(0)");
+      }
+      lastScrollTop = st;
+    });
+
+  });
+  
+  function removeContainerClasses() {
+    $("div[id^='container_']").each( function() {
+      $(this).find(".container").removeClass("container"); 
+    });
+  }
 </script>

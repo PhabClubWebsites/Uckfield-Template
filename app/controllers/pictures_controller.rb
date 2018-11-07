@@ -1,6 +1,6 @@
 class PicturesController < ApplicationController
   before_action :authenticate_admin!
-  
+  layout "admin", only: [:index]
   # GET /pictures
   # GET /pictures.json
   def index
@@ -77,7 +77,7 @@ class PicturesController < ApplicationController
 
     respond_to do |format|
       if @picture.update_attributes(picture_params)
-        format.html { redirect_to gallery_pictures_path(@gallery), success: 'Your picture was successfully updated' }
+        format.html { redirect_to gallery_pictures_path(@gallery), success: 'Your picture was successfully updated!' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -95,7 +95,7 @@ class PicturesController < ApplicationController
     @picture.destroy
 
     respond_to do |format|
-      format.html { redirect_to gallery_pictures_path(@gallery), danger: 'Your photo has been deleted' }
+      format.html { redirect_to gallery_pictures_path(@gallery), danger: 'Your photo has been deleted.' }
       format.js
     end
   end
@@ -107,7 +107,7 @@ class PicturesController < ApplicationController
     @gallery.cover = @picture.id
     @gallery.save
       respond_to do |format|
-      format.html { redirect_to gallery_pictures_path(@gallery), success: 'Your gallery has a new cover photo' }
+      format.html { redirect_to gallery_pictures_path(@gallery), success: 'Your gallery has a new cover photo!' }
       format.js
     end
   end

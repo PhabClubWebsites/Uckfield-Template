@@ -1,0 +1,32 @@
+<div class="new-home__banner page-header-main"
+    style="
+        <% if !bg_img.blank? %>
+            background-image: url(<%= bg_img.url %>);
+            background-size: cover;
+        <% else %>
+            background-color: rgba(86, 166, 68, 0.3);
+        <% end %>   
+    "
+    >
+    <div class="new-home__banner-text homepage-banner" style="top: auto !important; bottom: 0;">
+        <h1 class="new-home__banner-text--title" style="text-align: center;">
+            <span class="page-header-banner" style="font-weight: normal;">
+                <%= title %>
+            </span>
+        </h1>
+    </div>
+    <button class="arrow-pointer-scroll" id="pointer_scroll">
+        <i class="fa fa-angle-down"></i>
+    </button>
+</div>
+
+<script>
+$(document).ready(function(){
+    var scrolltop = ($(window).width() < 769) ? 120 : 180;
+  $("#pointer_scroll").on('click', function(event) {
+      $('html, body').animate({
+        scrollTop: $(".article-preview-header:first").offset().top - scrolltop
+      }, 500);
+  });
+});
+</script>

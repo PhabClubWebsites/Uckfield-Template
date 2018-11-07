@@ -4,6 +4,7 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   prepend_before_action :authenticate_scope!, only: [:edit, :update, :destroy]
   prepend_before_action :set_minimum_password_length, only: [:new, :edit]
   #prepend_before_action :authenticate_admin!, only: [:new, :create]
+  layout "admin", only: [:new]
   
   if Admin.all.count > 0
     prepend_before_action :authenticate_scope!, only: [:edit, :update, :destroy, :new, :create]

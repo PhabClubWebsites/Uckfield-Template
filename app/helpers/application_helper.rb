@@ -9,6 +9,10 @@ module ApplicationHelper
         end
     end
     
+    def homepage
+       homepage = Page.all.where("site_page = ?", "home").first 
+    end
+    
     def nav_event_list
        return Page.where("site_page = ? AND published = ?", "event", true).order(date_of_event: :asc).limit(3);
     end

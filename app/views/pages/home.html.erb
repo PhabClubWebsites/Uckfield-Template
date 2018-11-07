@@ -1,39 +1,79 @@
-<div class="new-home__banner">
-    <% if club.blank? %>
-        <%= image_tag("logox1.png", class:"new-home__banner-logo") %>
+<div class="new-home__banner"
+    style="
+    <% if !club.blank? && !club.bg_image.blank? %>
+      background-image: linear-gradient(
+      to right bottom, 
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.2))
+      <% if club.bg_position == -93 %>
+        ,url(<%= club.bg_image.url %>);
+      <% elsif club.bg_position == 200 %>
+        ,url(<%= club.bg_image.url %>);
+      <!--<% else %>-->
+      `,<%= club.bg_position %>;
+      <% end %>
+      background-size: cover;
     <% else %>
-        <% if !club.club_logo.blank? %>
-            <%= image_tag(club.club_logo, class:"new-home__banner-logo") %>
-        <% end %>
+      background: linear-gradient(to right bottom, rgba(86, 166, 68, 0.1), rgba(86, 166, 68, 0.8));
     <% end %>
+    "
+    >
     <div class="new-home__banner-text">
         <h1 class="new-home__banner-text--title">Welcome to I AM Phab 
-            <% if club.blank? %>
-                Bebington
-            <% else %>
-                <% if !club.club_name.blank? %>
-                    <%= club.club_name %>
-                <% end %>
-            <% end %>    
+            <span class="club-name">
+                <% if club.blank? %>
+                    Bebington
+                <% else %>
+                    <% if !club.club_name.blank? %>
+                        <%= club.club_name %>
+                    <% end %>
+                <% end %>   
+            </span>
         </h1>
         <h1 class="new-home__banner-text--fancy">Making more of life together</h1>
     </div>
 </div>
-<div class="container pipe-container" id="container_home">
-    <div class="row">
-        <div class="col-md-8 col-sm-12 col-xs-12">
-            <div class="outer-well">
-                <div class="content">
-                    <% if !@home_pages.blank? %>
-                        <% @home_pages.each_with_index do |news, i| %>
-                            <%= render "article_list", obj: news %>
+<div class="container-fluid pipe-container" id="container_home">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <div class="outer-well">
+                    <div class="content">
+                        <% if !@home_pages.blank? %>
+                            <% @home_pages.each_with_index do |news, i| %>
+                                <%= render "article_list", obj: news %>
+                            <% end %>
                         <% end %>
-                    <% end %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <h4 class="club-policies-header">Our Club Policies:</h4>
+                    </div>
+                    <div class="col-9">
+                        <div class="club-policies">
+                            <ul class="club-policies-list">
+                                <li class="club-policies-detail"><a href="">Child & Vulnerable Adult policy – please click here</a></li>
+                                <li class="club-policies-detail"><a href="">Barry West 25/05/2015</a></li>
+                                <li class="club-policies-detail"><a href="">Equal Opportunities Policy – please click here</a></li>
+                                <li class="club-policies-detail"><a href="">Safeguarding Policies and Procedures please click here</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <%= render 'layouts/page_sidebar' %>
+            </div>  
         </div>
-        <div class="col-md-4 col-sm-12 col-xs-12">
-            <%= render 'layouts/page_sidebar' %>
-        </div>  
     </div>
 </div>
+<!--<script>-->
+<!--    $(document).ready(function() {-->
+<!--        var head_pad = $(".new-home__banner").offset().top;-->
+<!--        var new_offset = $(window).height() - head_pad;-->
+        <!--// $(".new-home__banner").animate({marginTop: new_offset}, 800);-->
+        
+<!--        $(".new-home__banner").animate({height: new_offset}, 800); -->
+<!--    });-->
+<!--</script>-->

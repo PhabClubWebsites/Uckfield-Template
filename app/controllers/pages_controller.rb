@@ -1,6 +1,10 @@
 class PagesController < ApplicationController
    before_action :authenticate_admin!, only: [:edit, :index, :update, :destroy, :new, :create]
    before_action :set_page, only: [:edit, :update, :show, :destroy, :published]
+   layout "admin", only: [:edit, :new, :event_list, :news_list]
+   def new_events
+     
+   end
    
   def new
     @page = Page.new
@@ -19,12 +23,11 @@ class PagesController < ApplicationController
   end
   
   def edit
-    
   end
   
   def update
     if @page.update(page_params)
-      flash[:success] = "Your article was succesfully updated"
+      flash[:success] = "Your article was succesfully updated!"
       redirect_to page_path(@page)
     else
       flash[:danger] = @page.errors.full_messages.join(", ")
@@ -34,7 +37,7 @@ class PagesController < ApplicationController
   
   def destroy
     @page.destroy
-    flash[:danger] = "Your article has been deleted"
+    flash[:danger] = "Your article has been deleted."
     redirect_to pages_path
   end
   
@@ -60,11 +63,11 @@ class PagesController < ApplicationController
   def published
     if @page.published == false
       @page.update_attribute(:published, true)
-      flash[:success] = "Your article has been published"
+      flash[:success] = "Your article has been published!"
       redirect_to page_path(@page)
     elsif @page.published == true
       @page.update_attribute(:published, false)
-      flash[:danger] = "Your article is no longer published"
+      flash[:danger] = "Your article is no longer published."
       redirect_to pages_path
     end
       

@@ -8,7 +8,7 @@ class Gallery < ActiveRecord::Base
     picture_id = self.cover
     picture = self.pictures.where("id = ?", picture_id).first
     if picture.blank?
-      return ""
+      return self.pictures.first.image.url(:medium)
     else
       return picture.image.url(:medium)
     end

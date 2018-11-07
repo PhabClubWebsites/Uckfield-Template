@@ -1,27 +1,14 @@
-<div class="home__banner">
-    <div class="home__banner-text">
-      <hr class="page__header-line-before">
-        <h1 class="home__banner-text--title">
-            Galleries
-        </h1>
-        <hr class="page__header-line-after">
-    </div>
-</div>
-<div class="container pipe-container" id="container_gallery">
+<div class="container-fluid pipe-container page-show" id="container_gallery">
   <div class="row">
     <div class="col-md-8 col-sm-12 col-xs-12">
       <div class="outer-well">
         <div class="content">
-          <% if admin_signed_in? %>
-            <% if @gallery.published == false %>
-              <div class="row">
-                <div class="col-md-2 col-md-offset-10">
-                  <%= link_to "Publish gallery", published_gallery_path(@gallery), class:"btn btn-md btn-phab no-margin" %>
-                </div>
-              </div>
-            <% end %>
-          <% end %>
           <div class="content__title">
+            <% if admin_signed_in? %>
+              <% if @gallery.published == false %>
+                    <%= link_to "Publish gallery", published_gallery_path(@gallery), class:"btn btn-md btn-phab no-margin" %>
+              <% end %>
+            <% end %>
             <h2>
               <%= @gallery.name %>
             </h2>
@@ -30,7 +17,7 @@
       
           <input type="hidden" id="galleryID" value="<%= @gallery.id %>">
           <% unless @gallery.description.empty? %>
-            <div class="content__text" style="margin-top: 20px; margin-bottom: 40px;">
+            <div class="content__text" style="margin-top: 8px; margin-bottom: 40px;">
               <p class="text-center content-block">
                 <%= @gallery.description %>
               </p>

@@ -1,6 +1,6 @@
 <tr>
   <td><%= link_to obj.title, page_path(obj) %></td>
-  <td><%= sanitize(obj.content_one.truncate(53)) %></td>
+  <td class="hidden-xs"><%= sanitize(obj.content_one.truncate(53)) %></td>
   <td class="text-center">
     <% if obj.published == true %>
       Yes
@@ -8,7 +8,7 @@
       No
     <% end %>
   </td>
-  <td style="text-align:right;">
+  <td style="text-align:center;">
     <li class="list-unstyled dropdown">
       <i class="glyphicon glyphicon-option-vertical" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right">

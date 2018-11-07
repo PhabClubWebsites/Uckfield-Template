@@ -1,26 +1,28 @@
-<div class="container pipe-container login-page">
-  <div class="outer-well">
-    <div class="content">
-      <div class="page-header">
-        <h2>Log in</h2>
-      </div>
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="field form-group">
-          <%= f.label :email %><br />
-          <%= f.email_field :email, class: "form-control", autofocus: true %>
+<div class="container-fluid pipe-container">
+  <div class="login-page">
+    <div class="outer-well">
+      <div class="content">
+        <div class="page-header">
+          <h2>Log in</h2>
         </div>
-      
-        <div class="field form-group">
-          <%= f.label :password %><br />
-          <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
-        </div>
-        
-        <div class="actions form-group">
-          <div class="right">
-            <%= f.submit "Log In", class: 'btn btn-md btn-phab-form' %>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="field form-group">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, class: "form-control", autofocus: true %>
           </div>
-        </div>
-      <% end %>
+        
+          <div class="field form-group">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
+          </div>
+          
+          <div class="actions form-group">
+            <div class="right">
+              <%= f.submit "Log In", class: 'btn btn-md btn-phab-form' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

@@ -6,38 +6,62 @@
     margin: 0 !important;
     width: 100% !important;
     position: fixed !important;
-    display: inline !important;
+    // display: inline !important;
     top: 0 !important;
     left: 0 !important;
     border-radius: 0 !important;
-    z-index: 100 !important;
+    z-index: 9900 !important;
     border-bottom: 4px solid rgba($color-primary-green, .2) !important;
-    height: 123px;
+    height: 180px;
+    
+    &__container {
+        height: 100%;
+        position: relative;
+    }
+    
+    &__link-container {
+        height: 100%;
+        position: relative;
+        background-color: transparent !important;
+    }
     
     &__beb-logo {
         display: inline-block !important;
-        position: relative !important;
-        top: 10px !important;
-        left: 20px !important;
+        position: absolute !important;
+        top: 100px;
+        left: 100px;
+        transform: translate(-50%, -50%);
+        z-index: 60;
         
         &--img {
-            width: 100px !important;
-            height: 100px !important;
+            width: 160px;
+            max-height: 160px;
         }
     }
-    .container {
-        display: block;
-        background-color: transparent;
-        margin-top: -27px;
-    }
+    // .container {
+    //     display: block;
+    //     background-color: transparent;
+    //     margin-top: -27px;
+    // }
     &__links {
         text-align: center;
-        width: 90%;
+        width: 85%;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+            
+        .navbar-link-list {
+            margin-top: 0;
+            margin-bottom: 0;
+            display: flex;
+            justify-content: space-around;
+        }
         
         li {
             border-top-left-radius: 8px !important;
             border-top-right-radius: 8px !important;
-            display: inline-block !important;
+            //display: inline-block !important;
             cursor: pointer !important;
             position: relative !important;
             transition: all .3s !important;
@@ -62,7 +86,7 @@
                 display: block !important;
                 text-align: center;
                 padding: 10px 30px 10px 30px !important;
-                min-width: 150px;
+                //min-width: 150px;
                 
                 &.active {
                     //color: white !important !important;
@@ -98,7 +122,7 @@
                         display: block !important;
                         white-space: unset !important;
                         
-                        &:hover {
+                        &:hover, &:focus {
                             text-decoration: none !important;
                             // color: $color-primary-green !important;
                             background-color: transparent !important;
@@ -159,15 +183,15 @@
     }
     
     &__charity-number {
-        display: inline-block;
-        float: right;
+        
         position: absolute;
-        top: 10px;
-        right: 20px;
+        top: 100px;
+        right: 80px;
+        transform: translate(50%, -50%);
         
         &--img {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            max-height: 140px;
         }
     }
 }
@@ -175,14 +199,14 @@
 
 .orange {
     
-    a {
+    a, i, span {
         color: $color-primary-orange !important;
     }
     
     &:hover {
         background-color: rgba($color-primary-orange,.8) !important;
         
-        a {
+        a, i, span {
             color: white !important;
         }
     }
@@ -190,11 +214,11 @@
     &.open {
         background-color: rgba($color-primary-orange,.8) !important;
         
-        a {
+        a, i, span {
             color: white !important;
         }
         
-        .dropdown-menu {
+        .dropdown-menu, .dropdown {
             background-color: rgba($color-primary-orange,.8) !important;
             
             a:hover {
@@ -206,14 +230,14 @@
 
 .blue {
     
-    a {
+    a, i, span {
         color: $color-primary-blue !important;
     }
     
     &:hover {
         background-color: rgba($color-primary-blue,.8) !important;
         
-        a {
+        a, i, span {
             color: white !important;
         }
     }
@@ -221,11 +245,11 @@
     &.open {
         background-color: rgba($color-primary-blue,.8) !important;
         
-        a {
+        a, i, span {
             color: white !important;
         }
         
-        .dropdown-menu {
+        .dropdown-menu, .dropdown {
             background-color: rgba($color-primary-blue,.8) !important;
             
             a:hover {
@@ -237,14 +261,14 @@
 
 .red {
     
-    a {
+    a, i, span {
         color: $color-primary-red !important;
     }
     
     &:hover {
         background-color: rgba($color-primary-red,.8) !important;
         
-        a {
+        a, i, span {
             color: white !important;
         }
     }
@@ -252,11 +276,11 @@
     &.open {
         background-color: rgba($color-primary-red,.8) !important;
         
-        a {
+        a, i, span {
             color: white !important;
         }
         
-        .dropdown-menu {
+        .dropdown-menu, .dropdown {
             background-color: rgba($color-primary-red,.8) !important;
             
             a:hover {
@@ -268,14 +292,14 @@
 
 .purple {
     
-    a {
+    a, i, span {
         color: $color-primary-purple !important;
     }
     
     &:hover {
         background-color: rgba($color-primary-purple, .8) !important;
         
-        a {
+        a, i, span {
             color: white !important;
         }
     }
@@ -283,11 +307,11 @@
     &.open {
         background-color: rgba($color-primary-purple,.8) !important;
         
-        a {
+        a, i, span {
             color: white !important;
         }
         
-        .dropdown-menu {
+        .dropdown-menu, .dropdown {
             background-color: rgba($color-primary-purple,.8) !important;
             
             a:hover {
@@ -299,14 +323,14 @@
 
 .green {
     
-    a {
+    a, i, span {
         color: $color-primary-green !important;
     }
     
     &:hover {
         background-color: rgba($color-primary-green,.8) !important;
         
-        a {
+        a, i, span {
             color: white !important;
         }
     }
@@ -314,7 +338,7 @@
     &.open {
         background-color: rgba($color-primary-green,.8) !important;
         
-        a {
+        a, i, span {
             color: white !important;
         }
         
@@ -327,4 +351,42 @@
         }
     }
 }
+
+
+.mobile-navbar {
+    background-color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100 !important;
+    border-bottom: 4px solid rgba($color-primary-green, .2) !important;
+    height: 123px;
+}
+
+// @media only screen and (max-width: 991px) {
+    
+//     .navbar__links {
+//         width: 80% !important;
+        
+//     }
+    
+//     .navbar__beb-logo {
+//         display: inline-block !important;
+//         position: absolute !important;
+//         top: 100px;
+//         left: 140px;
+//         transform: translate(-50%, -50%);
+        
+//         .navbar__brb-logo--img {
+//             width: 160px;
+//             max-height: 160px;
+//         }
+//     }
+    
+//     .navbar__charity-number {
+//         width: 80px !important;
+//         top: 60px !important;
+//         right: 50px !important;
+//     }
+// }
 

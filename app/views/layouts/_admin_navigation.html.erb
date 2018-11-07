@@ -1,0 +1,19 @@
+<nav class="admin-nav">
+    <div class="admin-nav__container">
+        <div class="admin-nav__brand">
+            <button class="burger-icon hidden-md hidden-lg" id="mobile_menu">
+                <i class="fas fa-2x fa-bars"></i>
+            </button>
+            <h4 class="hidden-sm hidden-xs">ADMIN DASHBOARD | PHAB <%= (club.present? && club.club_name) ? club.club_name.upcase : "" %></h4>
+        </div>
+        <div class="admin-nav__logo">
+            <% if club.blank? %>
+                <%= image_tag("charity-number-logo.png") %>
+            <% else %>
+                <% if !club.club_logo.blank? %>
+                    <%= image_tag(club.club_logo) %>
+                <% end %>
+            <% end %>
+        </div>
+    </div>  
+</nav>

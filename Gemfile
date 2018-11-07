@@ -9,7 +9,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.6'
 # Use sqlite3 as the database for Active Record
-#gem 'sqlite3'
+gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -42,7 +42,7 @@ gem 'bootstrap-sass', '3.3.7'
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 
 # Use font Awesome sass gem for adding icons
-gem 'font-awesome-sass', '~> 5.0.9'
+gem 'font-awesome-sass'
 
 # Use Hirb for better database table display in console
 gem 'hirb', '0.7.3'

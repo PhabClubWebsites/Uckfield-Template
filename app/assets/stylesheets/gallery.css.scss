@@ -157,7 +157,7 @@
 
 .image-table-area {
     padding: 20px 30px;
-    background-color: white;
+    background-color: rgba(86, 166, 68, 0.1);
     border-radius: 8px;
     
     .image-table-container {
@@ -168,7 +168,7 @@
         padding: 0;
         
         .cover-img {
-            background-color: rgba($color-secondary-red,.2);
+            background-color: rgba($color-primary-green,.5);
         }
         
         td {
@@ -178,7 +178,7 @@
             .pic-thumbnail {
                 width: 100px;
                 display: block;
-                margin: 0 auto;
+                // margin: 0 auto;
                 border-radius: 4px;
             }
         }

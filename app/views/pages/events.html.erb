@@ -1,27 +1,20 @@
-<div class="home__banner">
-    <div class="home__banner-text">
-      <hr class="page__header-line-before">
-        <h1 class="home__banner-text--title">
-            What's On
-        </h1>
-        <hr class="page__header-line-after">
-    </div>
-</div>
-
-<div class="container pipe-container" id="container_events">
-    <div class="row">
-        <div class="col-md-8 col-sm-12 col-xs-12">
-            <div class="outer-well">
-                <% @event_pages.each_with_index do |event, i| %>
-                    <%= render "article_preview", obj: event %>
-                <% end %>
-                <div class="apple_pagination">
-                  <%= will_paginate @event_pages, :container => false, :previous_label => prev_page_button, :next_label => next_page_button  %>
+<%= render partial: "page-header", locals: { bg_img: club.bg_image, title: "What's On", color: "#D94240" } %>
+<div class="container-fluid pipe-container" id="container_events">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <div class="outer-well">
+                    <% @event_pages.each_with_index do |event, i| %>
+                        <%= render "article_preview", obj: event %>
+                    <% end %>
+                    <div class="apple_pagination">
+                      <%= will_paginate @event_pages, :container => false, :previous_label => prev_page_button, :next_label => next_page_button  %>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4 col-sm-12 col-xs-12">
-            <%= render 'layouts/page_sidebar' %>
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <%= render 'layouts/page_sidebar' %>
+            </div>
         </div>
     </div>
 </div>

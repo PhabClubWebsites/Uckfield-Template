@@ -1,70 +1,66 @@
-<div class="home__banner">
-    <div class="home__banner-text">
-      <hr class="page__header-line-before">
-        <h1 class="home__banner-text--title">
-            Contact Us
-        </h1>
-        <hr class="page__header-line-after">
-    </div>
-</div>
-<div class="container pipe-container" id="container_contact">
-    <div class="row">
-        <div class="col-md-8 col-sm-12 col-xs-12">
-            <div class="outer-well">
-                <div class="content">
-                    <div class="content__title">
-                        <h2>
-                            <%= club.club_name %> Phab Club
-                        </h2>
-                        <hr class="phab-separator">
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <h2 class="address-title">Contact Info</h2>
-                            <% if !club.club_leader.blank? %>
-                                <p class="address-line">
-                                    <%=- club.club_leader -%>
-                                </p>
-                            <% end %>
-                            <% if !club.contact_number.blank? %>
-                                <p class="address-line">
-                                    <%=- club.contact_number -%>
-                                </p>
-                            <% end %>
-                            <% if !club.contact_email.blank? %>
-                                <p class="address-line">
-                                    <%=- club.contact_email -%>
-                                </p>
-                            <% end %>
-                            <% if !club.meeting_time.blank? %>
-                                <p class="address-line">
-                                    <%=- club.meeting_time -%>
-                                </p>
-                            <% end %>
+<div class="container-fluid pipe-container page-show" id="container_contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <div class="outer-well">
+                    <div class="content">
+                        <div class="content__title">
+                            <h2>
+                                <%= club.club_name %> Phab Club
+                            </h2>
+                            <hr class="phab-separator">
                         </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <h2 class="address-title" style="text-align: right;">Address</h2>
-                            <% club.split_address.each do |line| %>
-                                <p style="text-align: right;" class="address-line"><%=- line -%></p>
-                            <% end %>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div id="map" class="club-map">Your club map will go here.</div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <h2 class="address-title">Contact</h2>
-                            <%= render 'contacts/contact_form' %>
+                        <div class="content__text">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <h2 class="address-title">Contact Info</h2>
+                                    <% if !club.club_leader.blank? %>
+                                        <p class="address-line">
+                                            <%=- club.club_leader -%>
+                                        </p>
+                                    <% end %>
+                                    <% if !club.contact_number.blank? %>
+                                        <p class="address-line">
+                                            <%=- club.contact_number -%>
+                                        </p>
+                                    <% end %>
+                                    <% if !club.contact_email.blank? %>
+                                        <p class="address-line">
+                                            <%=- club.contact_email -%>
+                                        </p>
+                                    <% end %>
+                                    <% if !club.meeting_time.blank? %>
+                                        <p class="address-line">
+                                            <%=- club.meeting_time -%>
+                                        </p>
+                                    <% end %>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <h2 class="address-title" style="text-align: right;">Address</h2>
+                                    <% club.split_address.each do |line| %>
+                                        <p style="text-align: right;" class="address-line"><%=- line -%></p>
+                                    <% end %>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div id="map" class="club-map">Your club map will go here.</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <h2 class="address-title">Contact</h2>
+                                    <%= render 'contacts/contact_form' %>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            
             </div>
-        </div>
-        <div class="col-md-4 col-sm-12 col-xs-12">
-            <%= render 'layouts/page_sidebar' %>
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <%= render 'layouts/page_sidebar' %>
+            </div>
         </div>
     </div>
 </div>

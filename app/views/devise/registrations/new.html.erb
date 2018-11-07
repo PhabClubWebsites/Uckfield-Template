@@ -1,43 +1,32 @@
-<div class="container pipe-container login-page">
-  <div class="outer-well">
-    <div class="content">
-      <% if admin_signed_in? %>
-        <div class="back-to-admin">
-          <%= link_to admins_path do %>
-            <i class="fa fa-chevron-left"></i>&nbsp;Admins
-          <% end %>
-        </div>
-      <% end %>
-      <div class="page-header">
-        <h2>Create Admin User</h2>
-      </div>
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= devise_error_messages! %>
-      
-        <div class="field form-group">
-          <%= f.label :email %><br />
-          <%= f.email_field :email, class: "form-control", autofocus: true %>
-        </div>
-      
-        <div class="field form-group">
-          <%= f.label :password %>
-          <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
-          <% end %><br />
-          <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
-        </div>
-      
-        <div class="field form-group">
-          <%= f.label :password_confirmation %><br />
-          <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "off" %>
-        </div>
-      
-        <div class="actions form-group">
-          <div class="right">
-            <%= f.submit "Create Admin", class: 'btn btn-md btn-phab-form' %>
-          </div>
-        </div>
-      <% end %>
-    </div>
+<div class="content">
+  <div class="page-header">
+    <h2>Create Admin User</h2>
   </div>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
+  
+    <div class="field form-group">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, class: "form-control", autofocus: true %>
+    </div>
+  
+    <div class="field form-group">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
+    </div>
+  
+    <div class="field form-group">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "off" %>
+    </div>
+  
+    <div class="actions form-group">
+      <div class="right">
+        <%= f.submit "Create Admin", class: 'btn btn-md btn-phab-form' %>
+      </div>
+    </div>
+  <% end %>
 </div>

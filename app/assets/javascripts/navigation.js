@@ -1,3 +1,26 @@
+$(document).on("turbolinks:load", function() {
+    $("body").on("click", "#mobile_menu", function() {
+        if ($("#mobile_side_menu").hasClass("is-open")) {
+            $("#mobile_side_menu").removeClass("is-open");
+        } else {
+            $("#mobile_side_menu").addClass("is-open");
+        }
+    });
+    
+    $("body").on("click", ".mm__item", function() {
+        $(".mm__item").next("ul").slideUp(300);
+        if ($(this).hasClass("open")) {
+            $(this).removeClass("open")
+            $(".mm__item").removeClass("open");
+        } else {
+            $(".mm__item").removeClass("open");
+            $(this).addClass("open")  
+            $(this).next("ul").slideToggle(300)
+        }
+         
+    });
+});
+
 // $(document).ready( function() {
 //     checkActiveNavBtn();
 //     triggerDropdownMenu();

@@ -1,15 +1,20 @@
 <div class="footer">
     <div class="container" style="background-color: transparent;">
-        <% if !club.blank? %>
-            <div class="footer-club-info">
-                <ul class="footer-club-list">
-                    <li class="footer-club-detail"><i class="fa fa-user"></i> <%= club.club_leader %></li>
-                    <li class="footer-club-detail"><i class="fa fa-phone"></i> <%= club.contact_number %></li>
-                    <li class="footer-club-detail"><i class="fa fa-envelope"></i> <%= club.contact_email %></li>
-                    <li class="footer-club-detail"><i class="fa fa-calendar"></i> <%= club.meeting_time %></li>
-                    <li class="footer-club-detail"><i class="fa fa-map-marker"></i> <%= club.meeting_address %></li>
-                </ul>
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="footer-header" style="text-align: center !important;">Donate | Follow | Share</h4>
             </div>
-        <% end %>
+        </div>
+        <div class="row">
+            <% if !club.blank? %>
+                <ul style="display: flex; flex-direction: row; justify-content: center; align-items: center; width: 100%; margin: 0; padding: 0;">
+                    <li style="padding: 10px; margin-left: 6px; border-radius: 50%; background-color: green; color: white !important; width: 40px;"><i style="width: 100%; text-align: center;" class="fa fa-user"></i> </li>
+                    <li style="padding: 10px; margin-left: 6px; border-radius: 50%; background-color: red; color: white !important; width: 40px;"><i style="width: 100%; text-align: center;" class="fa fa-phone"></i></li>
+                    <li style="padding: 10px; margin-left: 6px; border-radius: 50%; background-color: yellow; color: white !important; width: 40px;"><i style="width: 100%; text-align: center;" class="fa fa-envelope"></i></li>
+                    <li style="padding: 10px; margin-left: 6px; border-radius: 50%; background-color: blue; color: white !important; width: 40px;"><i style="width: 100%; text-align: center;" class="fa fa-calendar"></i></li>
+                    <li style="padding: 10px; margin-left: 6px; border-radius: 50%; background-color: gray; color: white !important; width: 40px;"><i style="width: 100%; text-align: center;" class="fa fa-map-marker"></i></li>
+                </ul>
+            <% end %>
+        </div>
     </div>
 </div>

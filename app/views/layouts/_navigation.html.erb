@@ -1,73 +1,147 @@
-<nav class="navbar">
-    <div class="navbar__beb-logo">
-      <% if club.blank? %>
-        <%= image_tag("logox1.png", class:"navbar__beb-logo--img") %>
-      <% else %>
-        <% if !club.club_logo.blank? %>
-          <%= image_tag(club.club_logo, class:"navbar__beb-logo--img") %>
-        <% else %>
-          <%= image_tag("logox1.png", class:"navbar__beb-logo--img") %>
+<nav class="navbar hidden-sm hidden-xs" id="navbar">
+  <div class="navbar__container">
+      <div class="navbar__beb-logo">
+        <%= link_to root_path do %>
+          <% if club.blank? %>
+            <%= image_tag("logox1.png", class:"navbar__beb-logo--img") %>
+          <% else %>
+            <% if !club.club_logo.blank? %>
+              <%= image_tag(club.club_logo, class:"navbar__beb-logo--img") %>
+            <% else %>
+              <%= image_tag("logox1.png", class:"navbar__beb-logo--img") %>
+            <% end %>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
-    <div class="container">
-      <div class="navbar__links">
-          <ul>
-            <li class="green"><%= link_to "Home", root_path, id:"nav_btn_home" %></li>
-            <li class="dropdown blue">
-              <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Latest News<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <% if !nav_news_list.blank? %>
-                  <% nav_news_list.each do |news| %>
-                    <li><%= link_to news.title, page_path(news) %></li>
-                  <% end %>
-                  <li role="separator" class="nav-separator"></li>
-                <% end %>
-                <li><%= link_to "View all", club_news_path %></li>
-              </ul>
-            </li>
-            <li class="dropdown red">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">What's On<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <% if !nav_event_list.blank? %>
-                  <% nav_event_list.each do |event| %>
-                    <li><%= link_to event.title, page_path(event) %></li>
-                  <% end %>
-                  <li role="separator" class="nav-separator"></li>
-                <% end %>
-                <li><%= link_to "View all", whats_on_path %></li>
-              </ul>
-            </li>
-            <li class="dropdown orange">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gallery<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <% if !nav_gallery_list.blank? %>
-                  <% nav_gallery_list.each do |gallery| %>
-                    <li><%= link_to gallery.name, gallery_path(gallery) %></li>
-                  <% end %>
-                  <li role="separator" class="nav-separator"></li>
-                <% end %>
-                <li><%= link_to "View all", galleries_path %></li>
-              </ul>
-            </li>
-            <li class="purple"><%= link_to "Contact Us", contact_us_path, id:"nav_btn_contact_us" %></li>
-            <% if admin_signed_in? %>
-              <li class="dropdown green">
-                <a href="#" data-disabled="true" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
+      </div>
+      <div class="container navbar__link-container">
+        <div class="navbar__links">
+            <ul class="navbar-link-list">
+              <li class="green"><%= link_to "Home", root_path, id:"nav_btn_home" %></li>
+              <li class="dropdown blue">
+                <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Latest News<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to "Dashboard", dashboard_path %></li>
-                  <li><%= link_to "News", news_list_path %></li>
-                  <li><%= link_to "Events", event_list_path %></li>
-                  <li><%= link_to "Galleries", gallery_list_path %></li>
-                  <li role="separator" class="nav-separator"></li>
-                  <li><%= link_to "Sign Out", destroy_admin_session_path, method: :delete %></li>
+                  <% if !nav_news_list.blank? %>
+                    <% nav_news_list.each do |news| %>
+                      <li><%= link_to news.title, page_path(news) %></li>
+                    <% end %>
+                    <li role="separator" class="nav-separator"></li>
+                  <% end %>
+                  <li><%= link_to "View all", club_news_path %></li>
                 </ul>
               </li>
-            <% end %>
-          </ul>
+              <li class="dropdown red">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">What's On<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <% if !nav_event_list.blank? %>
+                    <% nav_event_list.each do |event| %>
+                      <li><%= link_to event.title, page_path(event) %></li>
+                    <% end %>
+                    <li role="separator" class="nav-separator"></li>
+                  <% end %>
+                  <li><%= link_to "View all", whats_on_path %></li>
+                </ul>
+              </li>
+              <li class="dropdown orange">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gallery<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <% if !nav_gallery_list.blank? %>
+                    <% nav_gallery_list.each do |gallery| %>
+                      <li><%= link_to gallery.name, gallery_path(gallery) %></li>
+                    <% end %>
+                    <li role="separator" class="nav-separator"></li>
+                  <% end %>
+                  <li><%= link_to "View all", galleries_path %></li>
+                </ul>
+              </li>
+              <li class="purple"><%= link_to "Contact Us", contact_us_path, id:"nav_btn_contact_us" %></li>
+              <% if admin_signed_in? %>
+                <li class="green">
+                  <%= link_to "Dashboard", dashboard_path %>
+                </li>
+              <% end %>
+            </ul>
+        </div>
+      </div>
+      <div class="navbar__charity-number ">
+         <%= image_tag("phab-affilate-logo.png", class:"navbar__charity-number--img") %>
       </div>
     </div>
-    <div class="navbar__charity-number ">
-       <%= image_tag("phab-affilate-logo.png", class:"navbar__charity-number--img") %>
-    </div>
 </nav>
+<nav class="mob-nav hidden-md hidden-lg hidden-xl">
+  <button class="burger-icon" id="mobile_menu">
+    <i class="fas fa-2x fa-bars"></i>
+  </button>
+  <div class="mob-nav__club-logo">
+    <%= link_to root_path do %>
+      <% if club.blank? %>
+        <%= image_tag("logox1.png") %>
+      <% else %>
+        <% if !club.club_logo.blank? %>
+          <%= image_tag(club.club_logo) %>
+        <% else %>
+          <%= image_tag("logox1.png") %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</nav>
+<section class="mm hidden-md hidden-lg hidden-xl" id="mobile_side_menu">
+  <ul class="mm__list">
+    <li class="mm__item green">
+      <%= link_to "Home", root_path %>
+    </li>
+    <li class="mm__item blue">
+      <span>Latest News</span>
+      <i class="fas fa-angle-right"></i>
+    </li>
+    <ul class="dropdown-list blue-mob">
+      <% if !nav_news_list.blank? %>
+        <% nav_news_list.each do |news| %>
+          <li><%= link_to news.title, page_path(news) %></li>
+        <% end %>
+      <% end %>
+      <li><%= link_to "View all", club_news_path %></li>
+    </ul>
+    <li class="mm__item red">
+      <span>What's On</span>
+      <i class="fas fa-angle-right"></i>
+    </li>
+    <ul class="dropdown-list red-mob">
+      <% if !nav_event_list.blank? %>
+        <% nav_event_list.each do |event| %>
+          <li><%= link_to event.title, page_path(event) %></li>
+        <% end %>
+      <% end %>
+      <li><%= link_to "View all", whats_on_path %></li>
+    </ul>
+    <li class="mm__item orange">
+      <span>Gallery</span>
+      <i class="fas fa-angle-right orange"></i>
+    </li>
+    <ul class="dropdown-list orange-mob">
+      <% if !nav_gallery_list.blank? %>
+        <% nav_gallery_list.each do |gallery| %>
+          <li><%= link_to gallery.name, gallery_path(gallery) %></li>
+        <% end %>
+      <% end %>
+      <li><%= link_to "View all", galleries_path %></li>
+    </ul>
+    <li class="mm__item blue">
+      <%= link_to "Contact Us", contact_us_path %>
+    </li>
+    <% if admin_signed_in? %>
+    <li class="mm__item green">
+      <%= link_to "Dashboard", dashboard_path %>
+    </li>
+    <% end %>
+  </ul>
+  <div class="mm__logo">
+      <% if club.blank? %>
+          <%= image_tag("charity-number-logo.png") %>
+      <% else %>
+          <% if !club.club_logo.blank? %>
+              <%= image_tag(club.club_logo) %>
+          <% end %>
+      <% end %>
+  </div>
+</section>

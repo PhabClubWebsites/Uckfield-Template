@@ -2,6 +2,8 @@ class ClubsController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_club, only: [:edit, :update]
   
+  layout "admin"
+  
     def new
       @club = Club.new
     end
@@ -23,7 +25,7 @@ class ClubsController < ApplicationController
     
     def update
       if @club.update(club_params)
-        flash[:success] = "The club information was successfully updated"
+        flash[:success] = "Your club information was successfully updated!"
         redirect_to root_path
       else
         flash[:danger] = @club.errors.full_messages.join(", ")
