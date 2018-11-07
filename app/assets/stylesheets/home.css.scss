@@ -89,7 +89,7 @@ $banner-top: 100px;
         padding: 20px 60px;
         
         &.homepage-banner {
-            border-top: 4px solid rgba($color-primary-green, .2);
+            // border-top: 4px solid rgba($color-primary-green, .2);
         }
         
         @include media-query($medium-down) {
