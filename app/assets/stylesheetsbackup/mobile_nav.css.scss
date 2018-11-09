@@ -1,0 +1,138 @@
+@import 'variables';
+
+.mob-nav {
+    // display: none;
+    position: fixed;
+    top: 0;
+    height: 80px;
+    left: 0;
+    width: 100vw;
+    background-color: white;
+    border-bottom: 4px solid rgba($color-primary-green, .2) !important;
+    z-index: 999;
+    
+    @include media-query($large-up) {
+        display: none;
+    }
+    
+    .burger-icon {
+        position: absolute;
+        left: 40px;
+        top: 40px;
+        transform: translate(-50%, -50%);
+        background-color: transparent;
+        border: none;
+        color: $color-primary-green;
+    }
+    
+    &__club-logo {
+        position: absolute;
+        top: 40px;
+        right: 50%;
+        transform: translate(50%, -50%);
+        height: 80px;
+        width: 80px;
+        
+        img {
+            display: block;
+            max-width: 100%;
+        }
+    }
+}
+
+.mm {
+    width: 300px;
+    // margin-top: 80px;
+    height: calc(100vh - 80px);
+    position: fixed;
+    z-index: 999999;
+    left: -300px;
+    transition: all .3s;
+    background-color: white;
+    border-right: 4px solid rgba($color-primary-green, .2);
+    
+    &.is-open {
+        transform: translateX(300px);
+    }
+    
+    &__list {
+       margin: 0 auto;
+    //   width: 240px;
+    //   display: flex;
+    //   flex-direction: column;
+       padding: 0;
+    }
+    
+    &__item {
+        // background-color: $color-primary-green;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all .3s;
+        
+        &:not(:first-child) {
+            border-top: 2px solid rgba($color-primary-green, .2);
+        }
+        
+        &:last-child {
+            border-bottom: 2px solid rgba($color-primary-green, .2);
+        }
+        
+        i {
+            font-size: 26px;
+            transition: all .3s;
+        }
+        
+        &.open i {
+            transform: rotate(90deg);
+        }
+    }
+    .dropdown-list {
+        display: none;
+        cursor: pointer;
+        padding: 0;
+        
+        li {
+            padding: 12px 20px 12px 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.5);
+            color: white;
+            transition: all .3s;
+            
+            &:last-child {
+                border-top: 1px solid rgba(255,255,255,.5);
+                
+                a {
+                    font-weight: bold;
+                }
+            }
+            
+            a {
+                color: white;
+            }
+            
+            &:hover {
+                opacity: .6;
+            }
+        }
+        
+        &.green-mob { background-color: rgba($color-primary-green,.5); color: white; }
+        &.blue-mob { background-color: rgba($color-primary-blue,.5); color: white; }
+        &.orange-mob { background-color: rgba($color-primary-orange,.5); color: white; }
+        &.purple-mob { background-color: rgba($color-primary-purple,.5); color: white; }
+        &.red-mob { background-color: rgba($color-primary-red,.5); color: white; }
+    }
+    
+    &__logo {
+        margin: 40px auto 0;
+        width: 160px;
+        
+        img {
+            display: block;
+            max-width: 100%;
+        }
+    }
+}

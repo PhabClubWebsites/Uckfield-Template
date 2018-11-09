@@ -1,0 +1,10 @@
+.login-page {
+  max-width: 600px !important;
+  margin: 200px auto 0;
+  padding: 20px 50px;
+  border-radius: 8px; }
+  .login-page .outer-well {
+    background-color: transparent !important;
+    padding: 0; }
+
+/*# sourceMappingURL=output.css.map */

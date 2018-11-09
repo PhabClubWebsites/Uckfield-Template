@@ -1,0 +1,64 @@
+@import 'variables';
+
+#more_content {
+    display: inline;
+    float: right;
+}
+
+.btn-back {
+    margin-top: 20px;
+}
+
+.btn-phab {
+    min-width: 120px !important;
+    // background-color: #4b903c !important;
+    background-color: rgba(75,144,60,.8);
+    border-color: #006400 !important;
+    color: white !important;
+    float: right;
+    margin-top: 20px;
+}
+
+.btn-prev-article {
+    margin-left: 20px;
+    float: left;
+    display: inline-block;
+    
+    @include media-query($medium-down) {
+        margin-left: 0px;
+    }
+}
+
+.btn-next-article {
+    margin-right: 20px;
+    float: right;
+    display: inline-block;
+    
+    @include media-query($medium-down) {
+        margin-right: 0px;
+    }
+}
+
+.btn-current-page {
+    background-color: #4b903c !important;
+    border-color: #006400 !important;
+    color: white !important;
+}
+
+.btn-all-articles {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    display: inline-block;
+    background-color: #4b903c !important;
+    border-color: #006400 !important;
+    color: white !important;
+}
+
+.btn-phab-form {
+    min-width: 120px !important;
+    // background-color: #4b903c !important;
+    background-color: rgba(75,144,60,.8);
+    border-color: #006400 !important;
+    color: white !important;
+}
