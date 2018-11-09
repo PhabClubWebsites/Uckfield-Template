@@ -5,13 +5,7 @@
       to right bottom, 
       rgba(255, 255, 255, 0.1),
       rgba(255, 255, 255, 0.2))
-      <% if club.bg_position == -93 %>
-        ,url(<%= club.bg_image.url %>);
-      <% elsif club.bg_position == 200 %>
-        ,url(<%= club.bg_image.url %>);
-      <!--<% else %>-->
-      `,<%= club.bg_position %>;
-      <% end %>
+      ,url(<%= club.bg_image.url %>);
       background-size: cover;
     <% else %>
       background: linear-gradient(to right bottom, rgba(86, 166, 68, 0.1), rgba(86, 166, 68, 0.8));
