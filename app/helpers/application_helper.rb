@@ -14,7 +14,7 @@ module ApplicationHelper
     end
     
     def nav_event_list
-       return Page.where("site_page = ? AND published = ?", "event", true).order(date_of_event: :asc).limit(3);
+        return Page.where("site_page = ? AND published = ? AND date_of_event >= ?", "event", true, Date.today).order(date_of_event: :asc).limit(3) 
     end
     
     def nav_news_list
@@ -39,7 +39,7 @@ module ApplicationHelper
     end
     
     def upcoming_events
-       return Page.where("site_page = ? AND published = ?", "event", true).order(date_of_event: :desc).limit(3) 
+       return Page.where("site_page = ? AND published = ? AND date_of_event >= ?", "event", true, Date.today).order(date_of_event: :asc).limit(3) 
     end
     
     def club_news

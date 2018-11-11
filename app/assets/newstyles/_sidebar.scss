@@ -4,9 +4,17 @@
   display: flex;
   left: -200px;
   top: 40%;
-  z-index: 999;
+  z-index: 99999;
   position: fixed;
   transition: all 0.3s ease;
+  
+  @include media-query($small) {
+    left: -0;
+    top: auto;
+    bottom: -200px;
+    width: 100vw;
+    flex-direction: column !important;
+  }
 }
 
 .main-sidebar-block {
@@ -19,6 +27,15 @@
   // position: fixed;
   transition: all 0.3s ease;
   
+  @include media-query($small) {
+    height: 200px;
+  }
+  
+  @include media-query($small) {
+    order: 2;
+    width: 100%;
+  }
+  
   .contact-block {
     height: 100%;
     min-height: 160px;
@@ -27,6 +44,9 @@
     color: white;
     display: none;
     padding: 20px;
+    @include media-query($small) {
+      display: block;
+    }
   }
   
   .address-block {
@@ -37,6 +57,9 @@
     color: white;
     display: none;
     padding: 20px;
+    @include media-query($small) {
+      display: block;
+    }
   }
   
   .list {
@@ -50,6 +73,9 @@
     
     .item {
       color: white;
+      @include media-query($small) {
+        padding: 0px;
+      }
     }
   }
 }
@@ -57,6 +83,10 @@
 .sidebar-open {
   left: 0px;
   background-color: white;
+  
+  @include media-query($small) {
+    bottom: 0px;
+  }
 }
 
 .icon-bar {
@@ -65,10 +95,16 @@
   // top: 40%;
   // left: 0;
   // z-index: 9999;
+  transform: translateX(-100%);
   transition: all 0.3s ease;
   display: flex;
   max-width: 50px;
   flex-direction: column;
+  
+  @include media-query($small) {
+    flex-direction: row !important;
+    max-width: none;
+  }
 }
 
 .icon-bar a {

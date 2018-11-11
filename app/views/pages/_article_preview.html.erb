@@ -1,8 +1,19 @@
 <div class="content article-preview-block">
     <div class="article-preview-header">
-        <h2 class="article-preview-title">
-            <%= link_to obj.title, page_path(obj) %>
-        </h2>    
+        <% if obj.site_page == "event" %>
+            <h2 class="article-preview-title" style="display: flex; justify-content: space-between; align-items: center;">
+                <%= link_to obj.title, page_path(obj) %>
+                
+            </h2>    
+            <span style="font-size: 16px; color: #56A644; display: block; padding-top: 8px;">
+                <i class="fa fa-calendar" style="padding-right: 6px;"></i><%= obj.date_of_event.strftime("%-d %b, %Y") %>
+                <i class="glyphicon glyphicon-time" style="padding-right: 6px; padding-left: 20px;"></i><%= obj.date_of_event.strftime("%l:%M%P") %>
+            </span>
+        <% else %>
+            <h2 class="article-preview-title">
+                <%= link_to obj.title, page_path(obj) %>
+            </h2>    
+        <% end %>
     </div>
     <div class="article-preview-content">
         <div class="row">
@@ -19,7 +30,7 @@
             </div>
             <div class="col-md-8 col-sm-8 col-xs-12 article-preview-text-block">
                 <div class="article-preview-text">
-                    <%= sanitize(obj.content_one.truncate(200)) %>
+                    <%= sanitize(obj.content_one.truncate(200, separator: /\s/)) %>
                 </div>
                 <%= link_to "Read more...", page_path(obj), class:"read-more-link" %>
             </div>
@@ -28,7 +39,7 @@
             <div class="col-md-4 col-sm-4 col-xs-4">
                 <span class="article-preview-date"><small><%= time_ago_in_words(obj.created_at) %> ago</small></span>
             </div>
-            <div class="col-md-8 col-sm-8 col-xs-8">
+            <div class="col-md-8 col-sm-8 col-xs-8" style="padding-top: 10px">
                 <%= social_share_button_tag(obj.title, desc: obj.title) %>
             </div>
         </div>    

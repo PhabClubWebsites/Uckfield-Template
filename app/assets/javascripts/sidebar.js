@@ -1,4 +1,5 @@
 $(document).on("turbolinks:load", function() {
+  $isMobile = ($(window).width() <= 769) ? true : false;
   $("body").on("click", "#contact_btn", function() {
     console.log("hello");
     if (isSidebarOpen() && $("#contact_block").is(":visible")) {
@@ -8,6 +9,7 @@ $(document).on("turbolinks:load", function() {
       $("#address_block").hide();
       $("#contact_block").fadeIn("fast");
     } else {
+      $("#address_block").hide();
       $("#contact_block").show();
       openSidebar();
     }
@@ -20,6 +22,7 @@ $(document).on("turbolinks:load", function() {
       $("#contact_block").hide();
       $("#address_block").fadeIn("fast");
     } else {
+      $("#contact_block").hide();
       $("#address_block").show();
       openSidebar();
     }
@@ -41,15 +44,33 @@ function isSidebarOpen() {
     return false;
   }
 }
+
+function isMobile() {
+  if ($("#sidebar_block").hasClass("sidebar-open")) {
+    return true;
+  } else {
+    return false;
+  }
+}
   
 function openSidebar() {
-  $(".sidebar").css("left", "0px")
+  if ($isMobile) {
+     $(".sidebar").css("bottom", "0px");
+  } else {
+     $(".sidebar").css("left", "0px")
+  }
+ 
   $("#sidebar_block").addClass("sidebar-open");
   // $("#icon_bar").css("left", "200px");
 }
   
 function closeSidebar() {
-  $(".sidebar").css("left", "-200px");
+  if ($isMobile) {
+     $(".sidebar").css("bottom", "-200px");
+  } else {
+     $(".sidebar").css("left", "-200px");
+  }
+  
   $("#sidebar_block").removeClass("sidebar-open");
   // $("#icon_bar").css("left", "0");
 }

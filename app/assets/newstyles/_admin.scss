@@ -42,10 +42,15 @@
     }
     
     &__logo {
-        width: 60px;
+        a {
+            padding: 10px 30px 10px 10px;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
         
         img {
             max-width: 100%;
+            width: 60px;
         }
     }
 }
@@ -105,7 +110,7 @@
 
 .login-page {
     max-width: 600px !important;
-    margin: 200px auto 0;
+    margin: 40px auto 0;
     padding: 20px 50px;
     background-color: rgba($color-primary-green, .05);
     border-radius: 8px;

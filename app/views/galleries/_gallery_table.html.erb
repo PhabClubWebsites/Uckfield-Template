@@ -1,7 +1,7 @@
 <tr>
   <td><%= link_to gallery_path(gallery) do %><%= image_tag(gallery.find_thumb_image, class:"pic-thumbnail") %><% end %></td>
   <td><%= link_to gallery.name, gallery_path(gallery) %></td>
-  <td class="hidden-xs"><%= truncate(gallery.description, length: 43) %></td>
+  <td class="hidden-xs"><%= truncate(gallery.description, length: 43, separator: /\s/) %></td>
   <td>
     <% if gallery.published == true %>
       Yes

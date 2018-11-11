@@ -87,7 +87,8 @@ class PagesController < ApplicationController
   end
   
   def events
-    @event_pages = Page.where("site_page = ? AND published = ?", "event", true).paginate(:page => params[:page], :per_page => 5).order('date_of_event DESC')
+    @event_pages = Page.where("site_page = ? AND published = ? AND date_of_event >= ?", "event", true, Date.today).paginate(:page => params[:page], :per_page => 5).order(date_of_event: :asc)
+    @old_event_pages = Page.where("site_page = ? AND published = ? AND date_of_event < ?", "event", true, Date.today).paginate(:page => params[:page], :per_page => 3).order(date_of_event: :asc)
   end
   
   def contact_us

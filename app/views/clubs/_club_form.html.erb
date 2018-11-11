@@ -41,20 +41,16 @@
     <div class="col-md-8 col-sm-8 col-xs-12">
       <div class="image-table-area">
         <div class="form-group">
-          <%= f.label :club_name %>
-          <%= f.text_field :club_name, class:"form-control" %>
+          <%= f.label :club_name, "Facebook" %>
+          <%= f.text_field :club_name, class:"form-control", value: "" %>
         </div>
         <div class="form-group">
-          <%= f.label :club_leader %>
-          <%= f.text_field :club_leader, class:"form-control" %>
+          <%= f.label :club_leader, "Twitter" %>
+          <%= f.text_field :club_leader, class:"form-control", value: "" %>
         </div>
         <div class="form-group">
-          <%= f.label :contact_email %>
-          <%= f.email_field :contact_email, class:"form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :contact_number %>
-          <%= f.number_field :contact_number, class:"form-control" %>
+          <%= f.label :contact_email, "Donations" %>
+          <%= f.email_field :contact_email, class:"form-control", value: "" %>
         </div>
       </div>  
     </div>
@@ -70,18 +66,16 @@
           <%= f.label :club_logo %>
           <% if !club.club_logo.blank? %>
             <div class="">
-              <small style="vertical-align: top; font-size: 14px;">Current:</small>
               <%= image_tag(club.club_logo.url(:thumb)) %>
             </div>
           <% end %>
           <%= f.file_field :club_logo %>
         </div>
         <div class="form-group">
-          <%= f.label :bg_image, "Website Background" %>
+          <%= f.label :bg_image, "Homepage Banner" %>
             <% if !club.bg_image.blank? %>
             <div class="">
-              <small style="vertical-align: top; font-size: 14px;">Current:</small>
-              <%= image_tag(club.bg_image.url(:thumb)) %>
+              <%= image_tag(club.bg_image.url(:thumb), class:"thumbnail") %>
             </div>
           <% end %>
           <div style="margin-top: 20px;">
@@ -89,11 +83,10 @@
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :bg_image, "Website Background" %>
+          <%= f.label :bg_image, "News Banner" %>
             <% if !club.bg_image.blank? %>
             <div class="">
-              <small style="vertical-align: top; font-size: 14px;">Current:</small>
-              <%= image_tag(club.bg_image.url(:thumb)) %>
+              <%= image_tag(club.bg_image.url(:thumb), class:"thumbnail") %>
             </div>
           <% end %>
           <div style="margin-top: 20px;">
@@ -101,11 +94,21 @@
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :bg_image, "Website Background" %>
+          <%= f.label :bg_image, "Events Banner" %>
             <% if !club.bg_image.blank? %>
             <div class="">
-              <small style="vertical-align: top; font-size: 14px;">Current:</small>
-              <%= image_tag(club.bg_image.url(:thumb)) %>
+              <%= image_tag(club.bg_image.url(:thumb), class:"thumbnail") %>
+            </div>
+          <% end %>
+          <div style="margin-top: 20px;">
+            <%= f.file_field :bg_image %>  
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :bg_image, "Gallery Banner" %>
+            <% if !club.bg_image.blank? %>
+            <div class="">
+              <%= image_tag(club.bg_image.url(:thumb), class:"thumbnail") %>
             </div>
           <% end %>
           <div style="margin-top: 20px;">

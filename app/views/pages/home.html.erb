@@ -13,10 +13,10 @@
     "
     >
     <div class="new-home__banner-text">
-        <h1 class="new-home__banner-text--title">Welcome to I AM Phab 
+        <h1 class="new-home__banner-text--title">Welcome to Phab 
             <span class="club-name">
                 <% if club.blank? %>
-                    Bebington
+                    CLUB NAME HERE
                 <% else %>
                     <% if !club.club_name.blank? %>
                         <%= club.club_name %>
@@ -40,25 +40,26 @@
                         <% end %>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-3 col-xs-12">
-                        <h4 class="club-policies-header">Our Club Policies:</h4>
-                    </div>
-                    <div class="col-sm-9 col-xs-12">
-                        <div class="club-policies">
-                            <ul class="club-policies-list">
-                                <li class="club-policies-detail"><a href="">Child & Vulnerable Adult policy – please click here</a></li>
-                                <li class="club-policies-detail"><a href="">Barry West 25/05/2015</a></li>
-                                <li class="club-policies-detail"><a href="">Equal Opportunities Policy – please click here</a></li>
-                                <li class="club-policies-detail"><a href="">Safeguarding Policies and Procedures please click here</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
             <div class="col-md-4 col-sm-12 col-xs-12">
                 <%= render 'layouts/page_sidebar' %>
             </div>  
+        </div>
+        <div class="row" style="padding-top: 40px;">
+            <div class="col-sm-4 col-xs-12">
+                <h4 class="club-policies-header" style="text-align: left !important;">Our Club Policies:</h4>
+            </div>
+            <div class="col-sm-8 col-xs-12">
+                <div class="club-policies">
+                    <ul class="club-policies-list">
+                        <li class="club-policies-detail"><a href="">Child & Vulnerable Adult policy – please click here</a></li>
+                        <li class="club-policies-detail"><a href="">Barry West 25/05/2015</a></li>
+                        <li class="club-policies-detail"><a href="">Equal Opportunities Policy – please click here</a></li>
+                        <li class="club-policies-detail"><a href="">Safeguarding Policies and Procedures please click here</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </div>

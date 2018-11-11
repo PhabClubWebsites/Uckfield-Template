@@ -129,18 +129,20 @@
     </div>
 <% end %>
 <% unless obj.site_page == "home" %>
-<div class="row article__cta">
-    <div class="col-xs-4">
-        <p class="article__details">
-            <%= time_ago_in_words(obj.created_at) %> ago
-        </p>
+    <div class="row article__cta">
+        <div class="col-xs-4">
+            <p class="article__details" style="margin: 0 !important;">
+                <%= time_ago_in_words(obj.created_at) %> ago
+            </p>
+        </div>
+        <div class="col-xs-8" style="display: flex; justify-content: flex-end;">
+            <span class="share-text">Share On:</span>
+            <%= social_share_button_tag(obj.title, desc: obj.title) %>
+        </div>
     </div>
-    <div class="col-xs-4" style="padding-top: 8px;">
-        <%= social_share_button_tag(obj.title, desc: obj.title) %>
-    </div>
-    <div class="col-xs-4">
-        <% if admin_signed_in? %>
-            <span style="float: right; padding-top: 4px">
+    <% if admin_signed_in? %>
+        <div class="row">
+            <div class="col-xs-12" style="text-align: right !important;">
                 <%= link_to edit_page_path(obj, site_page: obj.site_page) do %>
                     <i class="fa fa-edit btn btn-sm btn-default"></i>
                 <% end %>
@@ -148,8 +150,7 @@
                             {confirm: "Are you sure you want to delete this article?"} do %>
                     <i class="fa fa-trash btn btn-sm btn-danger"></i>
                 <% end %>
-            </span>
-        <% end %>
-    </div>    
-</div>
+            </div>    
+        </div>
+    <% end %>
 <% end %>

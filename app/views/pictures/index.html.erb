@@ -49,7 +49,7 @@
                 <!--<th><%#= model_class.human_attribute_name(:image) %></th>-->
                 <th>Preview</th>
                 <th>File Name</th>
-                <th>Caption</th>
+                <th class="hidden-xs">Caption</th>
                 <th class="text-center">Actions</th>
               </tr>
             </thead>
@@ -58,7 +58,7 @@
                 <tr class="<% if picture.id == picture.gallery.cover %>cover-img<% end %>">
                   <td><%= image_tag(picture.image.url(:thumb), class:"pic-thumbnail") %></td>
                   <td><%= picture.split_image_path %></td>
-                  <td><%= truncate(picture.description, length: 83) %></td>
+                  <td class="hidden-xs"><%= truncate(picture.description, length: 83, separator: /\s/) %></td>
                   <td class="text-center">
                     <li class="list-unstyled dropdown">
                       <i class="glyphicon glyphicon-option-vertical" data-toggle="dropdown"></i>

@@ -25,7 +25,7 @@ class Admins::RegistrationsController < Devise::RegistrationsController
     yield resource if block_given?
     if resource.persisted?
       if resource.active_for_authentication?
-        set_flash_message! :notice, :signed_up
+        flash[:success] = "Your new admin user has been created."
         sign_up(resource_name, resource)
         respond_with resource, location: after_sign_up_path_for(resource)
       else
@@ -40,7 +40,9 @@ class Admins::RegistrationsController < Devise::RegistrationsController
     else
       clean_up_passwords resource
       set_minimum_password_length
-      respond_with resource
+      # respond_with resource
+      flash[:danger] = "The password confirmation didn't match the password."
+      redirect_to new_admin_registration_path
     end
   end
 
@@ -115,7 +117,8 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   # Signs in a user on sign up. You can overwrite this method in your own
   # RegistrationsController.
   def sign_up(resource_name, resource)
-    sign_in(resource_name, resource)
+    # sign_in(resource_name, resource)
+    # redirect_to dashboard_path
   end
 
   # The path used after sign up. You need to overwrite this method
