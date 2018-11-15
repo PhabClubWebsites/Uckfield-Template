@@ -1,3 +1,8 @@
+<style>
+  .trix-button:not(:disabled) {
+    background-color: rgba(86, 166, 68, 0.1) !important;
+  }
+</style>
 <%= form_for(@page, html: {multipart: true, role: "form"}) do |f| %>
     <%#= f.label :site_page, "Page" %>
     <%# if params[:site_page].present? %>

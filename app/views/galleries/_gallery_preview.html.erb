@@ -6,7 +6,7 @@
     </div>
     <div class="article-preview-content">
         <div class="row">
-            <div class="col-md-4 col-sm-4 col-xs-12 img-preview-box">
+            <div class="col-md-4 col-sm-4 col-xs-12 img-preview-box hidden-xs">
                 <% if obj.cover %>
                     <%= link_to image_tag(obj.find_cover_image, class:"article-preview-img"), gallery_path(obj) %>
                 <% elsif obj.pictures.first %>

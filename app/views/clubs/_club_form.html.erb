@@ -15,11 +15,12 @@
         </div>
         <div class="form-group">
           <%= f.label :contact_email %>
+          <p class="dashboard-p" style="margin-top: -4px;">All submissions from the website contact form will be sent to this email address</p>
           <%= f.email_field :contact_email, class:"form-control" %>
         </div>
         <div class="form-group">
           <%= f.label :contact_number %>
-          <%= f.number_field :contact_number, class:"form-control" %>
+          <%= f.text_field :contact_number, class:"form-control" %>
         </div>
         <div class="form-group">
           <%= f.label :meeting_time %>
@@ -27,7 +28,7 @@
         </div>
         <div class="form-group">
           <%= f.label :meeting_address %>
-          <p class="dashboard-p">Separate the address lines with commas and no spaces</p>
+          <p class="dashboard-p" style="margin-top: -4px;">Separate the address lines with commas and no spaces</p>
           <%= f.text_field :meeting_address, class:"form-control", placeholder: "Eg. 23 York Road,London,W1H 1BD" %>
         </div>
       </div>  
@@ -119,8 +120,6 @@
     </div>
   </div>
   <div class="form-group">
-    <div class="right">
-      <%= f.submit class:"btn btn-phab-form btn-md" %>
-    </div>
+    <%= f.submit class:"btn btn-phab btn-md" %>
   </div>
 <% end %>

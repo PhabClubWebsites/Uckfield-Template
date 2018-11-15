@@ -21,6 +21,36 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+
+.address-block .list .item {
+    color: #D94240 !important;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.contact-block .list .item {
+    color: #56A644 !important;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.main-sidebar-block .list {
+    padding-left: 10px;
+}
+
+// .address-block {
+//     background-color: #ff9999 !important;
+// }
+
+// .contact-block {
+//     background-color: rgba(86, 166, 68, 0.4) !important;
+// }
+
+.contact-block,
+.address-block {
+    background-color: white !important;
+}
+
 /*============================================================================
   Grid Breakpoints and Class Names
     - Do not change the variable names
@@ -1380,8 +1410,7 @@ a {
     font-size: 16px;
     color: #8b0000;
     float: left;
-    display: inline-block;
-    margin-top: 10px; }
+    display: inline-block; }
   .article-preview-block .social-share-button {
     text-align: right; }
 
@@ -1552,7 +1581,7 @@ trix-editor {
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around; }
+    justify-content: space-between; }
     .main-sidebar-block .list .item {
       color: white; }
       @media only screen and (max-width: 767px) {

@@ -9,15 +9,11 @@
         <div class="col-md-8 col-sm-8 col-xs-12">
             <div class="row">
                 <div class="col-xs-4">
-                    <h4>Home</h4>
+                    <h4>Home <small><span><%= link_to "View all..", home_list_path %></span></small></h4>
                 </div>
                 <div class="col-xs-8">
                     <p style="float: right;">
-                        <% if @homepage.blank? %>
-                            <%= link_to "Create homepage", new_page_path(site_page:"home"), class:"btn btn-md   btn-phab" %>
-                        <% else %>
-                            <%= link_to "Edit homepage", edit_page_path(@homepage, site_page:"home"), class:"btn btn-md   btn-phab" %>
-                        <% end %>
+                        <%= link_to "Add a section", new_page_path(site_page:"home"), class:"btn btn-md   btn-phab" %>
                     </p>
                 </div>
             </div>

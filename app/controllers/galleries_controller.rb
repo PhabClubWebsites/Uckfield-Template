@@ -43,7 +43,6 @@ class GalleriesController < ApplicationController
   end
 
   def create
-    layout "admin"
     @gallery = Gallery.new(gallery_params)
 
     respond_to do |format|

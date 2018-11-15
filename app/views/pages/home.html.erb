@@ -32,34 +32,33 @@
         <div class="row">
             <div class="col-md-8 col-sm-12 col-xs-12">
                 <div class="outer-well">
+                    <h2></h2>
                     <div class="content">
-                        <% if !@home_pages.blank? %>
-                            <% @home_pages.each_with_index do |news, i| %>
-                                <%= render "article_list", obj: news %>
+                        <% if params[:preview] == "true" && admin_signed_in? %>
+                            <% if !@all_home_pages.blank? %>
+                                <% @all_home_pages.each_with_index do |news, i| %>
+                                    <%= render "home_page", obj: news %>
+                                <% end %>
+                            <% end %>
+                        <% else %>
+                            <% if !@home_pages.blank? %>
+                                <% @home_pages.each_with_index do |news, i| %>
+                                    <%= render "home_page", obj: news %>
+                                <% end %>
                             <% end %>
                         <% end %>
                     </div>
                 </div>
-                
+                <div class="outer-well">
+                    <div class="content__title content__text" style="text-align: left;">
+                        <h2 class="address-title">Contact Us</h2>
+                        <%= render 'contacts/contact_form' %>
+                    </div>
+                </div>
             </div>
             <div class="col-md-4 col-sm-12 col-xs-12">
                 <%= render 'layouts/page_sidebar' %>
             </div>  
-        </div>
-        <div class="row" style="padding-top: 40px;">
-            <div class="col-sm-4 col-xs-12">
-                <h4 class="club-policies-header" style="text-align: left !important;">Our Club Policies:</h4>
-            </div>
-            <div class="col-sm-8 col-xs-12">
-                <div class="club-policies">
-                    <ul class="club-policies-list">
-                        <li class="club-policies-detail"><a href="">Child & Vulnerable Adult policy – please click here</a></li>
-                        <li class="club-policies-detail"><a href="">Barry West 25/05/2015</a></li>
-                        <li class="club-policies-detail"><a href="">Equal Opportunities Policy – please click here</a></li>
-                        <li class="club-policies-detail"><a href="">Safeguarding Policies and Procedures please click here</a></li>
-                    </ul>
-                </div>
-            </div>
         </div>
     </div>
 </div>

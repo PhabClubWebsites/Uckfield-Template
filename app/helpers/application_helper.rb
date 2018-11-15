@@ -35,7 +35,7 @@ module ApplicationHelper
     end
     
     def recent_posts
-       return Page.where("published = ?", true).order(id: :desc).limit(3) 
+       return Page.where("published = ? AND site_page != ?", true, "home").order(id: :desc).limit(3) 
     end
     
     def upcoming_events

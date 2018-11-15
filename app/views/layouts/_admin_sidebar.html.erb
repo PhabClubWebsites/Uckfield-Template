@@ -10,22 +10,12 @@
         <% end %>
     </li>
     <li class="sidebar__item">
-        <% if @homepage.blank? %>
-            <%= link_to new_page_path(site_page:"home") do %>
-                <span class="text">
-                    <i class="fas fa-home"></i>
-                    Homepage
-                </span>
-                <i class="fas fa-chevron-right"></i>
-            <% end %>
-        <% else %>
-            <%= link_to edit_page_path(homepage, site_page:"home") do %>
-                <span class="text">
-                    <i class="fas fa-home"></i>
-                    Homepage
-                </span>
-                <i class="fas fa-chevron-right"></i>
-            <% end %>
+        <%= link_to home_list_path do %>
+            <span class="text">
+              <i class="fas fa-home"></i>
+              Homepage
+            </span>
+            <i class="fas fa-chevron-right"></i>
         <% end %>
     </li>
     <li class="sidebar__item">

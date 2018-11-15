@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
-   before_action :authenticate_admin!, only: [:edit, :index, :update, :destroy, :new, :create]
+   before_action :authenticate_admin!, only: [:edit, :index, :update, :destroy, :new, :create, :event_list, :news_list, :home_list]
    before_action :set_page, only: [:edit, :update, :show, :destroy, :published]
-   layout "admin", only: [:edit, :new, :event_list, :news_list]
+   layout "admin", only: [:edit, :new, :event_list, :news_list, :home_list]
    def new_events
      
    end
@@ -13,9 +13,20 @@ class PagesController < ApplicationController
   def create
     @page = Page.new(page_params)
     @page.admin_id = current_admin.id
+    if @page.site_page == "event"
+      title = "event"
+    elsif @page.site_page == "news"
+      title = "news article"
+    else
+      title = "home page"
+    end
     if @page.save
-       flash[:success] = "Your article has been created!"
-       redirect_to page_path(@page)
+      flash[:success] = "Your #{title} has been created!"
+      if @page.site_page == "home"
+        redirect_to root_path
+      else
+        redirect_to page_path(@page)
+      end
     else
        flash[:danger] = @page.errors.full_messages.join(", ")
        redirect_to dashboard_path
@@ -26,9 +37,20 @@ class PagesController < ApplicationController
   end
   
   def update
+    if @page.site_page == "event"
+      title = "event"
+    elsif @page.site_page == "news"
+      title = "news article"
+    else
+      title = "home page"
+    end
     if @page.update(page_params)
-      flash[:success] = "Your article was succesfully updated!"
-      redirect_to page_path(@page)
+      flash[:success] = "Your #{title} was succesfully updated!"
+      if @page.site_page == "home"
+        redirect_to root_path
+      else
+        redirect_to page_path(@page)
+      end
     else
       flash[:danger] = @page.errors.full_messages.join(", ")
       redirect_to edit_page_path(@page, site_page: @page.site_page)
@@ -38,18 +60,12 @@ class PagesController < ApplicationController
   def destroy
     @page.destroy
     flash[:danger] = "Your article has been deleted."
-    redirect_to pages_path
+    redirect_to dashboard_path
   end
   
   def show
     @next_article = Page.where("site_page = ? AND id > ? AND published = ?", @page.site_page, @page.id, true).first
     @prev_article = Page.where("site_page = ? AND id < ? AND published = ?", @page.site_page, @page.id, true).last
-  end
-  
-  def index
-    @home_pages = Page.all.where("site_page = ?", "home").reverse;
-    @about_pages = Page.all.where("site_page = ?", "about").reverse;
-    @galleries = Gallery.all
   end
   
   def event_list
@@ -60,22 +76,39 @@ class PagesController < ApplicationController
     @news_pages = Page.all.where("site_page = ?", "news").reverse;
   end
   
+  def home_list
+    @home_pages = Page.all.where("site_page = ?", "home").reverse;
+  end
+  
   def published
+    if @page.site_page == "event"
+      title = "event"
+    elsif @page.site_page == "news"
+      title = "news article"
+    else
+      title = "home page"
+    end
     if @page.published == false
       @page.update_attribute(:published, true)
-      flash[:success] = "Your article has been published!"
-      redirect_to page_path(@page)
+      flash[:success] = "Your #{title} has been published!"
+      if @page.site_page == "home"
+        redirect_to root_path
+      else
+        redirect_to page_path(@page)
+      end
     elsif @page.published == true
       @page.update_attribute(:published, false)
-      flash[:danger] = "Your article is no longer published."
-      redirect_to pages_path
+      flash[:danger] = "Your #{title} is no longer published."
+      redirect_to dashboard_path
     end
       
   end
   
   def home
     @club = Club.all.where("id = ?", 1)
-    @home_pages = Page.where("site_page = ? AND published = ?", "home", true).order(id: :desc)
+    @home_pages = Page.where("site_page = ? AND published = ?", "home", true).order(id: :asc)
+    @all_home_pages = Page.where("site_page = ?", "home").order(id: :asc)
+    @contact = Contact.new
   end
   
   def about

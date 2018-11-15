@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'gallery_list', to: 'galleries#gallery_admin'
   get 'event_list', to: 'pages#event_list'
   get 'news_list', to: 'pages#news_list'
+  get 'home_list', to: 'pages#home_list'
   
   resources :pages do
     member do

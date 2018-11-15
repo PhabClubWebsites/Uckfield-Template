@@ -1,0 +1,44 @@
+
+<div class="container-fluid pipe-container page-show" id="container_page_show">
+  <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-12 col-xs-12">
+          <div class="outer-well">
+            <div class="content">
+              <%= render 'article_list', obj: @page %>
+            </div>
+            <div class="toggle-articles-block">
+              <% if !@prev_article.blank? %>
+                <%= link_to page_path(@prev_article), class:"btn btn-default btn-md btn-prev-article" do %>
+                  <i class="fa fa-angle-left"></i> Previous
+                <% end %>
+              <% else %>
+                <button type="button" class="btn btn-default btn-md btn-prev-article" disabled><i class="fa fa-angle-left"></i> Previous</button>
+              <% end %>
+              <% if @page.site_page == "event" %>
+                <%= link_to whats_on_path, class:"btn btn-md btn-all-articles" do %>
+                  View All Events
+                <% end %>
+              <% elsif @page.site_page == "news" %>
+                <%= link_to club_news_path, class:"btn btn-md btn-all-articles" do %>
+                  View All News
+                <% end %>
+              <% end %>
+              <% if !@next_article.blank? %>
+                <%= link_to page_path(@next_article), class:"btn btn-default btn-md btn-next-article" do %>
+                  Next <i class="fa fa-angle-right"></i>
+                <% end %>
+              <% else %>
+                <button type="button" class="btn btn-default btn-md btn-next-article" disabled>Next <i class="fa fa-angle-right"></i></button>
+              <% end %>
+            </div>
+            
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+          <%= render 'layouts/page_sidebar' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--</div>-->
