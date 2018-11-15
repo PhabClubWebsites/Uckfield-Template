@@ -1,8 +1,7 @@
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <style>
   img[class$='-thumbnail-new'] {
     /*position: absolute;*/
-    /*width: 100%;*/
+    width: 100%;
     /*top: 0;*/
     /*left: 50%;*/
     /*transform: translateX(-50%);*/
@@ -47,7 +46,7 @@
               </div>
             <% end %>
             <hr></hr>
-            <h3 class="gallery-image-title">Images <small>(<%= @pictures.size %>)</small><span style="float: right; font-size: 16px;"><button class="btn btn-md btn-phab-form" id="open_gallery">Open Gallery</button><a class="btn btn-md btn-phab-form" onclick="openModal();currentSlide(1)">Open gallery</a></span></h3>
+            <h3 class="gallery-image-title">Images <small>(<%= @pictures.size %>)</small><span style="float: right; font-size: 16px;"><button class="btn btn-md btn-phab-form" id="open_gallery">Open Gallery</button></span></h3>
             <hr></hr>
             <% unless @pictures.empty? %>
               <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
@@ -56,15 +55,17 @@
                     <div style="position: relative; width: 100%; overflow: hidden; cursor: pointer;">
                       <%= image_tag(pic.image.url(:medium), class:"gallery-#{i}-thumbnail-new") %>
                     </div>
-                    <hr style="z-index: 999999; border-color: black;"></hr>
-                    <span style="height: 0; border-top: 2px solid gray; width: 100%"></span>
                     <% if !pic.description.blank? %>
                       <div class="image-caption">
-                        <p class="text-center">
+                        <p class="text-center" style="margin-top: 20px;">
                           <%= pic.description %>
                         </p>
                       </div>
+                      <span style="height: 0; border-top: 2px solid gray; width: 100%; margin: 20px 0 0 0;"></span>
+                    <% else %>
+                      <span style="height: 0; border-top: 2px solid gray; width: 100%; margin: 40px 0 0 0;"></span>
                     <% end %>
+                    
                   </div>
                 <% end %>
               </div>
@@ -187,7 +188,6 @@
     opacity: 0;
     transform: scale(.7);
     transition: all .3s;
-    margin: 0 40px;
   }
   .slick-track {
     height: 100%;
@@ -195,10 +195,11 @@
   .new-slider-next {
     position: absolute;
     top: 50%;
-    right: 40px;
+    right: 30px;
     font-size: 32px;
     color: white;
     z-index: 99999;
+    padding: 10px;
   }
   
   .close-gallery {
@@ -223,8 +224,9 @@
   .new-slider-prev {
     position: absolute;
     top: 50%;
-    left: 40px;
+    left: 30px;
     font-size: 32px;
+    padding: 10px;
     color: white;
     z-index: 99999;
   }
@@ -268,7 +270,15 @@
       bottom: 30px;
     }
     .slider img {
-      width: 90vw;
+      /*width: 90vw;*/
+      max-width: none !important;
+    }
+    .new-slider-next {
+      right: 20px;
+    }
+    
+    .new-slider-prev {
+      left: 20px;
     }
   }
 </style>
@@ -296,7 +306,9 @@
 
 <script>
 $(document).on("turbolinks:load", function() {
+  $('.slider').hasClass('.slick-initialized') ? $('.slider').slick('unslick') : null;
   $("#close_gallery").on("click", function() {
+    $('.slider').slick('unslick');
     $(".gallery").removeClass("is-open");
   });
   $("#open_gallery").on("click", function() {
@@ -346,8 +358,5 @@ function openGallery(index) {
     arrows: true,
     variableWidth: true
   });
-  $(".slider").slick("slickSetOption", function(index) {
-    initialSlide: index
-  })
 }
 </script>
