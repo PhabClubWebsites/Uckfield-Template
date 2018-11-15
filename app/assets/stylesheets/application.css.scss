@@ -38,18 +38,18 @@
     padding-left: 10px;
 }
 
-// .address-block {
-//     background-color: #ff9999 !important;
-// }
-
-// .contact-block {
-//     background-color: rgba(86, 166, 68, 0.4) !important;
-// }
-
-.contact-block,
 .address-block {
-    background-color: white !important;
+    background-color: #ff9999 !important;
 }
+
+.contact-block {
+    background-color: rgba(86, 166, 68, 0.4) !important;
+}
+
+// .contact-block,
+// .address-block {
+//     background-color: white !important;
+// }
 
 /*============================================================================
   Grid Breakpoints and Class Names
