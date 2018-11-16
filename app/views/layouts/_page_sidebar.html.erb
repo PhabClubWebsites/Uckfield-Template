@@ -74,12 +74,15 @@
             <% end %>
         </div>
     </div>
-    <div class="sidebar-logo-container hidden-xs hidden-sm">
+    <div class="sidebar-logo-container">
         <% if club.blank? %>
             <%= image_tag("charity-number-logo.png") %>
         <% else %>
             <% if !club.club_logo.blank? %>
-                <%= image_tag(club.club_logo) %>
+                <%= image_tag(club.club_logo, class:"hidden-xs hidden-sm") %>
+            <% end %>
+            <% if club.charity_number.present? %>
+                <p style="font-size: 16px; text-align: center; color: #56A644; font-weight: bold;">Charity Number: <%= club.charity_number %></p>
             <% end %>
         <% end %>
     </div>

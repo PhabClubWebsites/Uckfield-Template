@@ -1,5 +1,5 @@
 <tr>
-  <td><%= link_to obj.title, page_path(obj) %></td>
+  <td style="font-weight: bold !important;"><%= link_to obj.title, page_path(obj), class:"text-success" %></td>
   <td class="hidden-xs"><%= sanitize(obj.content_one.truncate(53, separator: /\s/)) %></td>
   <td class="text-center">
     <% if obj.published == true %>

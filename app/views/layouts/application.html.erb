@@ -45,6 +45,7 @@
       if($(window).scrollTop() > 10 && scrolled == false){
           $("#pointer_scroll").fadeOut(300);
           $('#navbar').stop().animate({height : '120px'}, 500);
+          $('.affiliated-to').stop().animate({top : '25px', right: '120px'}, 500);
           $('.navbar__beb-logo').stop().animate({top : '60px'}, 500);
           $('.navbar__beb-logo--img').stop().animate({width : '120px'}, 500);
           // $('.navbar__links').stop().animate({width : '80%'}, 500);
@@ -54,6 +55,7 @@
       } else if($(window).scrollTop() <= 10) {
           $("#pointer_scroll").fadeIn(300);
           $('#navbar').stop().animate({height : '180px'}, 500);
+          $('.affiliated-to').stop().animate({top : '40px', right: '140px'}, 500);
           $('.navbar__beb-logo').stop().animate({top : '100px'}, 500);
           $('.navbar__beb-logo--img').stop().animate({width : '160px'}, 500);
           // $('.navbar__links').stop().animate({width : '95%'}, 500);

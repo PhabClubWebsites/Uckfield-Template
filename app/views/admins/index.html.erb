@@ -1,6 +1,10 @@
 <div class="content">
   <div class="page-header">
-    <h1>Admin Users</h1>
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+      <h1 style="margin: 0;">Admin Users</h1>
+      <%= link_to "Create User", new_admin_registration_path, style:'min-width: 120px !important; background-color: rgba(75, 144, 60, 0.8); border-color: #006400 !important; color: white !important;', class:"btn btn-md" %>
+    </div>
+    
   </div>
   <div class="row">
     <div class="col-md-4 col-sm-4 col-xs-12">
@@ -8,14 +12,14 @@
     </div>
     <div class="col-md-8 col-sm-8 col-xs-12">
       <div class="image-table-area">
-        <table class="table table-striped articles-table">
+        <table class="table articles-table">
           <thead>
             <tr>
               <th>Email</th>
-              <th class="text-center">Last Signed In</th>
+              <th class="text-right">Last Signed In</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody style="background-color: white;">
             <% @admin_users.each do |user| %>
               <%= render 'admin_table', obj: user %>
             <% end %>
