@@ -1,15 +1,16 @@
 <div class="content">
   <div class="page-header">
-    <h1>Home</h1>
+    <h1>About</h1>
   </div>
   <div class="row">
     <div class="col-md-4 col-sm-4 col-xs-12">
       <h4 id="news">Sections</h4>
-      <p class="dashboard-p">You can preview any new sections on the homepage before publishing them by clicking on the Preview button on the right.</p>
+      <p class="dashboard-p">You can preview any new sections on the About page before publishing them by clicking on the Preview button below.</p>
+      <p class="dashboard-p">Your volunteers will appear on the About page. To add/update them, go to the Volunteers area.</p>
     </div>
     <div class="col-md-8 col-sm-8 col-xs-12">
-        <% if @home_pages.blank? %>
-          <p class="text-center blank-object">You have no sections on your home page yet!</p>
+        <% if @about_us_list.blank? %>
+          <p class="text-center blank-object">You have no sections on your about page yet!</p>
         <% else %>
           <div class="image-table-area">
             <table class="table articles-table">
@@ -30,8 +31,8 @@
           </div>
         <% end %>
         <div style="width: 100%; display: flex; flex-direction: column; align-items: flex-end">
-          <%= link_to "Add a section", new_page_path(:site_page => "home"), class:"btn btn-md btn-phab" %>
-          <%= link_to "Preview", root_path(preview: "true"), class:"btn btn-md btn-phab" %>
+          <%= link_to "Add a section", new_page_path(:site_page => "about"), class:"btn btn-md btn-phab" %>
+          <%= link_to "Preview", about_us_path(about_preview: "true"), class:"btn btn-md btn-phab" %>
         </div>
     </div>
   </div>

@@ -1,3 +1,13 @@
+<style>
+    .row .col-md-8 .col-xs-4 h4 span a,
+    .row .col-md-4 h2 small span a {
+        color: #56A644;
+        padding-left: 10px;
+    }
+    
+    
+</style>
+
 <div class="content">
     <h1><% if !club.blank? && !club.club_name.blank? %><%= club.club_name %><% end %> Phab Dashboard</h1>    
     <hr></hr>
@@ -20,6 +30,17 @@
             <hr></hr>
             <div class="row">
                 <div class="col-xs-4">
+                    <h4>About <small><span><%= link_to "View all..", about_list_path %></span></small></h4>
+                </div>
+                <div class="col-xs-8">
+                    <p style="float: right;">
+                        <%= link_to "Add a section", new_page_path(site_page:"about"), class:"btn btn-md   btn-phab" %>
+                    </p>
+                </div>
+            </div>
+            <hr></hr>
+            <div class="row">
+                <div class="col-xs-4">
                     <h4>Events <small><span><%= link_to "View all..", event_list_path %></span></small></h4>
                 </div>
                 <div class="col-xs-8">
@@ -35,6 +56,26 @@
                     <p style="float: right;"><%= link_to "Post news", new_page_path(site_page:"news"), class:"btn btn-md   btn-phab" %></p>
                 </div>
             </div>
+        </div>
+    </div>
+    <hr></hr>
+    <div class="row dashboard-row">
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <h2 style="margin: 0;">Galleries <small>(<%= Gallery.all.size %>) <span><%= link_to "View all..", gallery_list_path %></span></small></h2>
+            <p class="dashboard-p">Publish and edit your galleries</p>
+        </div>
+        <div class="col-md-8 col-sm-8 col-xs-12">
+            <p style="float: right;"><%= link_to "Create gallery", new_gallery_path, class:"btn btn-md   btn-phab" %></p>
+        </div>
+    </div>
+    <hr></hr>
+    <div class="row dashboard-row">
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <h2 style="margin: 0;">Volunteers <small>(<%= Page.all.where("site_page = ?", "volunteer").size %>) <span><%= link_to "View all..", volunteer_list_path %></span></small></h2>
+            <p class="dashboard-p">Upload information about your volunteers</p>
+        </div>
+        <div class="col-md-8 col-sm-8 col-xs-12">
+            <p style="float: right;"><%= link_to "Add volunteer", new_page_path(site_page: "volunteer"), class:"btn btn-md   btn-phab" %></p>
         </div>
     </div>
     <hr></hr>

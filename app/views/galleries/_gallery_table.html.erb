@@ -1,5 +1,11 @@
 <tr>
-  <td><%= link_to gallery_path(gallery) do %><%= image_tag(gallery.find_thumb_image, class:"pic-thumbnail") %><% end %></td>
+  <td>
+    <% if gallery.pictures.size > 0 %>
+      <%= link_to gallery_path(gallery) do %><%= image_tag(gallery.find_thumb_image, class:"pic-thumbnail") %><% end %>
+    <% else %>
+      <%= link_to gallery_path(gallery) do %><%= image_tag(club.club_logo, class:"pic-thumbnail") %><% end %>
+    <% end %>
+  </td>
   <td style="font-weight: bold;"><%= link_to gallery.name, gallery_path(gallery), class:"text-success" %></td>
   <td class="hidden-xs"><%= truncate(gallery.description, length: 43, separator: /\s/) %></td>
   <td>

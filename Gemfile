@@ -54,7 +54,7 @@ gem 'devise', '4.2.0'
 gem 'paperclip', '4.3.6'
 
 # Use Social Share for sharing articles on Social Media
-gem 'social-share-button'
+gem 'social-share-button', '1.1.0'
 
 # Use will paginate for pagination
 gem 'will_paginate', '~> 3.1.0'
@@ -69,13 +69,13 @@ gem 'figaro', '1.1.1'
 #gem 'dropzonejs-rails'
 
 # Use Geocoder for Google map display
-gem 'geocoder'
+gem 'geocoder', '1.5.0'
 
 # Use trix for rich text editing
-gem 'trix'
+gem 'trix', '0.11.1'
 
 # Use MailForm for contact form page
-gem 'mail_form'
+gem 'mail_form', '1.7.1'
 group :development, :test do
   # # Use sqlite3 as the database for Active Record
   # gem 'sqlite3'

@@ -1,0 +1,35 @@
+<%#= render partial: "page-header", locals: { bg_img: club.bg_image, title: "About Us", color: "#3D3976" } %>
+<div class="container-fluid pipe-container page-show" id="container_home">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <div class="outer-well">
+                    <h2></h2>
+                    <div class="content">
+                        <% if params[:about_preview] == "true" && admin_signed_in? %>
+                            <% if !@about_us_preview.blank? %>
+                                <% @about_us_preview.each_with_index do |news, i| %>
+                                    <%= render "home_page", obj: news %>
+                                <% end %>
+                            <% end %>
+                        <% else %>
+                            <% if !@about_us.blank? %>
+                                <% @about_us.each_with_index do |news, i| %>
+                                    <%= render "home_page", obj: news %>
+                                <% end %>
+                            <% end %>
+                        <% end %>
+                        <% if params[:volunteer_preview] == "true" && admin_signed_in? %>
+                            <%= render partial: 'volunteer_section', locals: { volunteers: @volunteers_preview } %>
+                        <% else %>
+                            <%= render partial: 'volunteer_section', locals: { volunteers: @volunteers } %>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <%= render 'layouts/page_sidebar' %>
+            </div>  
+        </div>
+    </div>
+</div>

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'whats-on', to: 'pages#events'
   get 'shop', to: 'pages#shop'
   get 'contact-us', to: 'pages#contact_us'
+  get 'about-us', to: 'pages#about_us'
   
   get 'dashboard', to: 'admins#dashboard'
   get 'admins', to: 'admins#index'
@@ -17,6 +18,8 @@ Rails.application.routes.draw do
   get 'event_list', to: 'pages#event_list'
   get 'news_list', to: 'pages#news_list'
   get 'home_list', to: 'pages#home_list'
+  get 'about_list', to: 'pages#about_list'
+  get 'volunteer_list', to: 'pages#volunteer_list'
   
   resources :pages do
     member do

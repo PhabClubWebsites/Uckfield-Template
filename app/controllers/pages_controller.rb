@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
-   before_action :authenticate_admin!, only: [:edit, :index, :update, :destroy, :new, :create, :event_list, :news_list, :home_list]
+   before_action :authenticate_admin!, only: [:edit, :index, :update, :destroy, :new, :create, :event_list, :news_list, :home_list, :about_list, :volunteer_list]
    before_action :set_page, only: [:edit, :update, :show, :destroy, :published]
-   layout "admin", only: [:edit, :new, :event_list, :news_list, :home_list]
+   layout "admin", only: [:edit, :new, :event_list, :news_list, :home_list, :about_list, :volunteer_list]
    def new_events
      
    end
@@ -17,13 +17,19 @@ class PagesController < ApplicationController
       title = "event"
     elsif @page.site_page == "news"
       title = "news article"
+    elsif @page.site_page == "volunteer"
+      title = "volunteer"
     else
       title = "home page"
     end
     if @page.save
       flash[:success] = "Your #{title} has been created!"
       if @page.site_page == "home"
-        redirect_to root_path
+        redirect_to root_path(preview: "true")
+      elsif @page.site_page == "volunteer"
+        redirect_to about_us_path(@page, volunteer_preview: "true")
+      elsif @page.site_page == "about"
+        redirect_to about_us_path(@page, about_preview: "true")
       else
         redirect_to page_path(@page)
       end
@@ -41,6 +47,8 @@ class PagesController < ApplicationController
       title = "event"
     elsif @page.site_page == "news"
       title = "news article"
+    elsif @page.site_page == "volunteer"
+      title = "volunteer"
     else
       title = "home page"
     end
@@ -85,6 +93,8 @@ class PagesController < ApplicationController
       title = "event"
     elsif @page.site_page == "news"
       title = "news article"
+    elsif @page.site_page == "volunteer"
+      title = "volunteer"
     else
       title = "home page"
     end
@@ -111,8 +121,19 @@ class PagesController < ApplicationController
     @contact = Contact.new
   end
   
-  def about
-     
+  def about_us
+     @about_us = Page.all.where("site_page = ? AND published = ?", "about", true)
+     @about_us_preview = Page.all.where("site_page = ?", "about")
+     @volunteers = Page.all.where("site_page = ? AND published = ?", "volunteer", true)
+     @volunteers_preview = Page.all.where("site_page = ?", "volunteer")
+  end
+  
+  def about_list
+     @about_us_list = Page.all.where("site_page = ?", "about")
+  end
+  
+  def volunteer_list
+    @volunteers = Page.all.where("site_page = ?", "volunteer").reverse
   end
   
   def news

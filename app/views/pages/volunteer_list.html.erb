@@ -1,0 +1,78 @@
+<style>
+  .pic-thumbnail {
+    max-width: 80px;
+  }
+</style>
+<div class="content">
+  <div class="page-header">
+    <h1>Volunteer</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-sm-4 col-xs-12">
+      <h4 id="news">People</h4>
+      <p class="dashboard-p">These sections will appear on the about page</p>
+    </div>
+    <div class="col-md-8 col-sm-8 col-xs-12">
+        <% if @volunteers.blank? %>
+          <p class="text-center blank-object">You have no volunteers on your about page yet!</p>
+        <% else %>
+          <div class="image-table-area">
+            <table class="table articles-table">
+              <thead>
+                <tr>
+                  <th>Photo</th>
+                  <th>Name</th>
+                  <th class="hidden-xs">Bio</th>
+                  <th class="text-center">Published</th>
+                  <th class="text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody style="background-color: white;">
+                <% @volunteers.each do |volunteer| %>
+                    <tr>
+                      <td>
+                        <% if !volunteer.img_one.blank? %>
+                          <%= image_tag(volunteer.img_one.url, class:"pic-thumbnail") %>
+                        <% end %>
+                      </td>
+                      <td style="font-weight: bold;", class="text-success"><%= volunteer.title %></td>
+                      <td class="hidden-xs"><%= sanitize(volunteer.content_one.truncate(53, separator: /\s/)) %></td>
+                      <td>
+                        <% if volunteer.published == true %>
+                          Yes
+                        <% else %>
+                          No
+                        <% end %>
+                        
+                      </td>
+                      <td class="text-center">
+                        <li class="list-unstyled dropdown">
+                          <i class="glyphicon glyphicon-option-vertical" data-toggle="dropdown"></i>
+                          <ul class="dropdown-menu dropdown-menu-right">
+                            <% if volunteer.published == false %>
+                              <li><%= link_to "Preview", about_us_path(volunteer_preview: "true") %></li>
+                              <li><%= link_to "Publish", published_page_path(volunteer) %></li>
+                            <% else %>
+                              <li><%= link_to "Unpublish", published_page_path(volunteer) %></li>
+                            <% end %>
+                            <li><%= link_to "Edit", edit_page_path(volunteer, site_page: volunteer.site_page) %></li>
+                            <li>
+                              <%= link_to "Delete", page_path(volunteer), method: :delete, data: 
+                                {confirm: "Are you sure you want to delete this volunteer?"} %>
+                            </li>
+                          </ul>
+                        </li>
+                      </td>
+                    </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        <% end %>
+        <div style="width: 100%; display: flex; flex-direction: column; align-items: flex-end">
+          <%= link_to "Add a volunteer", new_page_path(:site_page => "volunteer"), class:"btn btn-md btn-phab" %>
+          <%= link_to "Preview", about_us_path(volunteer_preview: "true"), class:"btn btn-md btn-phab" %>
+        </div>
+    </div>
+  </div>
+</div>  

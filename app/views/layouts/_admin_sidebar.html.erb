@@ -19,6 +19,15 @@
         <% end %>
     </li>
     <li class="sidebar__item">
+        <%= link_to about_list_path do %>
+            <span class="text">
+              <i class="fas fa-info" style="margin: 0px 6px;"></i>
+              About
+            </span>
+            <i class="fas fa-chevron-right"></i>
+        <% end %>
+    </li>
+    <li class="sidebar__item">
       <%= link_to news_list_path do %>
         <span class="text">
           <i class="fas fa-newspaper"></i>
@@ -62,6 +71,15 @@
                 </span>
                 <i class="fas fa-chevron-right"></i>
             <% end %>
+        <% end %>
+    </li>
+    <li class="sidebar__item">
+        <%= link_to volunteer_list_path do %>
+            <span class="text">
+              <i class="fas fa-child"></i>
+              Volunteers
+            </span>
+            <i class="fas fa-chevron-right"></i>
         <% end %>
     </li>
     <li class="sidebar__item">

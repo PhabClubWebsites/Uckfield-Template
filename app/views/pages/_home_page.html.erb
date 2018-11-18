@@ -22,7 +22,7 @@
         display: block;
         margin: 0 auto;
         padding: 20px;
-        border-radius: 32px;
+        border-radius: 16px;
     }
     
     @media (max-width: 769px) {
@@ -59,10 +59,10 @@
             <%= image_tag(obj.img_two.url(:medium)) %>
         <% end %>
         <% if !obj.content_three.blank? %>
-            <%= sanitize obj.content_two %>
+            <%= sanitize obj.content_three %>
         <% end %>
         <% if !obj.img_three.blank? %>
-            <%= image_tag(obj.img_two.url(:medium)) %>
+            <%= image_tag(obj.img_three.url(:medium)) %>
         <% end %>
     </div>
 </div>

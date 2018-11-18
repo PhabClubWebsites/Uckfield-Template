@@ -27,6 +27,19 @@
         <div class="navbar__links">
             <ul class="navbar-link-list">
               <li class="green"><%= link_to "Home", root_path, id:"nav_btn_home" %></li>
+              <li class="orange">
+                <%= link_to "About Us", about_us_path %>
+                <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About Us<span class="caret"></span></a>-->
+              <!--  <ul class="dropdown-menu">-->
+              <!--    <%# if !nav_event_list.blank? %>-->
+              <!--      <%# nav_event_list.each do |event| %>-->
+              <!--        <li><%#= link_to event.title, page_path(event) %></li>-->
+              <!--      <%# end %>-->
+              <!--      <li role="separator" class="nav-separator"></li>-->
+              <!--    <%# end %>-->
+              <!--    <li><#%= link_to "View all", whats_on_path %></li>-->
+              <!--  </ul>-->
+              </li>
               <li class="dropdown blue">
                 <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Latest News<span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -39,6 +52,7 @@
                   <li><%= link_to "View all", club_news_path %></li>
                 </ul>
               </li>
+              
               <li class="dropdown red">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">What's On<span class="caret"></span></a>
                 <ul class="dropdown-menu">
