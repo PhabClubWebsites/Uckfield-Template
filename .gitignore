@@ -8,6 +8,7 @@
 /.bundle
 
 /public/system
+/public/images
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
