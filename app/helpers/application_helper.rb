@@ -13,6 +13,14 @@ module ApplicationHelper
        homepage = Page.all.where("site_page = ?", "home").first 
     end
     
+    def nav_volunteers
+         return Page.where("site_page = ? AND published = ?", "volunteer", true).limit(3) 
+    end
+    
+    def nav_about_list
+        return Page.where("site_page = ? AND published = ?", "about", true).order(date_of_event: :asc)
+    end
+    
     def nav_event_list
         return Page.where("site_page = ? AND published = ? AND date_of_event >= ?", "event", true, Date.today).order(date_of_event: :asc).limit(3) 
     end
@@ -35,7 +43,7 @@ module ApplicationHelper
     end
     
     def recent_posts
-       return Page.where("published = ? AND site_page != ?", true, "home").order(id: :desc).limit(3) 
+       return Page.where("published = ? AND site_page != ? AND site_page != ?", true, "home", "volunteer").order(id: :desc).limit(3) 
     end
     
     def upcoming_events

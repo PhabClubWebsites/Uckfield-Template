@@ -1,6 +1,7 @@
+<% gallery = Gallery.find(params[:gallery_id]) %>
 <div class="content">
   <div class="page-header">
-    <h1><%= @pictures.first.gallery.name %><span style="float: right; font-size: 16px; line-height: 60px;"><%= link_to "View Gallery", gallery_path(@pictures.first.gallery) %></span></h1>
+    <h1><%= gallery.name %><span style="float: right; font-size: 16px; line-height: 60px;"><%= link_to "View Gallery", gallery_path(gallery) %></span></h1>
   </div>
   <div class="row">
     <div class="col-md-4 col-sm-4 col-xs-12">
@@ -43,51 +44,55 @@
     <div class="col-md-8 col-sm-8 col-xs-12">
       <div class="image-table-area">
         <div class="image-table-container">
-          <table class="table">
-            <thead>
-              <tr>
-                <!--<th><%#= model_class.human_attribute_name(:image) %></th>-->
-                <th>Preview</th>
-                <th>File Name</th>
-                <th class="hidden-xs">Caption</th>
-                <th class="text-center">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @pictures.each do |picture| %>
-                <tr class="<% if picture.id == picture.gallery.cover %>cover-img<% end %>">
-                  <td><%= image_tag(picture.image.url(:thumb), class:"pic-thumbnail") %></td>
-                  <td><%= picture.split_image_path %></td>
-                  <td class="hidden-xs"><%= truncate(picture.description, length: 83, separator: /\s/) %></td>
-                  <td class="text-center">
-                    <li class="list-unstyled dropdown">
-                      <i class="glyphicon glyphicon-option-vertical" data-toggle="dropdown"></i>
-                      <ul class="dropdown-menu dropdown-menu-right">
-                        <% if picture.description.blank? %>
-                          <li><%= link_to "Add Caption", edit_gallery_picture_path(picture.gallery, picture), "data-toggle" => "modal", "data-target" => "#img_popup_#{picture.id}", remote: true %></li>
-                        <% else %>
-                          <li><%= link_to "Edit Caption", edit_gallery_picture_path(picture.gallery, picture), "data-toggle" => "modal", "data-target" => "#img_popup_#{picture.id}", remote: true %></li>
-                        <% end %>
-                        <% if picture.id != picture.gallery.cover %>
-                          <li>
-                            <%= link_to 'Make Cover Image', make_default_gallery_picture_path(picture.gallery_id, picture), :id => 'make_default', method: :post %>
-                          </li>
-                        <% end %>
-                        <li>
-                          <%= link_to "Delete", gallery_picture_path(picture.gallery, picture), method: :delete, data: 
-                            {confirm: "Are you sure you want to delete this picture?"} %>
-                        </li>
-                      </ul>
-                    </li>
-                  </td>
+          <% if @pictures.blank? %>
+            <p class="blank-object text-center">You have no images yet!</p>
+          <% else %>
+            <table class="table">
+              <thead>
+                <tr>
+                  <!--<th><%#= model_class.human_attribute_name(:image) %></th>-->
+                  <th>Preview</th>
+                  <th>File Name</th>
+                  <th class="hidden-xs">Caption</th>
+                  <th class="text-center">Actions</th>
                 </tr>
-              <% end %>
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                <% @pictures.each do |picture| %>
+                  <tr class="<% if picture.id == picture.gallery.cover %>cover-img<% end %>">
+                    <td><%= image_tag(picture.image.url(:thumb), class:"pic-thumbnail") %></td>
+                    <td><%= picture.split_image_path %></td>
+                    <td class="hidden-xs"><%= truncate(picture.description, length: 83, separator: /\s/) %></td>
+                    <td class="text-center">
+                      <li class="list-unstyled dropdown">
+                        <i class="glyphicon glyphicon-option-vertical" data-toggle="dropdown"></i>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                          <% if picture.description.blank? %>
+                            <li><%= link_to "Add Caption", edit_gallery_picture_path(picture.gallery, picture), "data-toggle" => "modal", "data-target" => "#img_popup_#{picture.id}", remote: true %></li>
+                          <% else %>
+                            <li><%= link_to "Edit Caption", edit_gallery_picture_path(picture.gallery, picture), "data-toggle" => "modal", "data-target" => "#img_popup_#{picture.id}", remote: true %></li>
+                          <% end %>
+                          <% if picture.id != picture.gallery.cover %>
+                            <li>
+                              <%= link_to 'Make Cover Image', make_default_gallery_picture_path(picture.gallery_id, picture), :id => 'make_default', method: :post %>
+                            </li>
+                          <% end %>
+                          <li>
+                            <%= link_to "Delete", gallery_picture_path(picture.gallery, picture), method: :delete, data: 
+                              {confirm: "Are you sure you want to delete this picture?"} %>
+                          </li>
+                        </ul>
+                      </li>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          <% end %>
         </div>
       </div>
       <div style="float: right; margin-top: 20px;">
-        <%= link_to "Delete gallery", gallery_path(@pictures.first.gallery), class:"btn btn-md btn-danger", method: :delete, data:
+        <%= link_to "Delete gallery", gallery_path(gallery), class:"btn btn-md btn-danger", method: :delete, data:
           {confirm: "Are you sure you want to delete this picture?"} %>
       </div>
     </div>

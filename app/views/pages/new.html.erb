@@ -1,6 +1,20 @@
+<% if params[:site_page] == "home" %>
+  <% result = "a new home page section" %>
+<% elsif params[:site_page] == "event" %>
+  <% result = "a new event" %>
+<% elsif params[:site_page] == "news" %>
+  <% result = "a new post" %>
+<% elsif params[:site_page] == "volunteer" %>
+  <% result = "a new volunteer" %>
+<% elsif params[:site_page] == "about" %>
+  <% result = "a new about section" %>
+<% else %>
+  <% result = "a new page" %>
+<% end %>
+
 <div class="content">
   <div class="page-header">
-    <h1>Create <%= params[:site_page].capitalize %></h1>
+    <h2>Create <%= result %></h2>
   </div>
   <%= render 'form' %>
 </div>

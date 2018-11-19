@@ -1,5 +1,7 @@
-<%= render partial: "page-header", locals: { bg_img: club.bg_image, title: "What's On", color: "#D94240" } %>
-<div class="container-fluid pipe-container" id="container_events">
+<% if !club.events_banner_img.blank? %>
+    <%= render partial: "page-header", locals: { bg_img: club.events_banner_img, title: "What's On", color: "#D94240" } %>
+<% end %>
+<div class="container-fluid pipe-container <% if club.events_banner_img.blank? %>page-show<% end %>" id="container_events">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-sm-12 col-xs-12">

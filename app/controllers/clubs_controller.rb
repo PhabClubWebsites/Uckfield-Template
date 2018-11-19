@@ -33,10 +33,36 @@ class ClubsController < ApplicationController
       end
     end
     
+  def remove_image
+    @club = Club.find(params[:id])
+    case params[:item]
+      when "bg_image"
+        @club.bg_image = nil
+      when "events_banner_img"
+        @club.events_banner_img = nil
+      when "news_banner_img"
+        @club.news_banner_img = nil
+      when "gallery_banner_img"
+        @club.gallery_banner_img = nil
+      when "news_banner_img"
+        @club.news_banner_img = nil
+      when "about_banner_img"
+        @club.about_banner_img = nil
+      when "contact_banner_img"
+        @club.contact_banner_img = nil
+      when "club_logo"
+        @club.club_logo = nil
+    end
+    if @club.save
+      flash[:danger] = "Your picture has been removed."
+      redirect_to edit_club_path(@club)
+    end
+  end
+    
     private
     
     def club_params
-       params.require(:club).permit(:club_name, :charity_number, :club_leader, :contact_email, :club_logo, :bg_image, :bg_position, :contact_number, :meeting_time, :meeting_address, :facebook_link, :twitter_link, :donate_link , :latitude, :longitude) 
+       params.require(:club).permit(:club_name, :charity_number, :club_leader, :contact_email, :postal_address, :club_logo, :bg_image, :news_banner_img, :events_banner_img, :gallery_banner_img, :about_banner_img, :contact_banner_img, :bg_position, :contact_number, :meeting_time, :meeting_address, :facebook_link, :twitter_link, :donate_link , :latitude, :longitude) 
     end
     
     def set_club

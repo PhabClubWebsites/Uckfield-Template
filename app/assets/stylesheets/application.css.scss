@@ -22,6 +22,10 @@
 @import "font-awesome";
 
 
+.glyphicon-option-vertical {
+  padding: 4px;
+}
+
 .address-block .list .item {
     color: #D94240 !important;
     font-weight: bold;
@@ -680,7 +684,7 @@ a {
     .new-home__banner {
       height: calc(90vh - 80px); }
       .new-home__banner.page-header-main {
-        height: calc(90vh - 80px); } }
+        height: calc(85vh - 80px); } }
   .new-home__banner-text {
     background-color: rgba(255, 255, 255, 0.7);
     position: absolute;
@@ -702,7 +706,7 @@ a {
         font-size: 30px; } }
     .new-home__banner-text--title {
       font-weight: 200;
-      color: white;
+      color: black;
       font-family: 'Lato', sans-serif;
       margin-top: 10px !important; }
       .new-home__banner-text--title .page-header-banner {
@@ -812,7 +816,6 @@ a {
     padding: 0;
     width: 100%; }
   .mm__item {
-    padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1100,9 +1103,9 @@ a {
 
 .arrow-pointer-scroll {
   position: fixed;
-  bottom: 0;
+  bottom: 0px;
   left: 50%;
-  z-index: 9999;
+  z-index: 999;
   transform: translate(-50%, 0%);
   background-color: transparent;
   border: none;

@@ -1,3 +1,8 @@
+<style>
+    @media only screen and (max-width: 769px) {
+      .arrow-pointer-scroll { bottom: 55px; }
+    }
+</style>
 <div class="new-home__banner page-header-main"
     style="
         <% if !bg_img.blank? %>
@@ -22,7 +27,7 @@
 
 <script>
 $(document).ready(function(){
-    var scrolltop = ($(window).width() < 769) ? 120 : 180;
+    var scrolltop = ($(window).width() < 769) ? 100 : 180;
   $("#pointer_scroll").on('click', function(event) {
       $('html, body').animate({
         scrollTop: $(".article-preview-header:first").offset().top - scrolltop

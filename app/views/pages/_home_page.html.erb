@@ -44,7 +44,7 @@
     }
 </style>
 <div class="home-row">
-    <div class="home-header">
+    <div class="home-header" id="<%= handlise(obj.title) %>">
         <h2 style="color: #56A644;"><%= obj.title %></h2>
     </div>
     <div class="home-content">
@@ -63,6 +63,9 @@
         <% end %>
         <% if !obj.img_three.blank? %>
             <%= image_tag(obj.img_three.url(:medium)) %>
+        <% end %>
+        <% if admin_signed_in? %>
+            <%= render partial: "pages/admin_cta_bar", locals: { obj: obj, padding_vertical: "0px" } %> 
         <% end %>
     </div>
 </div>

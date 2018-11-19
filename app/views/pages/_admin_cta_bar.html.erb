@@ -1,0 +1,33 @@
+<style>
+    .cta-row {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: <%= padding_vertical %> 0;
+    }
+</style>
+<div class="cta-row">
+    <li class="list-unstyled dropdown">
+      <i class="glyphicon glyphicon-option-vertical" data-toggle="dropdown"></i>
+      <ul class="dropdown-menu dropdown-menu-right">
+      
+        <% if obj.has_attribute?(:site_page) %>
+          <li><%= link_to "#{obj.published ? 'Unpublish' : 'Publish'}", published_page_path(obj) %></li>
+          <li><%= link_to "Edit", edit_page_path(obj, site_page: obj.site_page) %></li>
+          <li>
+            <%= link_to "Delete", page_path(obj), method: :delete, data: 
+              {confirm: "Are you sure you want to delete this?"} %>
+          </li>
+        <% else %>
+          <li><%= link_to "#{obj.published ? 'Unpublish' : 'Publish'}", published_gallery_path(obj) %></li>
+          <li><%= link_to "Edit", gallery_pictures_path(obj) %></li>
+          <li>
+            <%= link_to "Delete", gallery_path(obj), method: :delete, data: 
+              {confirm: "Are you sure you want to delete this gallery?"} %>
+          </li>
+        <% end %>
+        
+      </ul>
+    </li>
+</div>

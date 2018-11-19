@@ -47,7 +47,7 @@
         }
     }
 </style>
-<div class="home-row">
+<div class="home-row" id="volunteers">
     <% if !volunteers.blank? %>
         <div class="home-header">
             <h2 style="color: #56A644;">Our Volunteers</h2>
@@ -63,6 +63,9 @@
                     <% end %>
                     <% if !volunteer.content_one.blank? %>
                         <%= sanitize volunteer.content_one %>
+                    <% end %>
+                    <% if admin_signed_in? %>
+                        <%= render partial: "pages/admin_cta_bar", locals: { obj: volunteer, padding_vertical: "0px" } %> 
                     <% end %>
                 </div>
             <% end %>

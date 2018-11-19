@@ -43,14 +43,13 @@
                         <% else %>
                           No
                         <% end %>
-                        
                       </td>
                       <td class="text-center">
                         <li class="list-unstyled dropdown">
                           <i class="glyphicon glyphicon-option-vertical" data-toggle="dropdown"></i>
                           <ul class="dropdown-menu dropdown-menu-right">
                             <% if volunteer.published == false %>
-                              <li><%= link_to "Preview", about_us_path(volunteer_preview: "true") %></li>
+                              <li><%= link_to "Preview", about_us_path(volunteer_preview: "true", anchor:"volunteers") %></li>
                               <li><%= link_to "Publish", published_page_path(volunteer) %></li>
                             <% else %>
                               <li><%= link_to "Unpublish", published_page_path(volunteer) %></li>
@@ -71,7 +70,7 @@
         <% end %>
         <div style="width: 100%; display: flex; flex-direction: column; align-items: flex-end">
           <%= link_to "Add a volunteer", new_page_path(:site_page => "volunteer"), class:"btn btn-md btn-phab" %>
-          <%= link_to "Preview", about_us_path(volunteer_preview: "true"), class:"btn btn-md btn-phab" %>
+          <%= link_to "Preview", about_us_path(volunteer_preview: "true", anchor:"volunteers"), class:"btn btn-md btn-phab" %>
         </div>
     </div>
   </div>

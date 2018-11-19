@@ -28,6 +28,7 @@
 </html>
 <script>
   $(document).on("turbolinks:load", function() {
+    $('[data-toggle="tooltip"]').tooltip(); 
     $('.alert').delay(5000).fadeOut(2000);
   });
 </script>

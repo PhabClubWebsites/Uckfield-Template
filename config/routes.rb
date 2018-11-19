@@ -24,10 +24,15 @@ Rails.application.routes.draw do
   resources :pages do
     member do
   		get :published
+  		put :remove_image
   	end
   end
   
-  resources :clubs
+  resources :clubs do
+    member do
+  		put :remove_image
+  	end
+  end
   
   resources :galleries do 
     member do

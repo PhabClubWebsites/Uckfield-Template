@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181116125947) do
+ActiveRecord::Schema.define(version: 20181119002310) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -46,11 +46,32 @@ ActiveRecord::Schema.define(version: 20181116125947) do
     t.string   "bg_image_content_type"
     t.integer  "bg_image_file_size"
     t.datetime "bg_image_updated_at"
-    t.integer  "bg_position",            default: 100
+    t.integer  "bg_position",                     default: 100
     t.string   "facebook_link"
     t.string   "twitter_link"
     t.string   "donate_link"
     t.string   "charity_number"
+    t.string   "events_banner_img_file_name"
+    t.string   "events_banner_img_content_type"
+    t.integer  "events_banner_img_file_size"
+    t.datetime "events_banner_img_updated_at"
+    t.string   "news_banner_img_file_name"
+    t.string   "news_banner_img_content_type"
+    t.integer  "news_banner_img_file_size"
+    t.datetime "news_banner_img_updated_at"
+    t.string   "gallery_banner_img_file_name"
+    t.string   "gallery_banner_img_content_type"
+    t.integer  "gallery_banner_img_file_size"
+    t.datetime "gallery_banner_img_updated_at"
+    t.string   "about_banner_img_file_name"
+    t.string   "about_banner_img_content_type"
+    t.integer  "about_banner_img_file_size"
+    t.datetime "about_banner_img_updated_at"
+    t.string   "contact_banner_img_file_name"
+    t.string   "contact_banner_img_content_type"
+    t.integer  "contact_banner_img_file_size"
+    t.datetime "contact_banner_img_updated_at"
+    t.string   "postal_address"
   end
 
   create_table "galleries", force: :cascade do |t|

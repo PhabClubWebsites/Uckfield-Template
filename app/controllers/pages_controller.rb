@@ -19,6 +19,8 @@ class PagesController < ApplicationController
       title = "news article"
     elsif @page.site_page == "volunteer"
       title = "volunteer"
+    elsif @page.site_page == "about"
+      title = "about"
     else
       title = "home page"
     end
@@ -27,9 +29,9 @@ class PagesController < ApplicationController
       if @page.site_page == "home"
         redirect_to root_path(preview: "true")
       elsif @page.site_page == "volunteer"
-        redirect_to about_us_path(@page, volunteer_preview: "true")
+        redirect_to about_us_path(volunteer_preview: "true")
       elsif @page.site_page == "about"
-        redirect_to about_us_path(@page, about_preview: "true")
+        redirect_to about_us_path(about_preview: "true")
       else
         redirect_to page_path(@page)
       end
@@ -49,13 +51,19 @@ class PagesController < ApplicationController
       title = "news article"
     elsif @page.site_page == "volunteer"
       title = "volunteer"
+    elsif @page.site_page == "about"
+      title = "about"
     else
       title = "home page"
     end
     if @page.update(page_params)
       flash[:success] = "Your #{title} was succesfully updated!"
       if @page.site_page == "home"
-        redirect_to root_path
+        redirect_to root_path(preview: "true")
+      elsif @page.site_page == "volunteer"
+        redirect_to about_us_path(volunteer_preview: "true")
+      elsif @page.site_page == "about"
+        redirect_to about_us_path(about_preview: "true")
       else
         redirect_to page_path(@page)
       end
@@ -88,6 +96,21 @@ class PagesController < ApplicationController
     @home_pages = Page.all.where("site_page = ?", "home").reverse;
   end
   
+  def remove_image
+    @page = Page.find(params[:id])
+    case params[:item]
+      when "img_one"
+        @page.img_one = nil
+      when "img_two"
+        @page.img_two = nil
+      when "img_three"
+        @page.img_three = nil
+    end
+    if @page.save
+      redirect_to edit_page_path(@page, site_page: @page.site_page)
+    end
+  end
+  
   def published
     if @page.site_page == "event"
       title = "event"
@@ -102,16 +125,27 @@ class PagesController < ApplicationController
       @page.update_attribute(:published, true)
       flash[:success] = "Your #{title} has been published!"
       if @page.site_page == "home"
-        redirect_to root_path
+        redirect_to root_path(preview: "true")
+      elsif @page.site_page == "volunteer"
+        redirect_to about_us_path
+      elsif @page.site_page == "about"
+        redirect_to about_us_path
       else
         redirect_to page_path(@page)
       end
     elsif @page.published == true
       @page.update_attribute(:published, false)
       flash[:danger] = "Your #{title} is no longer published."
-      redirect_to dashboard_path
+      if @page.site_page == "home"
+        redirect_to root_path
+      elsif @page.site_page == "volunteer"
+        redirect_to about_us_path
+      elsif @page.site_page == "about"
+        redirect_to about_us_path
+      else
+        redirect_to dashboard_path
+      end
     end
-      
   end
   
   def home

@@ -1,6 +1,12 @@
 <% fb_link = club.facebook_link != "" ? club.facebook_link : "en-gb.facebook.com/PhabCharity/" %>
 <% twitter_link = club.twitter_link != "" ? club.twitter_link : "www.twitter.com/phab_charity?lang=en" %>
 <% donate_link = club.donate_link != "" ? club.donate_link : "www.justgiving.com/onecheckout/donation/direct/charity/2331" %>
+<style>
+  .main-sidebar-block .list .item {
+    word-wrap: break-word !important;
+    text-transform: none !important;
+  }
+</style>
 <div class="sidebar">
   <div class="main-sidebar-block" id="sidebar_block">
     <div class="contact-block" id="contact_block">

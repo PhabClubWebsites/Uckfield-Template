@@ -1,3 +1,17 @@
+<style>
+    .thumb-container {
+        position: relative;
+    }
+    
+    .thumb-container img {
+        width: auto !important;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: none !important;
+    }
+</style>
 <div class="sidebar-well">
     <div class="sidebar-container">
         <div class="sidebar-block hidden-sm hidden-xs">
@@ -25,7 +39,13 @@
                         <% end %>
                     
                         <div class="post-content-block">
-                            <p class="post-title"><%= link_to truncate(post.title, length:30, separator: /\s/), page_path(post) %></p>
+                            <p class="post-title">
+                                <% if post.site_page == "about" %>
+                                    <%= link_to truncate(post.title, length:30, separator: /\s/), about_us_path(anchor: handlise(post.title)) %>
+                                <% else %>
+                                    <%= link_to truncate(post.title, length:30, separator: /\s/), page_path(post) %>
+                                <% end %>
+                            </p>
                             <small class="post-description"><%= sanitize(post.content_one.truncate(60, separator: /\s/)) %></small>
                         </div>
                     </div>

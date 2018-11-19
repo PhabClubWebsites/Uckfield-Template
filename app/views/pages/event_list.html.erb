@@ -11,7 +11,7 @@
           <p class="text-center blank-object">You have no events on your site yet!</p>
         <% else %>
           <div class="image-table-area">
-            <table class="table table-striped articles-table">
+            <table class="table articles-table">
               <thead>
                 <tr>
                   <th>Title</th>
@@ -20,7 +20,7 @@
                   <th class="text-center">Actions</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody style="background-color: white;">
                 <% @event_pages.each do |news| %>
                   <%= render 'article_table', obj: news %>
                 <% end %>

@@ -36,6 +36,11 @@
       <div class="col-md-8 col-sm-8 col-xs-12">
         <div class="row">
           <div class="col-md-6 col-sm-6 col-xs-6">
+            <% if !@page.img_one.blank? %>
+              <div class="">
+                <%= image_tag(@page.img_one.url(:thumb), class:"thumbnail") %>
+              </div>
+            <% end %>
             <%= f.file_field :img_one %>
           </div>
         </div>

@@ -1,8 +1,10 @@
 $(document).on("turbolinks:load", function() {
     $("body").on("click", "#mobile_menu", function() {
         if ($("#mobile_side_menu").hasClass("is-open")) {
+             $(this).find(".fa.fa-times.fa-2x").attr("class", "fas fa-bars fa-2x")
             $("#mobile_side_menu").removeClass("is-open");
         } else {
+            $(this).find(".fas.fa-bars.fa-2x").attr("class", "fa fa-times fa-2x")
             $("#mobile_side_menu").addClass("is-open");
         }
     });

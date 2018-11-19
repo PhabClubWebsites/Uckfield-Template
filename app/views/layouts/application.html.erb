@@ -18,6 +18,13 @@
     
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   </head>
+  <style>
+    @media (max-width: 500px) {
+        .home-content {
+            margin-left: 15px !important;
+        }
+    }
+  </style>
   <%= render 'layouts/navigation' %>  
   <body>
     <div class="flash-container text-center col-xs-12">
@@ -66,7 +73,7 @@
   });
 
   $(document).on("turbolinks:load", function() {
-    
+     
     $('.alert').delay(5000).fadeOut(2000);
     if ($(window).width() <= 1066) {
       removeContainerClasses();
@@ -85,7 +92,6 @@
     $(window).scroll(function(event){
       var st = $(this).scrollTop();
       var open = $("#sidebar_block").hasClass("sidebar-open");
-      console.log(!open);
       if (st > lastScrollTop && !open){
           $('#icon_bar').css("transform", "translateX(-100%)");
       } else {
