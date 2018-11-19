@@ -1,9 +1,4 @@
 <div class="content__title">
-    <% if admin_signed_in? %>
-        <% if obj.published == false %>
-            <%= link_to "Publish #{obj.site_page}", published_page_path(obj), class:"btn btn-md btn-phab no-margin" %>
-        <% end %>
-    <% end %>
     <h2 id="pg_<%=handlise(obj.title) %>">
         <%= obj.title %>
     </h2>
