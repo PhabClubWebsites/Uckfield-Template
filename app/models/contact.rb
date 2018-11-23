@@ -7,7 +7,7 @@ class Contact < MailForm::Base
   def headers
       club = Club.first
     {
-      :subject => "You have an Email from Phab #{club.club_name}",
+      :subject => "Someone has contacted you from #{club.club_name}'s website",
       :to => club.contact_email,
       :from => %("#{name}" <#{email}>)
     }
