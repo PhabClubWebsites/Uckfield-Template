@@ -315,7 +315,7 @@
   </div>
 <% end %>
 <script>
-  $(document).on("turbolinks:load", function() {
+  $(document).ready(function() {
     $("select").each( function() {
       if (!$(this).hasClass("form-control")) {
         $(this).addClass("form-control");

@@ -1,6 +1,8 @@
-$(document).on("turbolinks:load", function() {
+$(document).on("ready", function() {
+  console.log("hello")
   $isMobile = ($(window).width() <= 769) ? true : false;
   $("body").on("click", "#contact_btn", function() {
+    console.log("hello");
     if (isSidebarOpen() && $("#contact_block").is(":visible")) {
       $("#contact_block").fadeOut("slow");
       closeSidebar();

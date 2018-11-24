@@ -61,7 +61,7 @@
   </div>
 <% end %>
 <script>
-  $(document).on("turbolinks:load", function() {
+  $(document).on("ready", function() {
     $("input[type='submit']").on("click", function() {
       $(".loading-bg").addClass("is-open");
     });

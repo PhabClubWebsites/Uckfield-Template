@@ -298,7 +298,7 @@
 <% end %>  
 
 <script>
-$(document).on("turbolinks:load", function() {
+$(document).on("ready", function() {
   $('.slider').hasClass('.slick-initialized') ? $('.slider').slick('unslick') : null;
   $("#close_gallery").on("click", function() {
     $('.slider').slick('unslick');

@@ -1,6 +1,7 @@
 $(document).ready( function() {
     addContentBlock();
     addImageFile();
+    
 })
 
 function addContentBlock() {
@@ -23,3 +24,7 @@ function addImageFile() {
         }
     });
 }
+
+// $(document).on("turbolinks:load", function() {
+    
+//   });
