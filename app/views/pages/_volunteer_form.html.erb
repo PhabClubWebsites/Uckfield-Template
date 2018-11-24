@@ -54,7 +54,7 @@
   </div>
 <% end %>
 <script>
-  $(document).ready( function() {
+  $(document).on("turbolinks:load", function() {
     $("select").each( function() {
       if (!$(this).hasClass("form-control")) {
         $(this).addClass("form-control");

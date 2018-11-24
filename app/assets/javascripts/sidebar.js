@@ -1,4 +1,4 @@
-$(document).on("ready", function() {
+$(document).on("turbolinks:load", function() {
   console.log("hello")
   $isMobile = ($(window).width() <= 769) ? true : false;
   $("body").on("click", "#contact_btn", function() {

@@ -26,7 +26,7 @@
 </div>
 
 <script>
-$(document).ready(function(){
+$(document).on("turbolinks:load", function() {
     var scrolltop = ($(window).width() < 769) ? 100 : 180;
   $("#pointer_scroll").on('click', function(event) {
       $('html, body').animate({

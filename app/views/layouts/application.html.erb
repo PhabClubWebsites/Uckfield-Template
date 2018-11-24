@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width">
-    <title<% if !club.blank? && !club.club_name.blank? %><%= club.club_name %><% else %>PHAB<% end %></title>
+    <title><% if !club.blank? && !club.club_name.blank? %><%= club.club_name %><% else %>Phab<% end %></title>
     <%= csrf_meta_tags %>
     <%= favicon_link_tag 'phab-icon.ico' %>
     <link href="https://fonts.googleapis.com/css?family=Homemade+Apple" rel="stylesheet">
@@ -86,7 +86,7 @@
       }
   });
 
-  $(document).on("ready", function() {
+  $(document).on("turbolinks:load", function() {
      
     $('.alert').delay(5000).fadeOut(2000);
     if ($(window).width() <= 1066) {

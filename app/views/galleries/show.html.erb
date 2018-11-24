@@ -26,11 +26,6 @@
         <div class="outer-well">
           <div class="content">
             <div class="content__title">
-              <% if admin_signed_in? %>
-                <% if @gallery.published == false %>
-                      <%= link_to "Publish gallery", published_gallery_path(@gallery), class:"btn btn-md btn-phab no-margin" %>
-                <% end %>
-              <% end %>
               <h2>
                 <%= @gallery.name %>
               </h2>
@@ -298,7 +293,7 @@
 <% end %>  
 
 <script>
-$(document).on("ready", function() {
+$(document).on("turbolinks:load", function() {
   $('.slider').hasClass('.slick-initialized') ? $('.slider').slick('unslick') : null;
   $("#close_gallery").on("click", function() {
     $('.slider').slick('unslick');

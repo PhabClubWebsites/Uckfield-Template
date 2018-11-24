@@ -73,7 +73,7 @@
                 <tr>
                   <!--<th><%#= model_class.human_attribute_name(:image) %></th>-->
                   <th>Preview</th>
-                  <th>File Name</th>
+                  <th class="hidden-xs">File Name</th>
                   <th class="hidden-xs">Caption</th>
                   <th class="text-center">Actions</th>
                 </tr>
@@ -82,7 +82,7 @@
                 <% @pictures.each do |picture| %>
                   <tr class="<% if picture.id == picture.gallery.cover %>cover-img<% end %>">
                     <td><%= image_tag(picture.image.url(:thumb), class:"pic-thumbnail") %></td>
-                    <td><%= picture.split_image_path %></td>
+                    <td class="hidden-xs"><%= picture.split_image_path %></td>
                     <td class="hidden-xs"><%= truncate(picture.description, length: 83, separator: /\s/) %></td>
                     <td class="text-center">
                       <li class="list-unstyled dropdown">
@@ -123,7 +123,7 @@
   <%= render 'popup_edit', obj: picture %>
 <% end %>
 <script>
-  $(document).on("ready", function() {
+  $(document).on("turbolinks:load", function() {
     $("input[type='submit']").on("click", function() {
       $(".loading-bg").addClass("is-open");
     });
