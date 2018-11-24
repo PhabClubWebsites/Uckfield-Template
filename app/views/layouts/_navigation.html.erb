@@ -127,7 +127,7 @@
     <li class="mm__item green">
       <%= link_to "Home", root_path %>
     </li>
-    <% if !nav_about_list.blank? && !nav_volunteers.blank? %>    
+    <% if !nav_about_list.blank? || !nav_volunteers.blank? %>    
       <li class="mm__item orange" style="padding: 20px;">
         <span>About Us</span>
         <i class="fas fa-angle-right"></i>

@@ -1,5 +1,13 @@
 <tr>
-  <td style="font-weight: bold !important;"><%= link_to obj.title, page_path(obj), class:"text-success" %></td>
+  <td style="font-weight: bold !important;">
+    <% if obj.site_page != "home" && obj.site_page != "about" %>
+      <%= link_to obj.title, page_path(obj), class:"text-success" %>
+    <% elsif obj.site_page == "home" %>
+      <%= link_to obj.title, root_path(preview: "true"), class:"text-success" %>
+    <% elsif obj.site_page == "about" %>
+      <%= link_to obj.title, about_us_path(preview: "true"), class:"text-success" %>
+    <% end %>
+  </td>
   <td class="hidden-xs"><%= sanitize(obj.content_one.truncate(53, separator: /\s/)) %></td>
   <td class="text-center">
     <% if obj.published == true %>
@@ -13,10 +21,12 @@
       <i class="glyphicon glyphicon-option-vertical" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right">
         <% if obj.published == false %>
-          <% if obj.site_page != "home" %>
+          <% if obj.site_page != "home" && obj.site_page != "about"  %>
             <li><%= link_to "Preview", page_path(obj) %></li>
-          <% else %>
+          <% elsif obj.site_page == "home" %>
             <li><%= link_to "Preview", root_path(preview: "true") %></li>
+          <% elsif obj.site_page == "about" %>
+            <li><%= link_to "Preview", about_us_path(about_preview: "true") %></li>
           <% end %>
           <li><%= link_to "Publish", published_page_path(obj) %></li>
         <% else %>

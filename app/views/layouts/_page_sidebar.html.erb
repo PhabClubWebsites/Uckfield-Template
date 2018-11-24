@@ -14,9 +14,9 @@
 </style>
 <div class="sidebar-well">
     <div class="sidebar-container">
-        <div class="sidebar-block hidden-sm hidden-xs">
-            <h3 class="sidebar-header first-header">Recent Posts</h3>
-            <% if !recent_posts.blank? %>
+        <% if !recent_posts.blank? %>
+            <div class="sidebar-block hidden-sm hidden-xs">
+                <h3 class="sidebar-header first-header">Recent Posts</h3>
                 <% recent_posts.each do |post| %>
                     <div class="post-block">
                         <% if post.site_page == "event" %>
@@ -50,11 +50,12 @@
                         </div>
                     </div>
                 <% end %> 
-            <% end %>  
-        </div>
-        <div class="sidebar-block">
-            <h3 class="sidebar-header">Upcoming Events</h3>
-            <% if !upcoming_events.blank? %>
+            </div>
+        <% end %>
+        <% if !upcoming_events.blank? %>
+            <div class="sidebar-block">
+                <h3 class="sidebar-header">Upcoming Events</h3>
+            
                 <% upcoming_events.each do |post| %>
                      <div class="post-block">
                         <div class="post-img-block">
@@ -69,11 +70,11 @@
                         </div>
                     </div>
                 <% end %>   
-            <% end %> 
-        </div>
-        <div class="sidebar-block">
-            <h3 class="sidebar-header">Club News</h3>
-            <% if !club_news.blank? %>
+            </div>
+        <% end %>
+        <% if !club_news.blank? %>
+            <div class="sidebar-block">
+                <h3 class="sidebar-header">Club News</h3>
                 <% club_news.each do |post| %>
                      <div class="post-block">
                         <div class="post-img-block">
@@ -91,8 +92,8 @@
                         </div>
                     </div>
                 <% end %>   
-            <% end %>
-        </div>
+            </div>
+        <% end %>
     </div>
     <div class="sidebar-logo-container">
         <% if club.blank? %>

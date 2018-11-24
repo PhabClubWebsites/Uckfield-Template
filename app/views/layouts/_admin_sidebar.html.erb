@@ -64,7 +64,7 @@
           <%= link_to edit_club_path(club) do %>
             <span class="text">
               <i class="fa fa-university"></i>
-              Club / Website
+              Club
             </span>
             <i class="fas fa-chevron-right"></i>
           <% end %>
@@ -72,7 +72,26 @@
             <%= link_to new_club_path do %>
                 <span class="text">
                     <i class="fa fa-university"></i>
-                    Club / Website
+                    Club
+                </span>
+                <i class="fas fa-chevron-right"></i>
+            <% end %>
+        <% end %>
+    </li>
+    <li class="sidebar__item">
+        <% if !club.blank? %>
+          <%= link_to website_banners_path(club_id: club.id) do %>
+            <span class="text">
+              <i class="fa fa-desktop"></i>
+              Website
+            </span>
+            <i class="fas fa-chevron-right"></i>
+          <% end %>
+        <% else %>
+            <%= link_to new_club_path do %>
+                <span class="text">
+                    <i class="fa fa-desktop"></i>
+                    Website
                 </span>
                 <i class="fas fa-chevron-right"></i>
             <% end %>

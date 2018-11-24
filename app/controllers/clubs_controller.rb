@@ -19,6 +19,11 @@ class ClubsController < ApplicationController
       end  
     end
     
+    def website_banners
+      # puts params[:club_id]
+      @club = Club.find(params[:club_id])
+    end
+    
     def edit
     
     end
@@ -55,7 +60,7 @@ class ClubsController < ApplicationController
     end
     if @club.save
       flash[:danger] = "Your picture has been removed."
-      redirect_to edit_club_path(@club)
+      redirect_to website_banners_path(club_id: @club.id)
     end
   end
     

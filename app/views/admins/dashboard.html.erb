@@ -97,7 +97,17 @@
     <hr></hr>
     <div class="row dashboard-row">
         <div class="col-md-4 col-sm-4 col-xs-12">
-            <h2 style="margin: 0;">Club / Website</h2>
+            <h2 style="margin: 0;">Website</h2>
+            <p class="dashboard-p">Add/Update banners and your club logo for your website</p>
+        </div>
+        <div class="col-md-8 col-sm-8 col-xs-12">
+            <p style="float: right;"><%= link_to "Update banners", website_banners_path(club_id: club.id), class:"btn btn-md btn-phab" %></p>
+        </div>
+    </div>
+    <hr></hr>
+    <div class="row dashboard-row">
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <h2 style="margin: 0;">Club</h2>
             <p class="dashboard-p">Set or edit your club details and customise the website template</p>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-12">

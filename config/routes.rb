@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   get 'about_list', to: 'pages#about_list'
   get 'volunteer_list', to: 'pages#volunteer_list'
   
+  get 'website/banners', to: 'clubs#website_banners'
+  
   resources :pages do
     member do
   		get :published

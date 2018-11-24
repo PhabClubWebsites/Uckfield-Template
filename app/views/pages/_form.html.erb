@@ -125,13 +125,15 @@
           <%= f.label :date_of_event, "Date and time of event" %>
         </div>
         <div class="col-md-8 col-sm-8 col-xs-12">
-          <div class="row">
-            <div class="col-md-7 col-sm-12 col-xs-12">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <div>
+              <i class="fa fa-calendar" style="padding-right: 8px;"></i>
               <div class="date-group">
                 <%= f.date_select :date_of_event, value:"#{Date.today.strftime("%Y-%m-%d")}" %>
               </div>
             </div>
-            <div class="col-md-5 col-sm-12 col-xs-12">
+            <div style="padding-top: 6px;">
+              <i class="glyphicon glyphicon-time" style="padding-right: 8px;"></i>
               <div class="date-group">
                 <%= f.time_select(:time_of_event, class:"form-control", ignore_date: true) %>
               </div>
@@ -280,18 +282,18 @@
           </div>
           <div class="row related-link-inputs">
             <div class="col-md-6 col-sm-6 col-xs-6">
-              <%= f.text_field :link_text_one, class:"form-control", placeholder: "Eg. Click here" %>
+              <%= f.text_field :link_text_one, class:"form-control", placeholder: "Eg. Buy tickets here" %>
             </div>
             <div class="col-md-6 col-sm-6 col-xs-6">
-              <%= f.text_field :link_url_one, class:"form-control", placeholder: "Eg. www.google.com" %>
+              <%= f.text_field :link_url_one, class:"form-control", placeholder: "Eg. www.ticketmaster.com" %>
             </div>
           </div>
           <div class="row related-link-inputs">
             <div class="col-md-6 col-sm-6 col-xs-6">
-              <%= f.text_field :link_text_two, class:"form-control", placeholder: "Eg. Click here" %>
+              <%= f.text_field :link_text_two, class:"form-control", placeholder: "Eg. View last year's gallery" %>
             </div>
             <div class="col-md-6 col-sm-6 col-xs-6">
-              <%= f.text_field :link_url_two, class:"form-control", placeholder: "Eg. www.google.com" %>
+              <%= f.text_field :link_url_two, class:"form-control", placeholder: "Eg. <YOUR URL> + /galleries/3" %>
             </div>
           </div>
           <div class="row related-link-inputs">
@@ -313,7 +315,7 @@
   </div>
 <% end %>
 <script>
-  $(document).ready( function() {
+  $(document).on("turbolinks:load", function() {
     $("select").each( function() {
       if (!$(this).hasClass("form-control")) {
         $(this).addClass("form-control");
