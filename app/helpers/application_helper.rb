@@ -53,4 +53,12 @@ module ApplicationHelper
     def club_news
        return Page.where("site_page = ? AND published = ?", "news", true).order(id: :desc).limit(3) 
     end
+    
+    def news_header
+       return "News & Information" 
+    end
+    
+    def events_header
+       return "Activity Schedule" 
+    end
 end

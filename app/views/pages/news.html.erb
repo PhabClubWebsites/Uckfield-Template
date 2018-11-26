@@ -1,5 +1,5 @@
 <% if !club.news_banner_img.blank? %>
-    <%= render partial: "page-header", locals: { bg_img: club.news_banner_img, title: "Latest News", color: "#3D3976" } %>
+    <%= render partial: "page-header", locals: { bg_img: club.news_banner_img, title: news_header, color: "#3D3976" } %>
 <% end %>
 
 <div class="container-fluid pipe-container <% if club.news_banner_img.blank? %>page-show<% end %>" id="container_news">
